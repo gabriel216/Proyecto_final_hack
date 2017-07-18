@@ -40,7 +40,7 @@
   "devDependencies": {
     "webpack-dev-server": "^2.5.1"
   },
-   "scripts": {
+  "scripts": {
     "dev": "./bin/webpack-dev-server"
   }
 }
