@@ -1,0 +1,134 @@
+PROYECTO DE EVENTOS	 
+-Home(autenticado)	 
+	**Como** Usuario autenticado
+	**Quiero** Navegar  en  el  home 
+	**Para** Ver los  eventos de  emprendimiento publicados en la pagina
+	**Y** Publicar eventos
+
+	Criterios de Aceptación
+
+	**Dado** Un usuario autenticado
+	**Cuando** El usuario navegue en el home
+	**Entonces** Podra observar un boton de publicar evento 
+	**Y** Un menu en el que se puede seleccionar los eventos del dia(hoy), de la semana y del mes 
+	**Y** Una barra con las cinco categorias(eventos, foros, cursos, talleres, exposiciones, documentales, material didactico)
+	**Y** Un despliegue grafico de eventos del dia
+	**Y** El usuario al hacer click en el evento se despliega la informacion del mismo
+	**Y** El usuario podra observar un boton de cierre de sesion
+	**Y** El usuario podrá observar los botones de perfil
+	**Y**El boton de perfil al hacerle click desplegara una pagina con el listado de eventos
+
+-Listado de eventos del usuario 
+	**Como** Usuario autenticado
+	**Quiero** Ver el listado de eventos en mi perfil
+	**Para** Editar y eliminar
+
+	Criterios de aceptacion
+
+	**Dado** Un usuario autenticado
+	**Cuando** El usuario haga click en el boton con su nombre
+	**Entonces** Se desplegara una pagina con el listado de eventos del usuario
+	**Y** El usuario podra eliminar el evento
+	**Y** El usuario podra editar el evento
+	**Y** El usuario podra guardar el evento
+
+-Editar publicacion
+	**Como** Usuario autenticado
+	**Quiero** Editar mis publicacines
+	**Para** Mejorar la presentacion de la publicacion
+
+	Criterios de aceptacion
+
+	**Dado** Usuario autenticado
+	**Cuando** Muestre el listado de eventos
+	**Y** Se le de click al 'lapiz'(editar)
+	**Entonces** Se desplegara uan pagina para editar el evento
+	**Y** El usuario podra cambiar todos los campos del formulario
+	**Y** Cambiar la imagen de la publicacion
+	**Y** Al darle click a 'aceptar' se guardaran los cambios del formulario del evento
+
+
+-Home(no autenticado)	 
+	**Como** Usuario No Autenticado
+	**Quiero** Navegar  en  el  home 
+	**Para** Ver los  eventos de  emprendimiento publicados en la pagina
+
+	Criterios de Aceptación
+
+	**Dado** Un usuario no autenticado
+	**Cuando** El usuario navegue en el home
+	**Entonces**El usuario podrá observar los botones de inicio de sesión, registro de usuario y publicar evento
+	**Y** Un menu en el que se puede seleccionar los eventos del dia(hoy), de manana, de la semana y del mes 
+	**Y** Una barra con las cinco categorias(foros, eventos, talleres, cursos, documentales y otros)
+	**Y** Un despliegue grafico de eventos del dia
+	**Y** El usuario al hacer click en el evento se despliega la informacion del mismo
+
+-Mostrar evento
+	**Como** Usuario autenticado
+	**O** no autenticado
+	**Quiero** Ver el evento al hacer click sobre el
+	**Para** Detallar la informacion de la publicacion
+
+	Criterios de aceptacion 
+
+	**Dado** Un usuario autenticado
+	**O**No autenticado
+	**Cuando**El usuario navegue en la pagina de la publiaccion
+	**Entonces** El usuario podra observar detalladamente la informacion de la publicacion
+
+-Registro de usuario
+	**Como** Usuario no autenticado
+	**Quiero** Registrarme en la pagina de eventos
+	**Para** Realizar una publicacion de emprendimiento 
+
+	Criterios de Aceptacion 
+
+	**Dado** Usuario no autenticado
+	**Cuando** El usuario pulse el botón registrarse
+	**Entonces** Se desplegara un formulario de registro de usuario
+    **Y** Un botón de aceptar
+
+-Publicar evento(usuario no autenticado)
+   **Como** Usuario no autenticado
+   **Quiero** Publicar un evento, curso, taller, foro, documentales, material didactico o exposiciones
+   **Para** Promocionarlo en la pagina de emprendimiento
+
+   Criterios de aceptacion 
+
+   **Dado** Un usuario no autenticado
+   **Cuando** El usuario pulse el boton de publicar
+   **Entonces** Se redireccionara al inicio de sesion
+   	**Y**Una pagina para publicar el evento 
+	**Y** Espacio del formulario para agregar titulo del evento
+	**Y** Espacio del formulario para subir imagen relacionada al evento
+	**Y** Espacio del formulario para descripcion del evento
+	**Y** Espacio del formulario para inicio de fecha del evento
+	**Y** Espacio del formulario para colocar numero de dias en que el evento estara disponble
+	**Y** Espacio del formulario para hora del evento
+	**Y** Espacio del formulario para lugar del evento
+	**Y** Espacio del formulario para telefono del evento
+	**Y** Espacio del formulario para costo de las entradas del evento
+	**Y** Boton de aceptar condiciones de publicacion del evento
+	**Y** boton de 'publicar evento'  
+
+-Publicar evento(usuario autenticado)
+   **Como** Usuario autenticado
+   **Quiero** Publicar un evento, curso, taller, foro, documentales, material didactico o exposiciones
+   **Para** Promocionarlo en la pagina de emprendimiento
+
+   Criterios de aceptacion 
+
+   **Dado** Un usuario autenticado
+   **Cuando** El usuario pulse el boton de publicar
+   **Entonces** Se desplegara una pagina para registrar el evento
+	**Y** Espacio del formulario para agregar titulo del evento
+	**Y** Espacio del formulario para subir imagen relacionada al evento
+	**Y** Espacio del formulario para descripcion del evento
+	**Y** Espacio del formulario para inicio de fecha del evento
+	**Y** Espacio del formulario para colocar numero de dias en que el evento estara disponble
+	**Y** Espacio del formulario para hora del evento
+	**Y** Espacio del formulario para lugar del evento
+	**Y** Espacio del formulario para telefono del evento
+	**Y** Espacio del formulario para costo de las entradas del evento
+	**Y** Boton de aceptar condiciones de publicacion del evento
+	**Y** boton de 'publicar evento'
