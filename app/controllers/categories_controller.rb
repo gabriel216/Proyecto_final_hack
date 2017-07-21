@@ -40,35 +40,30 @@ class CategoriesController < ApplicationController
   # PATCH/PUT /categories/1
   # PATCH/PUT /categories/1.json
   def update
-    respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to @category, notice: 'Category was successfully updated.' }
-        format.json { render :show, status: :ok, location: @category }
+        redirect_to @category
       else
-        format.html { render :edit }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
+        render 'edit'
       end
-    end
   end
 
-  # DELETE /categories/1
-  # DELETE /categories/1.json
   def destroy
-    @category.destroy
-    respond_to do |format|
-      format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    if @category.destroy
+      redirect_to category_path
+    else
+      format.json { render json: @category.errors, status: :unprocessable_entity }
+    end  
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
-      @category = Category.find(params[:id])
+      @category = Category.find_by(id: params[:category_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params.fetch(:category, {})
+      params.require(:category).permit(:title, :description, :start_date, :duration, 
+        :start_hour, :end_hour, :location, :cost, :phone, :client_id)  
     end
 end
