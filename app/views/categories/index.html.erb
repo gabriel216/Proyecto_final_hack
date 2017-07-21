@@ -16,17 +16,33 @@
         <span class="img-opcion">
           <%= image_tag "opcionv.jpg", size:"120x120" %> 
         </span>
-        <span class="left-button">
-          <button class="btn btn-info">
-            <%= link_to 'Iniciar sesion', new_user_session_path, {:style => 'text-decoration: none'}  %>
-          </button>
-          <button class="btn btn-success">
-              <%= link_to 'Registrarse', new_user_registration_path, {:style => 'text-decoration: none'} %>
-          </button>
-           <button class="btn btn-danger">
-              <%= link_to 'Publicar', {:style => 'text-decoration: none'} %>
-          </button>
-        </span>
+
+        <% if !user_signed_in?  %>
+          <span class="left-button">
+            <button class="btn btn-info">
+              <%= link_to 'Iniciar sesion', new_user_session_path, {:style => 'text-decoration: none'}  %>
+            </button>
+            <button class="btn btn-success">
+                <%= link_to 'Registrarse', new_user_registration_path, {:style => 'text-decoration: none'} %>
+            </button>
+             <button class="btn btn-danger">
+                <%= link_to 'Publicar', new_user_registration_path, {:style => 'text-decoration: none'} %>
+            </button>
+        
+        <% else %>
+          <span class="left-button">
+            <button class="btn btn-info">
+              <a href="categories_path" >Hi, <%= current_user.email %></a>
+            </button>
+            <button class="btn btn-success">
+                <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete' %>
+            </button>
+             <button class="btn btn-danger">
+                <%= link_to 'Publicar', new_category_path %>
+            </button>
+          </span>
+        <% end %>  
+  
   </div>
   </header>
 
@@ -59,10 +75,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-11 col-md-offset-1">
-          <%= image_tag "bombillo.png", :class => "img-publicidad-1" %>
-          <%= image_tag "ideas.jpg", :class => "img-publicidad-2" %>
-          <%= image_tag "trabajo.jpg", :class => "img-publicidad-2" %>
-          <%= image_tag "opcionv.jpg", :class => "img-publicidad-2" %>
+        
         </div>
       </div>
     </div>

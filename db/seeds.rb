@@ -53,6 +53,6 @@ publicidad_list.each do |category_type1, title1, description1, start_date1,
 		description:description1, start_date:start_date1, 
 		duration: duration1, start_hour:start_hour1, end_hour:end_hour1,
 		location:location1, cost:cost1, phone:phone1, client_id:client1 )
-	puts "#{publicidad}"
+
 end
 
