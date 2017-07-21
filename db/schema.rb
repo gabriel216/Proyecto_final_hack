@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170721135017) do
+ActiveRecord::Schema.define(version: 20170721144134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 20170721135017) do
     t.time "end_hour"
     t.string "location"
     t.integer "cost"
-    t.integer "phone"
     t.bigint "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -41,6 +40,7 @@ ActiveRecord::Schema.define(version: 20170721135017) do
     t.string "avatar3_content_type"
     t.integer "avatar3_file_size"
     t.datetime "avatar3_updated_at"
+    t.string "phone"
     t.index ["client_id"], name: "index_categories_on_client_id"
   end
 
@@ -48,11 +48,11 @@ ActiveRecord::Schema.define(version: 20170721135017) do
     t.string "name"
     t.string "lastname"
     t.string "cirif"
-    t.integer "phone"
     t.bigint "user_id"
     t.integer "reputation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "phone"
     t.index ["user_id"], name: "index_clients_on_user_id"
   end
 
