@@ -27,6 +27,12 @@ gem 'devise'
 
 gem 'rack-cors', :require => 'rack/cors'
 
+gem 'haml-rails'
+
+gem "paperclip", "~> 5.0.0"
+
+gem 'awesome_print'
+
 gem 'coffee-rails','~> 4.2' 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

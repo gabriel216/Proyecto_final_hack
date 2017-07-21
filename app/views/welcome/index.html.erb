@@ -1,7 +1,73 @@
-<h1>Hola Ricardo</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
-<h1>Hola Bienvenido</h1>
-<% if current_user %>
-    Haz entrado como:  <%= current_user.email %>
-    <%= link_to 'Cerrar sesion', destroy_user_session_path, method: 'delete' %>
-<%end%>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Eventos de emprendimiento</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="assets/stylesheets/welcome.scss">
+  <link rel="stylesheet" href="assets/stylesheets/application.scss">
+</head>
+<body>
+  
+  <header class="container-fluid">
+    
+  <div class="row">
+        <span class="img-opcion">
+          <%= image_tag "opcionv.jpg", size:"120x120" %> 
+        </span>
+        <span class="left-button">
+          <button class="btn btn-info">
+            <%= link_to 'Iniciar sesion', new_user_session_path, {:style => 'text-decoration: none'}  %>
+          </button>
+          <button class="btn btn-success">
+              <%= link_to 'Registrarse', new_user_registration_path, {:style => 'text-decoration: none'} %>
+          </button>
+           <button class="btn btn-danger">
+              <%= link_to 'Publicar', {:style => 'text-decoration: none'} %>
+          </button>
+        </span>
+  </div>
+  </header>
+
+
+<div class="container-fluid square">
+  <div class="row">
+      
+      <nav class="navbar navbar-default">
+        <div class="container-fluid barra-categorias">
+          <div class="col-offset-md-6 ">
+          <ul class="nav navbar-nav">
+            <li ><a href="#">Eventos</a></li>
+            <li><a href="#">Cursos</a></li>
+            <li><a href="#">Talleres</a></li>
+            <li><a href="#">Foros</a></li>
+          </ul>
+        </div>
+    </div>
+      </nav>
+    
+  </div>  
+  <div class="row">
+    <div class="col-md-11 col-md-offset-1"> 
+      <%= image_tag "emprendedores.jpg", :class => "img-emprendedores" %>
+    </div>
+  </div>
+</div>
+    
+<hr />
+    <div class="container">
+      <div class="row">
+        <div class="col-md-11 col-md-offset-1">
+          <%= image_tag "bombillo.png", :class => "img-publicidad-1" %>
+          <%= image_tag "ideas.jpg", :class => "img-publicidad-2" %>
+          <%= image_tag "trabajo.jpg", :class => "img-publicidad-2" %>
+          <%= image_tag "opcionv.jpg", :class => "img-publicidad-2" %>
+        </div>
+      </div>
+    </div>
+<hr />
+
+
+</body>
+</html>

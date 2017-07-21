@@ -1,3 +1,57 @@
-// Place all the styles related to the welcome controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+body{
+	background-color:#E94E15;
+}
+// espacio del header en donde esta la imagend e opcion venezuela
+// y el boton de inicio de sesion y registro
+ header {
+	// background-color:#E94E15;
+}
+
+.img-opcion {
+     text-align: center;
+     margin-left: 20px;
+}
+.left-button {
+	margin-left:60%;
+}
+
+// Espacio de las publicaciones principales 
+.square{
+	// margin-top:-20px;
+	width:100%;
+	height:450px;
+	background-color:#E94E15;
+}
+
+.barra-categorias{
+	background-color:yellow;
+}
+
+nav {
+	text-align: left;
+	width:30%;
+}
+
+.img-emprendedores{
+	border-radius:10px;
+	text-align: center;
+	width:90%;
+	height:340px;
+}
+
+//Publicaciones secundarias de cuadros mas pequenos
+
+.img-publicidad-1{
+	text-align: center;
+	border:4px solid orange;
+	width:21%;
+	height:21%;
+	margin:21px;
+}
+.img-publicidad-2{
+	border:4px solid orange;
+	text-align: center;
+	width:21%;
+	height:21%;
+	margin:10px;
+}
