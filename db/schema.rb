@@ -10,10 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170718153736) do
+ActiveRecord::Schema.define(version: 20170721132650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "category_type"
+    t.string "title"
+    t.string "description"
+    t.date "start_date"
+    t.integer "duration"
+    t.time "start_hour"
+    t.time "end_hour"
+    t.string "location"
+    t.integer "cost"
+    t.integer "phone"
+    t.bigint "client_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_categories_on_client_id"
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.string "name"
+    t.string "lastname"
+    t.string "cirif"
+    t.integer "phone"
+    t.bigint "user_id"
+    t.integer "reputation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_clients_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -32,4 +61,6 @@ ActiveRecord::Schema.define(version: 20170718153736) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "categories", "clients"
+  add_foreign_key "clients", "users"
 end
