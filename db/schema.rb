@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170721132650) do
+ActiveRecord::Schema.define(version: 20170721135017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,18 @@ ActiveRecord::Schema.define(version: 20170721132650) do
     t.bigint "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "avatar1_file_name"
+    t.string "avatar1_content_type"
+    t.integer "avatar1_file_size"
+    t.datetime "avatar1_updated_at"
+    t.string "avatar2_file_name"
+    t.string "avatar2_content_type"
+    t.integer "avatar2_file_size"
+    t.datetime "avatar2_updated_at"
+    t.string "avatar3_file_name"
+    t.string "avatar3_content_type"
+    t.integer "avatar3_file_size"
+    t.datetime "avatar3_updated_at"
     t.index ["client_id"], name: "index_categories_on_client_id"
   end
 
