@@ -27,6 +27,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1/edit
   def edit
+    puts "pase por el edit"
   end
 
   # POST /categories
@@ -49,7 +50,7 @@ class CategoriesController < ApplicationController
   # PATCH/PUT /categories/1.json
   def update
       if @category.update(category_params)
-        redirect_to @category
+        redirect_to categories_path
       else
         render 'edit'
       end
@@ -57,7 +58,7 @@ class CategoriesController < ApplicationController
 
   def destroy
     if @category.destroy
-      redirect_to category_path
+      redirect_to categories_path
     else
       format.json { render json: @category.errors, status: :unprocessable_entity }
     end  
@@ -66,12 +67,12 @@ class CategoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
-      @category = Category.find_by(id: params[:category_id])
+      @category = Category.find_by(id: params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
       params.require(:category).permit(:category_type, :title, :description, :avatar1, :avatar2, 
-        :avatar3, :start_date, :duration, :start_hour, :end_hour, :location, :cost)  
+        :avatar3, :start_date, :duration, :start_hour, :end_hour, :location, :cost, :id)  
     end
 end
