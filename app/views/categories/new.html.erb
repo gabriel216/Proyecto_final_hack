@@ -18,7 +18,7 @@
   </div>
   </header>
 
-	<%= form_for :category do |f| %>
+	<%= form_for  :category, :url => {:action => :create} do |f| %>
 		<%= f.select :category_type, ['Evento', 'Foro', 'Curso', 'Taller', 'Documental', 'Otro'] %><br/>
 		<label for="">Titulo:</label><br/> <%= text_field(:category, :title) %><br/>
 		<label for="">Descripcion:</label><br/><%= text_area(:category, :description, size: "24x6") %><br/>
@@ -34,6 +34,7 @@
 		<%= f.file_field :avatar2 %><br/>
 		<label for="">Cargue la imagen 3</label><br/>
 		<%= f.file_field :avatar3 %><br/>
+
 		<%= f.submit %>
 	<% end %>
 </body>
