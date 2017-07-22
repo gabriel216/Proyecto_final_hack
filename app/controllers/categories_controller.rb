@@ -4,7 +4,14 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.all
+    aux = (Client.find_by(user_id: current_user.id).id)
+    # puts "aux #{aux}"
+    # puts "clase #{aux.class}"
+    # puts "inspect #{aux.inspect}"
+    @categories = Category.where(client_id: aux).all
+    # puts "@categories #{@categories}"
+     # puts "clase #{@categories.class}"
+     # puts "inspect #{@categories.first.inspect}"
   end
 
   # GET /categories/1
@@ -26,14 +33,13 @@ class CategoriesController < ApplicationController
   # POST /categories.json
   def create
     @category = Category.new(category_params)
-    @category.user_id = current_user.id
-    puts "Pase por aqui"
+    @category.client_id = Client.find_by(user_id: current_user.id).id
     respond_to do |format|
       if @category.save
-        format.html { redirect_to @category, notice: 'Category was successfully created.' }
+        format.html { redirect_to categories_path, notice: 'Category was successfully created.' }
         format.json { render :show, status: :created, location: @category }
       else
-        format.html { render :new }
+        format.html { render json: @category.errors }
         format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
@@ -65,7 +71,7 @@ class CategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params.require(:category).permit(:title, :description, :start_date, :duration, 
-        :start_hour, :end_hour, :location, :cost, :phone, :client_id)  
+      params.require(:category).permit(:category_type, :title, :description, :avatar1, :avatar2, 
+        :avatar3, :start_date, :duration, :start_hour, :end_hour, :location, :cost)  
     end
 end
