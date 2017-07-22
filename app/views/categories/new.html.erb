@@ -1,0 +1,40 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Eventos de emprendimiento</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="assets/stylesheets/welcome.scss">
+  <link rel="stylesheet" href="assets/stylesheets/application.scss">
+</head>
+<body>
+	<header class="container-fluid">
+    
+  <div class="row">
+        <span class="img-opcion">
+          <%= image_tag "opcionv.jpg", size:"120x120" %> 
+        </span>
+  </div>
+  </header>
+
+	<%= form_for :category do |f| %>
+		<%= f.select :category_type, ['Evento', 'Foro', 'Curso', 'Taller', 'Documental', 'Otro'] %><br/>
+		<label for="">Titulo:</label><br/> <%= text_field(:category, :title) %><br/>
+		<label for="">Descripcion:</label><br/><%= text_area(:category, :description, size: "24x6") %><br/>
+		<label for="">Fecha de inicio:</label><br/><%= date_field(:category, :start_date) %><br/>
+		<label for="">Duracion:</label><br/><%= number_field(:category, :duration) %><br/>
+		<label for="">Hora de inicio:</label><br/><%= time_field(:category, :start_hour) %><br/>
+		<label for="">Hora de finalizacion:</label><br/><%= time_field(:category, :end_hour) %><br/>
+		<label for="">Lugar:</label><br/><%= text_field(:category, :location) %><br/>
+		<label for="">Precio de la entrada:</label><br/><%= number_field(:category, :cost) %><br/>
+		<label for="">Cargue la imagen 1</label><br/>
+		<%= f.file_field :avatar1 %><br/>
+		<label for="">Cargue la imagen 2</label><br/>
+		<%= f.file_field :avatar2 %><br/>
+		<label for="">Cargue la imagen 3</label><br/>
+		<%= f.file_field :avatar3 %><br/>
+		<%= f.submit %>
+	<% end %>
+</body>
+</html>
