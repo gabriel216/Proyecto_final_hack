@@ -16,20 +16,24 @@
           <th>Name</th>
           <th>Age</th>
           <th>Gender</th>
-          <th>Alien?</th>
         </tr>
       </thead>
       <tbody></tbody>
-      <% @categories.each do |categoria| %>
+      <% @categories.each do |category| %>
         <tr>
           <td>
-            <%= categoria.title %>
+            <%= category.title %>
           </td>
           <td>
-            <%= categoria.description %>
+            <%= category.description %>
           </td>
           <td>
-            <%= categoria.location %>
+            <%= category.location %>
+          </td>
+          <td class="text-right">
+            <%= link_to 'Show', category_path(category), class: 'btn btn-info' %>
+            <%= link_to 'Edit', edit_category_path(category), class: 'btn btn-warning' %>
+            <%= link_to 'Destroy', category_path(category), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
           </td>
         </tr>
       <% end %>

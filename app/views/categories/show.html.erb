@@ -1,6 +1,46 @@
-%p#notice= notice
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Eventos de emprendimiento</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="assets/stylesheets/welcome.scss">
+  <link rel="stylesheet" href="assets/stylesheets/application.scss">
+</head>
+<body>
+	<header class="container-fluid">
+    
+  <div class="row">
+        <span class="img-opcion">
+          <%= image_tag "opcionv.jpg", size:"120x120" %> 
+        </span>
+  </div>
+  </header>
 
+		<%= @category.category_type %><br/>
+		<label for="">Titulo:</label><br/> <%= @category.title %><br/>
+		<label for="">Descripcion:</label><br/><%= @category.description %><br/>
+		<label for="">Fecha de inicio:</label><br/><%= @category.start_date %><br/>
+		<label for="">Duracion:</label><br/><%= @category.duration %><br/>
+		<label for="">Hora de inicio:</label><br/><%= @category.start_hour %><br/>
+		<label for="">Hora de finalizacion:</label><br/><%= @category.end_hour %><br/>
+		<label for="">Lugar:</label><br/><%= @category.location %><br/>
+		<label for="">Precio de la entrada:</label><br/><%= @category.cost %><br/>
+		<h1>Avatar 1</h1>
+			<div class="round-image-50">
+				<%= image_tag(@category.avatar1.url(:thumb)) %>
+				
+			</div>
+		<h1>Avatar 2</h1>	
+			<div class="round-image-50">
+				<%= image_tag(@category.avatar2.url(:thumb)) %>					
+			</div>
+		<h1>Avatar 3</h1>	
+			<div class="round-image-50">
+				<%= image_tag(@category.avatar3.url(:thumb)) %>					
+			</div>
+	<%= button_to 'Volver', category_path, method: :get %>
+</body>
 
-= link_to 'Edit', edit_category_path(@category)
-\|
-= link_to 'Back', categories_path
+</html>
