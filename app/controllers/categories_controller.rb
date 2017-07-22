@@ -15,6 +15,7 @@ class CategoriesController < ApplicationController
   # GET /categories/new
   def new
     @category = Category.new
+    puts "Pase por el  new"
   end
 
   # GET /categories/1/edit
