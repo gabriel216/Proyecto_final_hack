@@ -32,7 +32,7 @@
         <% else %>
           <span class="left-button">
             <button class="btn btn-info">
-              <a href="categories_path" >Hi, <%= current_user.email %></a>
+              <a href=/categories >Hi, <%= current_user.email %></a>
             </button>
             <button class="btn btn-success">
                 <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete' %>
@@ -66,7 +66,7 @@
   </div>  
   <div class="row">
     <div class="col-md-11 col-md-offset-1"> 
-      <%= image_tag "emprendedores.jpg", :class => "img-emprendedores" %>
+      <%= image_tag "ideas.jpg", :class => "img-emprendedores" %>
     </div>
   </div>
 </div>

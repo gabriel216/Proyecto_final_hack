@@ -13,9 +13,10 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Age</th>
-          <th>Gender</th>
+          <th>Titulo</th>
+          <th>Descripcion</th>
+          <th>Localidad</th>          
+          <th>Fecha</th>
         </tr>
       </thead>
       <tbody></tbody>
@@ -30,6 +31,9 @@
           <td>
             <%= category.location %>
           </td>
+          <td>
+            <%= category.start_date %>
+          </td>
           <td class="text-right">
             <%= link_to 'Show', category_path(category), class: 'btn btn-info' %>
             <%= link_to 'Edit', edit_category_path(category), class: 'btn btn-warning' %>
@@ -37,6 +41,7 @@
           </td>
         </tr>
       <% end %>
+       <%= link_to 'Inicio', welcome_index_path, class: 'btn btn-info' %>
     </table>
   </div>
 </div>
