@@ -1,15 +1,10 @@
-user_list = [
-	["gabrielgomez353@gmail.com"]
-]
 
-user_list.each do |email1|
-	usuario = User.new( email: email1)
-	usuario.password = '12345678'
-	usuario.save!
-end
+usuario = User.new( email: 'some@gmail.com')
+usuario.password = '12345678'
+usuario.save!
 
 client_list = [
-	["Gabriel", "Gomez", "V-26530267-6", "04242057072", "5", "1"]
+	["Some", "", "V-26530267-6", "04242057072", "5", "1"]
 ]
 
 client_list.each do |name1, lastname1, cirif1, phone1, reputation1, user1|

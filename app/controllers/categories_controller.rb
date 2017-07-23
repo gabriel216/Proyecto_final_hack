@@ -1,37 +1,26 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
-  # GET /categories
-  # GET /categories.json
   def index
     aux = (Client.find_by(user_id: current_user.id).id)
-    # puts "aux #{aux}"
-    # puts "clase #{aux.class}"
-    # puts "inspect #{aux.inspect}"
     @categories = Category.where(client_id: aux).all
-    # puts "@categories #{@categories}"
-     # puts "clase #{@categories.class}"
-     # puts "inspect #{@categories.first.inspect}"
   end
 
-  # GET /categories/1
-  # GET /categories/1.json
+
   def show
+
   end
 
-  # GET /categories/new
+
   def new
     @category = Category.new
-    puts "Pase por el  new"
   end
 
-  # GET /categories/1/edit
   def edit
-    puts "pase por el edit"
+
   end
 
-  # POST /categories
-  # POST /categories.json
+
   def create
     @category = Category.new(category_params)
     @category.client_id = Client.find_by(user_id: current_user.id).id
@@ -46,8 +35,7 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /categories/1
-  # PATCH/PUT /categories/1.json
+
   def update
       if @category.update(category_params)
         redirect_to categories_path
