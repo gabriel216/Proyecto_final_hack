@@ -2,8 +2,12 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   def index
-    aux = (User.find_by(id: current_user.id).id)
-    @categories = Category.where(user_id: aux).all
+    if current_user.email != 'opcionvenezuelaorg@gmail.com'
+      aux = (User.find_by(id: current_user.id).id)
+      @categories = Category.where(user_id: aux).all
+    else  
+      @categories = Category.all
+    end
   end
 
 
@@ -61,6 +65,6 @@ class CategoriesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
       params.require(:category).permit(:category_type, :title, :description, :avatar1, :avatar2, 
-        :avatar3, :start_date, :duration, :start_hour, :end_hour, :location, :cost, :id)  
+        :avatar3, :start_date, :duration, :start_hour, :end_hour, :location, :cost, :status, :priority,:id)  
     end
 end

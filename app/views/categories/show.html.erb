@@ -40,6 +40,10 @@
 			<div class="round-image-50">
 				<%= image_tag(@category.avatar3.url(:thumb)) %>					
 			</div>
+			<% if current_user.email == 'opcionvenezuelaorg@gmail.com'   %>
+        <label for="">Status de la publicacion:</label><br/><%= @category.status %><br/>
+        <label for="">Prioridad de la publicacion:</label><br/><%= @category.priority %><br/>
+      <% end %> 
 	<%= button_to 'Volver', categories_path, method: :get %>
 </body>
 

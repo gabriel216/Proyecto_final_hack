@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170723151405) do
+ActiveRecord::Schema.define(version: 20170724153721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(version: 20170723151405) do
     t.integer "avatar3_file_size"
     t.datetime "avatar3_updated_at"
     t.string "phone"
+    t.boolean "status", default: true
+    t.integer "priority", default: 0, null: false
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
@@ -65,6 +67,7 @@ ActiveRecord::Schema.define(version: 20170723151405) do
     t.string "lastname"
     t.string "cirif"
     t.string "phone"
+    t.integer "reputation", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

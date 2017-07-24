@@ -2,6 +2,7 @@ class WelcomeController < ApplicationController
 	before_action :authenticate_user!, except: [:index]
 
   def index
+ 	@categories = Category.where(status: true).all
   end
 
   def new

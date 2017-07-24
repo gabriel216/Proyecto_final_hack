@@ -35,6 +35,20 @@
 		<label for="">Cargue la imagen 3</label><br/>
 		<%= f.file_field :avatar3 %><br/>
 
+		<% if current_user.email == 'opcionvenezuelaorg@gmail.com' %>
+    	<label for="">Prioridad</label><br/>
+			<%= f.number_field :priority %><br/>
+			<div class="field">
+				<%= f.label 'Status' %>
+				<div class="field">
+				<%= f.label 'Activa' %>
+				<%= f.radio_button :status, true %>
+				<%= f.label 'Inactiva' %>
+				<%= f.radio_button :status, false %>
+				</div>
+			</div>  
+    <% end %> 
+
 	<%= button_to 'Editar', category_path, method: :patch %>
 	<% end %>
 </body>
