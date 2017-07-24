@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170723151405) do
+ActiveRecord::Schema.define(version: 20170724133110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 20170723151405) do
     t.time "end_hour"
     t.string "location"
     t.integer "cost"
-    t.bigint "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "avatar1_file_name"
@@ -41,19 +40,8 @@ ActiveRecord::Schema.define(version: 20170723151405) do
     t.integer "avatar3_file_size"
     t.datetime "avatar3_updated_at"
     t.string "phone"
-    t.index ["client_id"], name: "index_categories_on_client_id"
-  end
-
-  create_table "clients", force: :cascade do |t|
-    t.string "name"
-    t.string "lastname"
-    t.string "cirif"
     t.bigint "user_id"
-    t.integer "reputation"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "phone"
-    t.index ["user_id"], name: "index_clients_on_user_id"
+    t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -77,6 +65,5 @@ ActiveRecord::Schema.define(version: 20170723151405) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "categories", "clients"
-  add_foreign_key "clients", "users"
+  add_foreign_key "categories", "users"
 end

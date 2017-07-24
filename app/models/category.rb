@@ -1,5 +1,5 @@
 class Category < ApplicationRecord
-  belongs_to :client
+  belongs_to :user
   
   has_attached_file :avatar1, :styles => { :medium => "300x300>", :thumb => "100x100#" }, 
   :default_url => "/images/"

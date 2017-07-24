@@ -2,8 +2,8 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   def index
-    aux = (Client.find_by(user_id: current_user.id).id)
-    @categories = Category.where(client_id: aux).all
+    aux = (User.find_by(id: current_user.id).id)
+    @categories = Category.where(user_id: aux).all
   end
 
 
@@ -23,7 +23,7 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
-    @category.client_id = Client.find_by(user_id: current_user.id).id
+    @category.user_id = User.find_by(id: current_user.id).id
     respond_to do |format|
       if @category.save
         format.html { redirect_to categories_path, notice: 'Category was successfully created.' }
