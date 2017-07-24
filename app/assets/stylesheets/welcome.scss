@@ -25,7 +25,7 @@ body{
 
 .carousel-custom {
 	background-color: #000;
-	height: 100vh;
+	height: 81vh;
 }
 
 .carousel-custom .item {
@@ -34,6 +34,11 @@ body{
 
 .carousel-custom .item img {
 	height: calc(100vh - 100px);
+	margin: auto;
+}
+
+.carousel-custom .item2 {
+	height: calc(300vh - 300px);
 	margin: auto;
 }
 
@@ -62,4 +67,9 @@ body{
 .carousel-custom .carousel-indicators .active {
 	opacity: 1;
 	background-color: transparent;
+}
+
+.public-peq {
+	width:200px;
+	height:200px;
 }

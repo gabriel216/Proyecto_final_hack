@@ -3,7 +3,7 @@ class WelcomeController < ApplicationController
 
   def index
   	@categories_carousel = Category.where("status= ? AND priority= ?", true, 10)  
- 	@categories = Category.where(status: true).all
+ 	  @categories = Category.where(status: true).order(:priority).reverse
   end
 
   def new

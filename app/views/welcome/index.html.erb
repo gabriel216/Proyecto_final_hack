@@ -52,32 +52,31 @@
   </header>
 
 
-<div class="container-fluid square">
+<div class="container-fluid">
   <div class="row"> 
-          <% @categories_carousel.each do |c|%>         
       <div id="carousel-example-generic" class="carousel slide carousel-custom" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
-    <li data-target="#carousel-example-generic" data-slide-to="0" class="active">
-        <%= image_tag(c.avatar1.url(:medium)) %> 
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active item2">
+        <%= image_tag(@categories_carousel.first.avatar1.url(:medium)) %> 
     </li>
-    <li data-target="#carousel-example-generic" data-slide-to="1">
-        <%= image_tag(c.avatar2.url(:medium)) %>  
+    <li data-target="#carousel-example-generic" data-slide-to="1" class="item2">
+        <%= image_tag(@categories_carousel.first.avatar2.url(:medium)) %>  
     </li>
-    <li data-target="#carousel-example-generic" data-slide-to="2">
-        <%= image_tag(c.avatar3.url(:medium)) %>  
+    <li data-target="#carousel-example-generic" data-slide-to="2" >
+        <%= image_tag(@categories_carousel.first.avatar3.url(:medium)) %>  
     </li>
   </ol>
         <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-        <%= image_tag(c.avatar1.url(:medium)) %>  
+        <%= image_tag(@categories_carousel.first.avatar1.url(:medium)) %>  
     </div>
     <div class="item">
-        <%= image_tag(c.avatar2.url(:medium)) %> 
+        <%= image_tag(@categories_carousel.first.avatar2.url(:medium)) %> 
     </div>
     <div class="item">
-        <%= image_tag(c.avatar3.url(:medium)) %>   
+        <%= image_tag(@categories_carousel.first.avatar3.url(:medium)) %>   
     </div>
   </div>
 
@@ -97,19 +96,19 @@
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="js/bootstrap.min.js"></script>
 
-  <% end %> 
   
 </div>
 
 
 </div>
-
     
 <hr />
     <div class="container">
       <div class="row">
         <div class="col-md-11 col-md-offset-1">
-        
+          <% @categories.each do |c| %>
+          <%= image_tag(c.avatar1.url(:medium), class: 'public-peq') %>  
+          <% end %>
         </div>
       </div>
     </div>
