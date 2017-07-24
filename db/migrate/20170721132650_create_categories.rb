@@ -11,7 +11,7 @@ class CreateCategories < ActiveRecord::Migration[5.1]
       t.string :location
       t.integer :cost
       t.integer :phone
-      t.references :client, foreign_key: true
+      t.references :user, foreign_key: true
 
       t.timestamps
     end
