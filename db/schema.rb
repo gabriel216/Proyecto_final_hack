@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170724153721) do
+ActiveRecord::Schema.define(version: 20170724175131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 20170724153721) do
     t.integer "avatar3_file_size"
     t.datetime "avatar3_updated_at"
     t.string "phone"
-    t.boolean "status", default: true
     t.integer "priority", default: 0, null: false
+    t.boolean "status", default: false
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
 

@@ -23,35 +23,43 @@ body{
 	background-color:#E94E15;
 }
 
-.barra-categorias{
-	background-color:yellow;
+.carousel-custom {
+	background-color: #000;
+	height: 100vh;
 }
 
-nav {
-	text-align: left;
-	width:30%;
+.carousel-custom .item {
+	background-color: #000;
 }
 
-.img-emprendedores{
-	border-radius:10px;
-	text-align: center;
-	width:90%;
-	height:340px;
+.carousel-custom .item img {
+	height: calc(100vh - 100px);
+	margin: auto;
 }
 
-//Publicaciones secundarias de cuadros mas pequenos
-
-.img-publicidad-1{
-	text-align: center;
-	border:4px solid orange;
-	width:21%;
-	height:21%;
-	margin:21px;
+.carousel-custom .carousel-indicators img {
+	height: 80px;
 }
-.img-publicidad-2{
-	border:4px solid orange;
-	text-align: center;
-	width:21%;
-	height:21%;
-	margin:10px;
+
+.carousel-custom .carousel-indicators {
+	width: 100%;
+	margin: 0;
+	bottom: 0;
+	left: 0;
+	padding: 10px;
+}
+
+.carousel-custom .carousel-indicators li {
+	width: auto;
+	height: auto;
+	border-radius: 0;
+	text-indent: 0;
+	border: none;
+	padding: 0 5px;
+	opacity: 0.5;
+}
+
+.carousel-custom .carousel-indicators .active {
+	opacity: 1;
+	background-color: transparent;
 }

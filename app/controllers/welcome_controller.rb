@@ -2,6 +2,7 @@ class WelcomeController < ApplicationController
 	before_action :authenticate_user!, except: [:index]
 
   def index
+  	@categories_carousel = Category.where("status= ? AND priority= ?", true, 10)  
  	@categories = Category.where(status: true).all
   end
 
