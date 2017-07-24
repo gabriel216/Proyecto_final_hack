@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   get 'welcome/index'
 
   resources :categories
-
+ devise_for :users, :controllers => { registrations: 'registrations' }
   resources :clients
 end
-

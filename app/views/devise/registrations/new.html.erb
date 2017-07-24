@@ -19,12 +19,28 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
+  <div class="field">
+    <%= f.label :Name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :Lastname %><br />
+    <%= f.text_field :lastname, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :Cirif %><br />
+    <%= f.text_field :cirif, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :Phone %><br />
+    <%= f.text_field :phone, autofocus: true %>
+  </div>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
+  
 <% end %>
-
     <%= link_to 'Volver a la pagina principal', welcome_index_path   %>
 
 <%= render "devise/shared/links" %>
