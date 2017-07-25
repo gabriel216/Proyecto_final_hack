@@ -5,34 +5,69 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="assets/stylesheets/application.scss">
+  <link rel="stylesheet" href="assets/stylesheets/welcome.scss">
 </head>
 
 <body>
+<% if current_user.email == 'opcionvenezuelaorg@gmail.com' %>
+<header class="container-fluid">
+    
+  <div class="row">
+        <span class="img-opcion">
+          <%= image_tag "opcionv.jpg", size:"120x120" %> 
+        </span>
+          <%= link_to 'Publicar', new_category_path, class: 'btn btn-danger' %>
 
+      <button class="btn btn-info">
+      <%= link_to 'Volver a la pagina principal', welcome_index_path, {:style => 'text-decoration: none'}   %>
+      </button>
+            <button class="btn btn-success">
+                <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete' %>
+            </button>         
+  </div>
+  </header>
   <div class="col-xs-12">
     <table class="table">
       <thead>
         <tr>
-          <th>Titulo</th>
-          <th>Descripcion</th>
-          <th>Localidad</th>          
-          <th>Fecha</th>
+          <th class="text-center">Titulo</th>
+          <th class="text-center">Prioridad</th>
+          <th class="text-center">Usuario</th>
+          <th class="text-center">Status</th>
+          <th class="text-center">Localidad</th>          
+          <th class="text-center">Fecha de inicio</th>
+          <th class="text-center">Dias que dura el evento</th>
+          <th class="text-center">Elige</th>
         </tr>
       </thead>
-      <tbody></tbody>
+      <tbody>
       <% @categories.each do |category| %>
         <tr>
           <td>
             <%= category.title %>
           </td>
           <td>
-            <%= category.description %>
+            <%= category.priority %>
+          </td>
+          <td>
+            <%= category.user.name %>
+          </td>
+          <td>
+            <% if category.status == true %>
+              <p>Activa</p>
+            <% else %>
+              <p>Inactiva</p>  
+            <% end %>  
           </td>
           <td>
             <%= category.location %>
           </td>
           <td>
             <%= category.start_date %>
+          </td>
+          <td class="text-center">
+            <%= category.duration %>
           </td>
           <td class="text-right">
             <%= link_to 'Show', category_path(category), class: 'btn btn-info' %>
@@ -41,10 +76,64 @@
           </td>
         </tr>
       <% end %>
-       <%= link_to 'Inicio', welcome_index_path, class: 'btn btn-info' %>
+
+
+<% else %>
+
+<header class="container-fluid">
+    
+  <div class="row">
+        <span class="img-opcion">
+          <%= image_tag "opcionv.jpg", size:"120x120" %> 
+        </span>
+      
+      <%= link_to 'Inicio', welcome_index_path, class: 'btn btn-info' %>
+      <%= link_to 'Publicar', new_category_path, class: 'btn btn-success' %>
+      <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete', class: 'btn btn-success' %>  
+
+  </div>
+  </header>
+
+  <div class="col-xs-12">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="text-center">Titulo</th>
+          <th class="text-center">Localidad</th>          
+          <th class="text-center">Fecha de inicio</th>
+          <th class="text-center">Dias que dura el evento</th>
+          <th class="text-center">Elige</th>
+
+        </tr>
+      </thead>
+      <tbody></tbody>
+      <% @categories.each do |category| %>
+        <tr>
+          <td class="text-center">
+            <%= category.title %>
+          </td>
+          <td class="text-center">
+            <%= category.location %>
+          </td>
+          <td class="text-center">
+            <%= category.start_date %>
+          </td>
+          <td class="text-center">
+              <%= category.duration %>          
+            </td>
+          <td class="text-center">
+            <%= link_to 'Show', category_path(category), class: 'btn btn-info' %>
+            <%= link_to 'Edit', edit_category_path(category), class: 'btn btn-warning' %>
+            <%= link_to 'Destroy', category_path(category), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+  </div>
     </table>
   </div>
-</div>
+        
+
+<% end %>
 
 </body>
 

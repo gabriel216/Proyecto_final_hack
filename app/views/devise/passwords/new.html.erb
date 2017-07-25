@@ -1,15 +1,21 @@
-<h2>Forgot your password?</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <h2 class="text-center">¿Olvidaste tu contraseña?</h2>
+				<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+				  <div class="field">
+				    <%= f.label 'Correo' %><br />
+				    <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+				  </div><br/>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
+				  <div class="actions">
+				    <%= f.submit "Envíeme las instrucciones de contraseña de restablecimiento", class: 'btn btn-block btn-success' %>
+				  </div><br/>
+				<% end %>
+				<%= link_to 'Volver a la pagina principal', welcome_index_path, class: "btn btn-info btn-block"   %>
+		</div>
+	</div>
+</div>
 
 <%= render "devise/shared/links" %>
