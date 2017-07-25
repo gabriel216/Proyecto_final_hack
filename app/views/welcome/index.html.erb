@@ -18,33 +18,17 @@
         </span>
 
         <% if !user_signed_in?  %>
-          <span class="left-button">
-            <button class="btn btn-info">
-              <%= link_to 'Iniciar sesion', new_user_session_path, {:style => 'text-decoration: none'}  %>
-            </button>
-            <button class="btn btn-success">
-                <%= link_to 'Registrarse', new_user_registration_path, {:style => 'text-decoration: none'} %>
-            </button>
-             <button class="btn btn-danger">
-                <%= link_to 'Publicar', new_user_registration_path, {:style => 'text-decoration: none'} %>
-            </button>
+          <%= link_to 'Iniciar sesion', new_user_session_path, class: 'btn btn-info'  %>
+          <%= link_to 'Registrarse', new_user_registration_path, class: 'btn btn-info' %>
+          <%= link_to 'Publicar', new_user_registration_path, class: 'btn btn-info' %>
         <% else %>
           <span class="left-button">
-            <button class="btn btn-info">
-              <a href=/categories >Hi, <%= current_user.email %></a>
-            </button>
-            <button class="btn btn-success">
-                <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete' %>
-            </button>
-             <button class="btn btn-danger">
-                <%= link_to 'Publicar', new_category_path %>
-            </button>
+              <a href=/categories class="btn btn-info">Hi, <%= current_user.email %></a>
+                <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete', class: 'btn btn-danger' %>
+                <%= link_to 'Publicar', new_category_path, class: 'btn btn-success' %>
           </span>
-
           <% if current_user.email == 'opcionvenezuelaorg@gmail.com'   %>
-            <button class="btn btn-info">
-                <%= link_to 'Administrador', categories_path, {:style => 'text-decoration: none'} %>
-            </button>
+          <%= link_to 'Administrador', categories_path, class: 'btn btn-info' %>
           <% end %>  
         <% end %>  
   
