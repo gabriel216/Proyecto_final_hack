@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: [:show, :edit, :update, :destroy, :show1]
 
   def index
     if current_user.email != 'opcionvenezuelaorg@gmail.com'
@@ -12,6 +12,11 @@ class CategoriesController < ApplicationController
 
 
   def show
+
+  end
+
+
+  def show1
 
   end
 

@@ -32,6 +32,7 @@
 		<label for="">Hora de inicio:</label><br/><%= time_field(:category, :start_hour) %><br/>
 		<label for="">Hora de finalizacion:</label><br/><%= time_field(:category, :end_hour) %><br/>
 		<label for="">Lugar:</label><br/><%= text_field(:category, :location, maxlength: 85, size:30)%><br/>
+		<label for="">Teléfono:</label><br/><%= number_field(:category, :phone, max:9999999999, :size => 20) %><br/>
 		<label for="">Precio de la entrada:</label><br/><%= number_field(:category, :cost) %><br/>
 		<label for="">Cargue la imagen 1</label><br/>
 		<%= f.file_field :avatar1 %><br/>
