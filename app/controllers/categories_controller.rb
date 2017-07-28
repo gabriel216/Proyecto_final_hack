@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy, :show1]
-
+  
   def index
     if current_user.email == 'opcionvenezuelaorg@gmail.com'
         case params[:key]
@@ -8,6 +8,10 @@ class CategoriesController < ApplicationController
             @categories = Category.all.order(:priority).reverse
           when "Prioridad-Down" then
             @categories = Category.all.order(:priority) 
+          when "Tipo-Up" then
+            @categories = Category.all.order(:category_type).reverse
+          when "Tipo-Down" then
+            @categories = Category.all.order(:priority)   
           when "Status-Up" then
             @categories = Category.all.order(:status).reverse
           when "Status-Down" then

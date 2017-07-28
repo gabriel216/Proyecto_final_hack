@@ -23,24 +23,22 @@
 <nav class="navbar navbar-custom navbar-fixed-top ">
   <div class="container-fluid ">
     <div class="row">
-      <div class="col-xs-offset-5 col-xs-7 col-sm-6 col-sm-offset-6 col-md-offset-6 col-md-6 col-lg-offset-7 col-lg-5">
-      <!-- inicio del if -->
-      <span>
-      </span>
+      <div>
+        <%= image_tag "opcionv.jpg", size:"50x50", class: "img-opcion col-xs-1" %>
           <% if !user_signed_in?  %>
-            <%= link_to 'Iniciar sesion', new_user_session_path, class: 'btn btn-info'  %>
-            <%= link_to 'Registrarse', new_user_registration_path, class: 'btn btn-info' %>
-            <%= link_to 'Publicar', new_user_registration_path, class: 'btn btn-info' %>
+            <%= link_to 'Iniciar sesion', new_user_session_path, class: 'btn btn-info '  %>
+            <%= link_to 'Registrarse', new_user_registration_path, class: 'btn btn-info ' %>
+            <%= link_to 'Publicar', new_user_registration_path, class: 'btn btn-info ' %>
           <% else %>
             <% if current_user.email == 'opcionvenezuelaorg@gmail.com'   %>
               <a href=/categories class="btn btn-info">Hi, <%= current_user.name %></a>
-              <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete', class: 'btn btn-danger' %>
-              <%= link_to 'Publicar', new_category_path, class: 'btn btn-success' %>
-              <%= link_to 'Administrador', categories_path, class: 'btn btn-primary'%>
+              <%= link_to 'Publicar', new_category_path, class: 'btn btn-success ' %>
+              <%= link_to 'Administrador', categories_path, class: 'btn btn-primary '%>
+              <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete', class: 'btn btn-danger ' %>
             <% else %>
               <a href=/categories class="btn btn-info">Hi, <%= current_user.name %></a>
-              <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete', class: 'btn btn-danger' %>
               <%= link_to 'Publicar', new_category_path, class: 'btn btn-success' %>
+              <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete', class: 'btn btn-danger ' %>
             <% end %>  
           <% end %>  
       <!-- fin del if  -->
@@ -191,6 +189,11 @@
             <div class="item active">
                    <% @categories_evento.first(3).each do |e|%>
                       <div class="col-sm-4">
+                      <% if user_signed_in? %>
+                         <% @mylink = "/categories/" + e.id.to_s %>
+                       <% else %>
+                         <% @mylink = "/categories1/" + e.id.to_s %>
+                       <% end %>
                           <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
                           <%= image_tag(e.avatar1.url, :class => "img-responsive") %>
                           </a>
@@ -212,6 +215,11 @@
               <%= "aux2:#{@aux2}, aux:#{@aux}" %>
                 <% @categories_evento[@aux..@aux2].each do |e|%>    
                   <div class="col-sm-4">
+                  <% if user_signed_in? %>
+                         <% @mylink = "/categories/" + e.id.to_s %>
+                       <% else %>
+                         <% @mylink = "/categories1/" + e.id.to_s %>
+                       <% end %>
                       <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
                         <%= image_tag(e.avatar1.url, :class => "img-responsive") %>
                       </a>
@@ -236,134 +244,10 @@
     </div><!-- cierre de container -->
 <!-- si HAY imagenes cargadas en las publicaciones de abajo -->  
 <% end %>
-<% if @categories_foro.first != nil %>
-<!-- si HAY imagenes cargadas en las publicaciones de abajo -->  
-  <div class="container-fluid ">
-    <hr/>
-    <h1>Foros</h1>
-    <hr/>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="carousel carousel-showmanymoveone slide" id="carousel-tilenav2" data-interval="false">
-          <div class="carousel-inner">
-            <div class="item active">
-                   
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                       <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                    
-              </div><!-- cierre de item-active -->
 
-              <div class="item">
-                   
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                       <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                   
-              </div>
-
-              <div class="item ">
-                    
-                   
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                       <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                    
-              </div>
-
-              <div class="item ">
-                    
-                      
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                       <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                    
-              </div>
-
-            </div><!-- cierre de carousel-inner -->
-
-
-
-         <a rel="nofollow" rel="noreferrer"class="left carousel-control" href="#carousel-tilenav2" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-         <a rel="nofollow" rel="noreferrer"class="right carousel-control" href="#carousel-tilenav2" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
-          </div><!-- cierre de carousel -->
-        </div><!-- cierre de col -->
-      </div><!-- cierre de row -->
-    </div><!-- cierre de container -->
-<!-- si HAY imagenes cargadas en las publicaciones de abajo -->  
-<% end %>
 <% if @categories_curso.first != nil %>
 <!-- si HAY imagenes cargadas en las publicaciones de abajo -->  
   <div class="container-fluid ">
-    <hr/>
     <h1>Cursos</h1>
     <hr/>
     <div class="row">
@@ -371,108 +255,58 @@
         <div class="carousel carousel-showmanymoveone slide" id="carousel-tilenav3" data-interval="false">
           <div class="carousel-inner">
             <div class="item active">
-                   
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
+                   <% @categories_curso.first(3).each do |e|%>
+                      <div class="col-sm-4">
+                      <% if user_signed_in? %>
+                         <% @mylink = "/categories/" + e.id.to_s %>
+                       <% else %>
+                         <% @mylink = "/categories1/" + e.id.to_s %>
+                       <% end %>
+                          <% if e.avatar1.url != "/images/" %>
+                            <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                              <%= image_tag(e.avatar1.url, :class => "img-responsive") %>
+                            </a>
+                          <% else %>
+                            <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                              <%= image_tag("sin_imagen.jpg", :class => "img-responsive") %>
+                            </a>
+                          <% end %>
                       </div>
-                       <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
+                    <% end %>  
                     
               </div><!-- cierre de item-active -->
 
+            <% for i in 3..@categories_curso.length-1 do %>
+              <% if i % 3 == 0  %>
               <div class="item">
-                   
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                       <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
+              <%= "i:#{i}" %>
+              <% @aux = i %>
+              <% @aux2 = @aux + 2 %>
+
+              <% if @aux2 > @categories_curso.length-1 %>
+                <% @aux2 = @categories_curso.length %>
+              <% end %>  
+              <%= "aux2:#{@aux2}, aux:#{@aux}" %>
+                <% @categories_curso[@aux..@aux2].each do |e|%>    
+                  <div class="col-sm-4">
+                  <% if user_signed_in? %>
+                         <% @mylink = "/categories/" + e.id.to_s %>
+                       <% else %>
+                         <% @mylink = "/categories1/" + e.id.to_s %>
+                       <% end %>
+                      <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                        <%= image_tag(e.avatar1.url, :class => "img-responsive") %>
+                      </a>
+                  </div>
+                <% end %> 
+
                    
               </div>
+            <% end %>   
+            <% end %>  
 
-              <div class="item ">
-                    
-                   
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                       <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                    
-              </div>
 
-              <div class="item ">
-                    
-                      
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                       <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                    
-              </div>
-
-            </div><!-- cierre de carousel-inner -->
+        </div><!-- cierre de carousel-inner -->
 
 
 
@@ -484,10 +318,10 @@
     </div><!-- cierre de container -->
 <!-- si HAY imagenes cargadas en las publicaciones de abajo -->  
 <% end %>
+
 <% if @categories_taller.first != nil %>
 <!-- si HAY imagenes cargadas en las publicaciones de abajo -->  
   <div class="container-fluid ">
-    <hr/>
     <h1>Talleres</h1>
     <hr/>
     <div class="row">
@@ -495,108 +329,58 @@
         <div class="carousel carousel-showmanymoveone slide" id="carousel-tilenav4" data-interval="false">
           <div class="carousel-inner">
             <div class="item active">
-                   
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
+                   <% @categories_taller.first(3).each do |e|%>
+                      <div class="col-sm-4">
+                      <% if user_signed_in? %>
+                         <% @mylink = "/categories/" + e.id.to_s %>
+                       <% else %>
+                         <% @mylink = "/categories1/" + e.id.to_s %>
+                       <% end %>
+                          <% if e.avatar1.url != "/images/" %>
+                            <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                              <%= image_tag(e.avatar1.url, :class => "img-responsive") %>
+                            </a>
+                          <% else %>
+                            <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                              <%= image_tag("sin_imagen.jpg", :class => "img-responsive") %>
+                            </a>
+                          <% end %>
                       </div>
-                       <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
+                    <% end %>  
                     
               </div><!-- cierre de item-active -->
 
+            <% for i in 3..@categories_taller.length-1 do %>
+              <% if i % 3 == 0  %>
               <div class="item">
-                   
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                       <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
+              <%= "i:#{i}" %>
+              <% @aux = i %>
+              <% @aux2 = @aux + 2 %>
+
+              <% if @aux2 > @categories_taller.length-1 %>
+                <% @aux2 = @categories_taller.length %>
+              <% end %>  
+              <%= "aux2:#{@aux2}, aux:#{@aux}" %>
+                <% @categories_taller[@aux..@aux2].each do |e|%>    
+                  <div class="col-sm-4">
+                  <% if user_signed_in? %>
+                         <% @mylink = "/categories/" + e.id.to_s %>
+                       <% else %>
+                         <% @mylink = "/categories1/" + e.id.to_s %>
+                       <% end %>
+                      <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                        <%= image_tag(e.avatar1.url, :class => "img-responsive") %>
+                      </a>
+                  </div>
+                <% end %> 
+
                    
               </div>
+            <% end %>   
+            <% end %>  
 
-              <div class="item ">
-                    
-                   
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                       <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                    
-              </div>
 
-              <div class="item ">
-                    
-                      
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                       <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                    
-              </div>
-
-            </div><!-- cierre de carousel-inner -->
+        </div><!-- cierre de carousel-inner -->
 
 
 
@@ -608,10 +392,10 @@
     </div><!-- cierre de container -->
 <!-- si HAY imagenes cargadas en las publicaciones de abajo -->  
 <% end %>
+
 <% if @categories_documental.first != nil %>
 <!-- si HAY imagenes cargadas en las publicaciones de abajo -->  
   <div class="container-fluid ">
-    <hr/>
     <h1>Documentales</h1>
     <hr/>
     <div class="row">
@@ -619,108 +403,64 @@
         <div class="carousel carousel-showmanymoveone slide" id="carousel-tilenav5" data-interval="false">
           <div class="carousel-inner">
             <div class="item active">
-                   
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
+                   <% @categories_documental.first(3).each do |e|%>
+                      <div class="col-sm-4">
+                      <% if user_signed_in? %>
+                         <% @mylink = "/categories/" + e.id.to_s %>
+                       <% else %>
+                         <% @mylink = "/categories1/" + e.id.to_s %>
+                       <% end %>
+                          <% if e.avatar1.url != "/images/" %>
+                            <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                              <%= image_tag(e.avatar1.url, :class => "img-responsive") %>
+                            </a>
+                          <% else %>
+                            <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                              <%= image_tag("sin_imagen.jpg", :class => "img-responsive") %>
+                            </a>
+                          <% end %>
                       </div>
-                       <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
+                    <% end %>  
                     
               </div><!-- cierre de item-active -->
 
+            <% for i in 3..@categories_documental.length-1 do %>
+              <% if i % 3 == 0  %>
               <div class="item">
-                   
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                       <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
+              <%= "i:#{i}" %>
+              <% @aux = i %>
+              <% @aux2 = @aux + 2 %>
+
+              <% if @aux2 > @categories_documental.length-1 %>
+                <% @aux2 = @categories_documental.length %>
+              <% end %>  
+              <%= "aux2:#{@aux2}, aux:#{@aux}" %>
+                <% @categories_documental[@aux..@aux2].each do |e|%>    
+                  <div class="col-sm-4">
+                  <% if user_signed_in? %>
+                         <% @mylink = "/categories/" + e.id.to_s %>
+                       <% else %>
+                         <% @mylink = "/categories1/" + e.id.to_s %>
+                       <% end %>
+                      <% if e.avatar1.url != "/images/" %>
+                            <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                              <%= image_tag(e.avatar1.url, :class => "img-responsive") %>
+                            </a>
+                          <% else %>
+                            <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                              <%= image_tag("sin_imagen.jpg", :class => "img-responsive") %>
+                            </a>
+                          <% end %>
+                  </div>
+                <% end %> 
+
                    
               </div>
+            <% end %>   
+            <% end %>  
 
-              <div class="item ">
-                    
-                   
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                       <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                    
-              </div>
 
-              <div class="item ">
-                    
-                      
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                       <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                    
-              </div>
-
-            </div><!-- cierre de carousel-inner -->
+        </div><!-- cierre de carousel-inner -->
 
 
 
@@ -732,10 +472,10 @@
     </div><!-- cierre de container -->
 <!-- si HAY imagenes cargadas en las publicaciones de abajo -->  
 <% end %>
-   <% if @categories_otros.first != nil %>
+
+<% if @categories_otros.first != nil %>
 <!-- si HAY imagenes cargadas en las publicaciones de abajo -->  
   <div class="container-fluid ">
-    <hr/>
     <h1>Otros</h1>
     <hr/>
     <div class="row">
@@ -743,108 +483,58 @@
         <div class="carousel carousel-showmanymoveone slide" id="carousel-tilenav6" data-interval="false">
           <div class="carousel-inner">
             <div class="item active">
-                   
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
+                   <% @categories_otros.first(3).each do |e|%>
+                      <div class="col-sm-4">
+                      <% if user_signed_in? %>
+                         <% @mylink = "/categories/" + e.id.to_s %>
+                       <% else %>
+                         <% @mylink = "/categories1/" + e.id.to_s %>
+                       <% end %>
+                          <% if e.avatar1.url != "/images/" %>
+                            <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                              <%= image_tag(e.avatar1.url, :class => "img-responsive") %>
+                            </a>
+                          <% else %>
+                            <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                              <%= image_tag("sin_imagen.jpg", :class => "img-responsive") %>
+                            </a>
+                          <% end %>
                       </div>
-                       <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
+                    <% end %>  
                     
               </div><!-- cierre de item-active -->
 
+            <% for i in 3..@categories_otros.length-1 do %>
+              <% if i % 3 == 0  %>
               <div class="item">
-                   
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                       <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
+              <%= "i:#{i}" %>
+              <% @aux = i %>
+              <% @aux2 = @aux + 2 %>
+
+              <% if @aux2 > @categories_otros.length-1 %>
+                <% @aux2 = @categories_otros.length %>
+              <% end %>  
+              <%= "aux2:#{@aux2}, aux:#{@aux}" %>
+                <% @categories_otros[@aux..@aux2].each do |e|%>    
+                  <div class="col-sm-4">
+                  <% if user_signed_in? %>
+                         <% @mylink = "/categories/" + e.id.to_s %>
+                       <% else %>
+                         <% @mylink = "/categories1/" + e.id.to_s %>
+                       <% end %>
+                      <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                        <%= image_tag(e.avatar1.url, :class => "img-responsive") %>
+                      </a>
+                  </div>
+                <% end %> 
+
                    
               </div>
+            <% end %>   
+            <% end %>  
 
-              <div class="item ">
-                    
-                   
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                       <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                    
-              </div>
 
-              <div class="item ">
-                    
-                      
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                       <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                      <div class="col-sm-3">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag("bombillo.png", :class => "img-responsive") %>
-                          </a>
-                      </div>
-                    
-              </div>
-
-            </div><!-- cierre de carousel-inner -->
+        </div><!-- cierre de carousel-inner -->
 
 
 
@@ -856,10 +546,6 @@
     </div><!-- cierre de container -->
 <!-- si HAY imagenes cargadas en las publicaciones de abajo -->  
 <% end %>
-
-
-
-</div>
 
 <hr />
 </body>

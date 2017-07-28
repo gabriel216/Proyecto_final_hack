@@ -11,38 +11,71 @@
 <body>
 	<header class="container-fluid">
     
-  <div class="row">
-        <span class="img-opcion">
-          <%= image_tag "opcionv.jpg", size:"120x120" %> 
-        </span>
-            
-      <%= link_to 'Publicar', new_category_path, class: 'btn btn-danger' %>
-      <%= link_to 'Inicio', welcome_index_path, class: 'btn btn-info' %>
+  
+<nav class="navbar navbar-custom navbar-fixed-top ">
+  <div class="container-fluid ">
+    <div class="row">
+      <div>
+        <%= image_tag "opcionv.jpg", size:"50x50", class: "img-opcion col-xs-1" %>
+          <% if !user_signed_in?  %>
+            <%= link_to 'Inicio', welcome_index_path, class: 'btn btn-info '  %>
+            <%= link_to 'Iniciar sesion', new_user_session_path, class: 'btn btn-info '  %>
+            <%= link_to 'Registrarse', new_user_registration_path, class: 'btn btn-info ' %>
+            <%= link_to 'Publicar', new_user_registration_path, class: 'btn btn-success ' %>
+          <% end %>  
+      <!-- fin del if  -->
+      </div>
+    </div>
   </div>
+</nav>
+<br/>
+<br/>
+<br/>
+
   </header>
 
-		<%= @category.category_type %><br/>
-		<label for="">Titulo:</label><br/> <%= @category.title %><br/>
-		<label for="">Descripcion:</label><br/><%= @category.description %><br/>
-		<label for="">Fecha de inicio:</label><br/><%= @category.start_date %><br/>
-		<label for="">Duracion:</label><br/><%= @category.duration %><br/>
-		<label for="">Hora de inicio:</label><br/><%= @category.start_hour %><br/>
-		<label for="">Hora de finalizacion:</label><br/><%= @category.end_hour %><br/>
-		<label for="">Lugar:</label><br/><%= @category.location %><br/>
-		<label for="">Precio de la entrada:</label><br/><%= @category.cost %><br/>
-		<h1>Avatar 1</h1>
-			<div class="round-image-50">
-				<%= image_tag(@category.avatar1.url(:thumb)) %>
-				
-			</div>
-		<h1>Avatar 2</h1>	
-			<div class="round-image-50">
-				<%= image_tag(@category.avatar2.url(:thumb)) %>					
-			</div>
-		<h1>Avatar 3</h1>	
-			<div class="round-image-50">
-				<%= image_tag(@category.avatar3.url(:thumb)) %>					
-			</div>
+		<div class="form-group text-center">
+			<label> Tipo:</label> <%= @category.category_type %>	
+			<label for="">Titulo:</label> <%= @category.title %>
+			<label for="">Lugar:</label><%= @category.location %>
+		</div>
+		<div class="form-group text-center">
+			<label for="">Descripcion:</label><%= @category.description %>
+		</div>
+		<div class="form-group text-center">
+			<label for="">Fecha de inicio:</label><%= @category.start_date %>
+			<label for="">Duracion:</label><%= @category.duration %>
+			<label for="">Hora de inicio:</label><%= @category.start_hour %>
+			<label for="">Hora de finalizacion:</label><%= @category.end_hour %>
+			<label for="">Precio de la entrada:</label><%= @category.cost %>
+		</div>
+		<table class="table">
+			<tr>
+				<th>
+	       <% if @category.avatar1.url != "/images/" %>
+	            <%= image_tag(@category.avatar1.url, :class => "img-responsive text-center") %>
+	        <% else %>
+	            <%= image_tag("sin_imagen.jpg", :class => "img-responsive text-center") %>
+	        <% end %>		
+				</th>
+				<th>
+			  <% if @category.avatar2.url != "/images/" %>
+            <%= image_tag(@category.avatar2.url, :class => "img-responsive text-center") %>
+        <% else %>
+            <%= image_tag("sin_imagen.jpg", :class => "img-responsive text-center") %>
+        <% end %>				
+				</th>
+				<th>
+          <% if @category.avatar3.url != "/images/" %>
+            <%= image_tag(@category.avatar3.url, :class => "img-responsive text-center") %>
+        <% else %>
+            <%= image_tag("sin_imagen.jpg", :class => "img-responsive text-center") %>
+        <% end %>
+				</th>
+			</tr>
+		</table>
+			
+		</div>
 </body>
 
 </html>
