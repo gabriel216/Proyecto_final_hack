@@ -2,11 +2,26 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy, :show1]
 
   def index
-    if current_user.email != 'opcionvenezuelaorg@gmail.com'
+    if current_user.email == 'opcionvenezuelaorg@gmail.com'
+        case params[:key]
+          when "Prioridad-Up" then
+            @categories = Category.all.order(:priority).reverse
+          when "Prioridad-Down" then
+            @categories = Category.all.order(:priority) 
+          when "Status-Up" then
+            @categories = Category.all.order(:status).reverse
+          when "Status-Down" then
+            @categories = Category.all.order(:status) 
+          when "FechadeInicio-Up" then
+            @categories = Category.all.order(:start_date)
+          when "FechadeInicio-Down" then          
+            @categories = Category.all.order(:start_date).reverse  
+          else
+            @categories = Category.all
+      end
+    else  
       aux = (User.find_by(id: current_user.id).id)
       @categories = Category.where(user_id: aux).all
-    else  
-      @categories = Category.all
     end
   end
 
