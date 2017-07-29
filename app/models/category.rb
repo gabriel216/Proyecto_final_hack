@@ -10,7 +10,7 @@ class Category < ApplicationRecord
   validates :start_hour, :presence => true
   validates :location, :presence => true, :length => { :minimun => 5, :maximum => 100}
   validates :cost, :presence => true, numericality: true
-  validates :cost, :presence => true, numericality: true
+  validates :phone, numericality: true, :length => { :minimun => 7, :maximum => 16}
 
 
   has_attached_file :avatar1, :styles => { :medium => "700x700", :thumb => "80x80#" }, 

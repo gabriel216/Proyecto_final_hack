@@ -37,7 +37,7 @@
 				<label for="" style = "text-indent:20px">Lugar:&nbsp;&nbsp;</label><%= text_field(:category, :location, :maxlength => 80, :size => 40, style: 'text-indent') %>
 		</div>		
 		<div class="form-group text-center">
-				<label for="">Descripcion:</label><br/><%= text_area(:category, :description, size: "24x12", maxlength: 300, class: "form-control") %>
+				<label for="">Descripcion:</label><br/><%= text_area(:category, :description, size: "24x12", maxlength: 4000, class: "form-control") %>
 		</div>
 		<div class="form-group text-center">
 			
@@ -47,8 +47,10 @@
 				<label for="" style = "text-indent:20px">Hora de finalizacion:&nbsp;&nbsp;</label><%= time_field(:category, :end_hour) %>
 		</div>
 		<div class="form-group text-center">
-				<label for="" style = "text-indent:20px">Teléfono:&nbsp;&nbsp;</label><%= number_field(:category, :phone, max:9999999999, :size => 20) %>
-				<label for="" style = "text-indent:20px">Precio de la entrada:&nbsp;&nbsp;</label><%= number_field(:category, :cost) %>
+			<label for="">Sitio web:&nbsp;&nbsp;</label><%= url_field(:category, :web_site)%>
+
+			<label for="" style = "text-indent:20px">Teléfono:&nbsp;&nbsp;</label><%= number_field(:category, :phone, maxlength:16, size:16) %>
+			<label for="" style = "text-indent:20px">Precio de la entrada:&nbsp;&nbsp;</label><%= number_field(:category, :cost) %>
 		</div>
 		<% if current_user.email == 'opcionvenezuelaorg@gmail.com' %>
     	<div class="form-group text-center">

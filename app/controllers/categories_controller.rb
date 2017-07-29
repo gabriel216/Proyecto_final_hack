@@ -11,7 +11,7 @@ class CategoriesController < ApplicationController
           when "Tipo-Up" then
             @categories = Category.all.order(:category_type).reverse
           when "Tipo-Down" then
-            @categories = Category.all.order(:priority)   
+            @categories = Category.all.order(:category_type)   
           when "Status-Up" then
             @categories = Category.all.order(:status).reverse
           when "Status-Down" then
@@ -65,8 +65,11 @@ class CategoriesController < ApplicationController
 
 
   def update
+    @category.status = false
+    @category.priority = 0
       if @category.update(category_params)
         redirect_to categories_path
+        
       else
         render 'edit'
       end
@@ -89,6 +92,6 @@ class CategoriesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
       params.require(:category).permit(:category_type, :title, :description, :avatar1, :avatar2, 
-        :avatar3, :start_date, :duration, :start_hour, :end_hour, :location, :cost, :status, :priority,:id)  
+        :avatar3, :start_date, :duration, :start_hour, :end_hour, :location, :cost, :phone, :web_site,:status, :priority,:id)  
     end
 end

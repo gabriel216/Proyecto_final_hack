@@ -30,76 +30,120 @@
 <br/>
 
   </header>
-  <div class="row">
-  	
-<div class="col-xs-12 col-sm-6">
-	
-			<h1> <%= @category.title %></h1>
-		<div class="form-group text-center">
-			<label> Tipo:</label> <%= @category.category_type %>	
-			<label for="">Lugar:</label><%= @category.location %>
-		</div>
-		<div class="form-group text-center">
-			<label for="">Descripcion:</label><%= @category.description %>
-		</div>
-		<div class="form-group text-center">
-			<label for="">Fecha de inicio:</label><%= @category.start_date %>
-			<label for="">Duracion:</label><%= @category.duration %>
-			<label for="">Hora de inicio:</label><%= @category.start_hour %>
-			<label for="">Hora de finalizacion:</label><%= @category.end_hour %>
-			<label for="">Precio de la entrada:</label><%= @category.cost %>
-		</div>
-</div>
-<div class="col-xs-12 col-sm-6">
-	
-		<div class="container-fluid">
+    
+     <table>
+       <thead>
+         <tr>
+            <th>
+              <h1 class="text-center"> <%= @category.title %></h1>
+              </th>
+        </tr>
+
+        <tr>
+           <th class="col-xs-12 text-center">
+             <div class="col-xs-6">
+                <label class="text-right"> Tipo:&nbsp;&nbsp;</label> <%= @category.category_type %>  
+             </div>
+             <div class="col-xs-6">
+                <label class="text-left" >Lugar:&nbsp;&nbsp;</label><%= @category.location %>
+             </div>
+           </th>
+         </tr>
+
+         <tr>
+         <th class="col-xs-12 text-center">
+             <div class="col-xs-3">
+              <label for="">Fecha de inicio:&nbsp;&nbsp;</label>
+                <%= @category.start_date.strftime("%d-%m-%Y") %>
+             </div>
+             <div class="col-xs-3">
+                <label for="">Duracion:&nbsp;&nbsp;</label><%= @category.duration %>
+             </div>
+             <div class="col-xs-3">
+             <time time="20:00">
+                <label for="">Hora de inicio:&nbsp;&nbsp;</label><%= @category.start_hour.strftime("%r") %>
+             </time>
+             </div>
+             <div class="col-xs-3">
+                <label for="">Hora de finalizacion:&nbsp;&nbsp;</label><%= @category.end_hour.strftime("%r") %>
+             </div>
+           </th>
+         </tr>
+         <tr>
+           <th class="col-xs-12 text-center">
+              <label >Descripcion:</label><%= @category.description %>
+           </th>
+         </tr>
+         <tr>
+          <th class="col-xs-12 text-center">
+          <div class="col-xs-4">
+            <label for="">Precio de la entrada:&nbsp;&nbsp;</label><%= @category.cost %>
+          </div>
+          <div class="col-xs-4">
+            <label for="">Teléfono:&nbsp;&nbsp;</label><%= @category.phone%>
+          </div>
+          <div class="col-xs-4">
+            <a href="<%= @category.web_site%>">Visítanos en nuestro sitio web</a>
+            
+          </div>
+          </th>
+         </tr>
+         
+      
+                  
+<!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+
+       </thead>
+     </table>
+
+<div class="container-fluid">
       <div class="row"> 
-        <div id="carousel-example-generic3" class="carousel slide carousel-custom" data-ride="carousel">
+        <div id="carousel-example-generic" class="carousel slide carousel-custom" data-ride="carousel">
       <!-- Indicators -->
           <ol class="carousel-indicators">
-            <li data-target="#carousel-example-generic3" data-slide-to="0" class="active ">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active ">
             </li>
-            <li data-target="#carousel-example-generic3" data-slide-to="1" class="">
+            <li data-target="#carousel-example-generic" data-slide-to="1" class="">
             </li>
-            <li data-target="#carousel-example-generic3" data-slide-to="2" class="">
+            <li data-target="#carousel-example-generic" data-slide-to="2" class="">
             </li>
           </ol>
             <!-- Wrapper for slides -->
           <div class="carousel-inner" role="listbox">
             <div class="item active">
             <div class="col-xs-12">
-              <% if @category.avatar1.url != "/images/" %>
-	            	<%= image_tag(@category.avatar1.url, :class => "img-responsive ") %>
-	        		<% else %>
-	            	<%= image_tag("sin_imagen.jpg", :class => "img-responsive ") %>
-	        		<% end %>		 
+                <% if @category.avatar1.url != "/images/" %>
+                            <%= image_tag(@category.avatar1.url, :class => "img-responsive ") %>
+                          <% else %>
+                            <%= image_tag("sin_imagen.jpg", :class => "img-responsive ") %>
+                          <% end %>    
             </div>
             </div>
             <div class="item">
             <div class="col-xs-12">
-              <% if @category.avatar2.url != "/images/" %>
-	            	<%= image_tag(@category.avatar2.url, :class => "img-responsive ") %>
-	        		<% else %>
-	            	<%= image_tag("sin_imagen.jpg", :class => "img-responsive ") %>
-	        		<% end %>		 
+                <% if @category.avatar2.url != "/images/" %>
+                            <%= image_tag(@category.avatar2.url, :class => "img-responsive ") %>
+                          <% else %>
+                            <%= image_tag("sin_imagen.jpg", :class => "img-responsive ") %>
+                          <% end %>    
             </div>
             </div>
             <div class="item">
             <div class="col-xs-12">
                 <% if @category.avatar3.url != "/images/" %>
-	            	<%= image_tag(@category.avatar3.url, :class => "img-responsive ") %>
-	        		<% else %>
-	            	<%= image_tag("sin_imagen.jpg", :class => "img-responsive ") %>
-	        		<% end %>		    
+                            <%= image_tag(@category.avatar3.url, :class => "img-responsive ") %>
+                          <% else %>
+                            <%= image_tag("sin_imagen.jpg", :class => "img-responsive ") %>
+                          <% end %>        
           </div>
           </div>
         </div>
       <!-- Controls -->
-          <a class="left carousel-control" href="#carousel-example-generic3" role="button" data-slide="prev">
+          <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
           </a>
-          <a class="right carousel-control" href="#carousel-example-generic3" role="button" data-slide="next">
+          <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
           </a>
@@ -109,9 +153,10 @@
       <!-- Include all compiled plugins (below), or include individual files as needed -->
       <script src="js/bootstrap.min.js"></script> 
     </div>
-  </div>
-</div>		
-  </div>
-</body>
+
+  
+  </body>
 
 </html>
+      <script src="js/bootstrap.min.js"></script> 
+    </div>

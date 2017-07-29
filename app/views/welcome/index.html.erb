@@ -106,18 +106,39 @@
             <!-- Wrapper for slides -->
           <div class="carousel-inner" role="listbox">
             <div class="item active">
-            <div class="col-xs-12">
-                <%= image_tag(@categories_evento.first.avatar1.url) %>  
+            <div class="col-xs-12 text-center">
+              <% if user_signed_in? %>
+                <% @mylink = "/categories/" + @categories.first.id.to_s %>
+              <% else %>
+                <% @mylink = "/categories1/" + @categories.first.id.to_s %>
+              <% end %>
+              <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                <%= image_tag(@categories.first.avatar1.url) %>
+              </a>
             </div>
             </div>
             <div class="item">
-            <div class="col-xs-12">
-                <%= image_tag(@categories_evento.first.avatar2.url) %> 
+            <div class="col-xs-12 text-center">
+              <% if user_signed_in? %>
+                <% @mylink = "/categories/" + @categories.first.id.to_s %>
+              <% else %>
+                <% @mylink = "/categories1/" + @categories.first.id.to_s %>
+              <% end %>
+              <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                <%= image_tag(@categories.first.avatar2.url) %>
+              </a>
             </div>
             </div>
             <div class="item">
-            <div class="col-xs-12">
-                <%= image_tag(@categories_evento.first.avatar3.url) %>   
+            <div class="col-xs-12 text-center">
+            <% if user_signed_in? %>
+                <% @mylink = "/categories/" + @categories.first.id.to_s %>
+              <% else %>
+                <% @mylink = "/categories1/" + @categories.first.id.to_s %>
+              <% end %>
+              <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                <%= image_tag(@categories.first.avatar3.url) %>
+              </a>
           </div>
           </div>
         </div>
@@ -202,9 +223,19 @@
                        <% else %>
                          <% @mylink = "/categories1/" + e.id.to_s %>
                        <% end %>
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                          <%= image_tag(e.avatar1.url, :class => "img-responsive") %>
-                          </a>
+                       <!-- aaaaaaaaaaaaaaaaaaaaaaaaa -->
+                        <div class="container-agr">
+                            <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                            <%= image_tag(e.avatar1.url, :class => " image") %>
+                            </a>
+                          <div class="middle">
+                            <div class="text">
+                              <%= e.title %><br/>
+                              <%= e.start_date.strftime("%d-%m-%Y")%>
+                            </div>
+                          </div>
+                        </div>
+                       <!-- aaaaaaaaaaaaaaaaaaaaaaaaa -->
                       </div>
                     <% end %>  
                     
@@ -213,14 +244,12 @@
             <% for i in 3..@categories_evento.length-1 do %>
               <% if i % 3 == 0  %>
               <div class="item text-center">
-              <%= "i:#{i}" %>
               <% @aux = i %>
               <% @aux2 = @aux + 2 %>
 
               <% if @aux2 > @categories_evento.length-1 %>
                 <% @aux2 = @categories_evento.length %>
               <% end %>  
-              <%= "aux2:#{@aux2}, aux:#{@aux}" %>
                 <% @categories_evento[@aux..@aux2].each do |e|%>    
                   <div class="col-sm-4">
                   <% if user_signed_in? %>
@@ -228,10 +257,21 @@
                        <% else %>
                          <% @mylink = "/categories1/" + e.id.to_s %>
                        <% end %>
-                      <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                        <%= image_tag(e.avatar1.url, :class => "img-responsive") %>
-                      </a>
-                  </div>
+
+                        <!-- aaaaaaaaaaaaaaaaaaaaaaaaa -->
+                        <div class="container-agr">
+                            <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                            <%= image_tag(e.avatar1.url, :class => " image") %>
+                            </a>
+                          <div class="middle">
+                            <div class="text">
+                              <%= e.title %><br/>
+                              <%= e.start_date.strftime("%d-%m-%Y")%>
+                            </div>
+                          </div>
+                        </div>
+                       <!-- aaaaaaaaaaaaaaaaaaaaaaaaa -->
+
                 <% end %> 
 
                    
@@ -252,6 +292,95 @@
     </div><!-- cierre de container -->
 <!-- si HAY imagenes cargadas en las publicaciones de abajo -->  
 <% end %>
+<!-- foro -->
+<% if @categories_foro.first != nil %>
+<!-- si HAY imagenes cargadas en las publicaciones de abajo -->  
+  <div class="container-fluid ">
+    <h1>Foros</h1>
+    <hr/>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="carousel carousel-showmanymoveone slide" id="carousel-tilenav10" data-interval="false">
+          <div class="carousel-inner">
+            <div class="item active">
+                   <% @categories_foro.first(3).each do |e|%>
+                      <div class="col-sm-4">
+                      <% if user_signed_in? %>
+                         <% @mylink = "/categories/" + e.id.to_s %>
+                       <% else %>
+                         <% @mylink = "/categories1/" + e.id.to_s %>
+                       <% end %>
+                       <!-- aaaaaaaaaaaaaaaaaaaaaaaaa -->
+                        <div class="container-agr">
+                            <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                            <%= image_tag(e.avatar1.url, :class => " image") %>
+                            </a>
+                          <div class="middle">
+                            <div class="text">
+                              <%= e.title %><br/>
+                              <%= e.start_date.strftime("%d-%m-%Y")%>
+                            </div>
+                          </div>
+                        </div>
+                       <!-- aaaaaaaaaaaaaaaaaaaaaaaaa -->
+                      </div>
+                    <% end %>  
+                    
+              </div><!-- cierre de item-active -->
+
+            <% for i in 3..@categories_foro.length-1 do %>
+              <% if i % 3 == 0  %>
+              <div class="item text-center">
+              <% @aux = i %>
+              <% @aux2 = @aux + 2 %>
+
+              <% if @aux2 > @categories_foro.length-1 %>
+                <% @aux2 = @categories_foro.length %>
+              <% end %>  
+                <% @categories_foro[@aux..@aux2].each do |e|%>    
+                  <div class="col-sm-4">
+                  <% if user_signed_in? %>
+                         <% @mylink = "/categories/" + e.id.to_s %>
+                       <% else %>
+                         <% @mylink = "/categories1/" + e.id.to_s %>
+                       <% end %>
+
+                        <!-- aaaaaaaaaaaaaaaaaaaaaaaaa -->
+                        <div class="container-agr">
+                            <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                            <%= image_tag(e.avatar1.url, :class => " image") %>
+                            </a>
+                          <div class="middle">
+                            <div class="text">
+                              <%= e.title %><br/>
+                              <%= e.start_date.strftime("%d-%m-%Y")%>
+                            </div>
+                          </div>
+                        </div>
+                       <!-- aaaaaaaaaaaaaaaaaaaaaaaaa -->
+
+                <% end %> 
+
+                   
+              </div>
+            <% end %>   
+            <% end %>  
+
+
+        </div><!-- cierre de carousel-inner -->
+
+
+
+         <a rel="nofollow" rel="noreferrer"class="left carousel-control" href="#carousel-tilenav10" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+         <a rel="nofollow" rel="noreferrer"class="right carousel-control" href="#carousel-tilenav10" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+          </div><!-- cierre de carousel -->
+        </div><!-- cierre de col -->
+      </div><!-- cierre de row -->
+    </div><!-- cierre de container -->
+<!-- si HAY imagenes cargadas en las publicaciones de abajo -->  
+<% end %>
+<!-- foro -->
+
 
 <% if @categories_curso.first != nil %>
 <!-- si HAY imagenes cargadas en las publicaciones de abajo -->  
@@ -270,15 +399,24 @@
                        <% else %>
                          <% @mylink = "/categories1/" + e.id.to_s %>
                        <% end %>
+                       <!-- aaaaaaaaaaaaaaaaaaaaa -->
                           <% if e.avatar1.url != "/images/" %>
-                            <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                              <%= image_tag(e.avatar1.url, :class => "img-responsive") %>
-                            </a>
+                            <div class="container-agr">
+                              <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                              <%= image_tag(e.avatar1.url, :class => " image") %>
+                              </a>
+                            <div class="middle">
+                              <div class="text">
+                                <%= e.title %><br/>
+                                <%= e.start_date.strftime("%d-%m-%Y")%>
+                              </div>
+                            </div>
                           <% else %>
                             <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
                               <%= image_tag("sin_imagen.jpg", :class => "img-responsive") %>
                             </a>
                           <% end %>
+                       <!-- aaaaaaaaaaaaaaaaaaaaa -->
                       </div>
                     <% end %>  
                     
@@ -302,9 +440,24 @@
                        <% else %>
                          <% @mylink = "/categories1/" + e.id.to_s %>
                        <% end %>
-                      <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                        <%= image_tag(e.avatar1.url, :class => "img-responsive") %>
-                      </a>
+                      <!-- aaaaaaaaaaaaaaaaaaaaa -->
+                          <% if e.avatar1.url != "/images/" %>
+                            <div class="container-agr">
+                              <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                              <%= image_tag(e.avatar1.url, :class => " image") %>
+                              </a>
+                            <div class="middle">
+                              <div class="text">
+                                <%= e.title %><br/>
+                                <%= e.start_date.strftime("%d-%m-%Y")%>
+                              </div>
+                            </div>
+                          <% else %>
+                            <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                              <%= image_tag("sin_imagen.jpg", :class => "img-responsive") %>
+                            </a>
+                          <% end %>
+                       <!-- aaaaaaaaaaaaaaaaaaaaa -->
                   </div>
                 <% end %> 
 
@@ -345,9 +498,16 @@
                          <% @mylink = "/categories1/" + e.id.to_s %>
                        <% end %>
                           <% if e.avatar1.url != "/images/" %>
-                            <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                              <%= image_tag(e.avatar1.url, :class => "img-responsive") %>
-                            </a>
+                            <div class="container-agr">
+                              <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                                <%= image_tag(e.avatar1.url, :class => " image") %>
+                              </a>
+                          <div class="middle">
+                            <div class="text">
+                              <%= e.title %><br/>
+                              <%= e.start_date.strftime("%d-%m-%Y")%>
+                            </div>
+                          </div>
                           <% else %>
                             <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
                               <%= image_tag("sin_imagen.jpg", :class => "img-responsive") %>
@@ -376,9 +536,24 @@
                        <% else %>
                          <% @mylink = "/categories1/" + e.id.to_s %>
                        <% end %>
-                      <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                        <%= image_tag(e.avatar1.url, :class => "img-responsive") %>
-                      </a>
+                      <!-- aaaaaaaaaaaaaaaaaaaaa -->
+                          <% if e.avatar1.url != "/images/" %>
+                            <div class="container-agr">
+                              <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                              <%= image_tag(e.avatar1.url, :class => " image") %>
+                              </a>
+                            <div class="middle">
+                              <div class="text">
+                                <%= e.title %><br/>
+                                <%= e.start_date.strftime("%d-%m-%Y")%>
+                              </div>
+                            </div>
+                          <% else %>
+                            <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                              <%= image_tag("sin_imagen.jpg", :class => "img-responsive") %>
+                            </a>
+                          <% end %>
+                       <!-- aaaaaaaaaaaaaaaaaaaaa -->
                   </div>
                 <% end %> 
 
@@ -419,9 +594,16 @@
                          <% @mylink = "/categories1/" + e.id.to_s %>
                        <% end %>
                           <% if e.avatar1.url != "/images/" %>
-                            <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                              <%= image_tag(e.avatar1.url, :class => "img-responsive") %>
-                            </a>
+                            <div class="container-agr">
+                              <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                                <%= image_tag(e.avatar1.url, :class => " image") %>
+                              </a>
+                          <div class="middle">
+                            <div class="text">
+                              <%= e.title %><br/>
+                              <%= e.start_date.strftime("%d-%m-%Y")%>
+                            </div>
+                          </div>
                           <% else %>
                             <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
                               <%= image_tag("sin_imagen.jpg", :class => "img-responsive") %>
@@ -450,15 +632,24 @@
                        <% else %>
                          <% @mylink = "/categories1/" + e.id.to_s %>
                        <% end %>
-                      <% if e.avatar1.url != "/images/" %>
-                            <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                              <%= image_tag(e.avatar1.url, :class => "img-responsive") %>
-                            </a>
+                      <!-- aaaaaaaaaaaaaaaaaaaaa -->
+                          <% if e.avatar1.url != "/images/" %>
+                            <div class="container-agr">
+                              <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                              <%= image_tag(e.avatar1.url, :class => " image") %>
+                              </a>
+                            <div class="middle">
+                              <div class="text">
+                                <%= e.title %><br/>
+                                <%= e.start_date.strftime("%d-%m-%Y")%>
+                              </div>
+                            </div>
                           <% else %>
                             <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
                               <%= image_tag("sin_imagen.jpg", :class => "img-responsive") %>
                             </a>
                           <% end %>
+                       <!-- aaaaaaaaaaaaaaaaaaaaa -->
                   </div>
                 <% end %> 
 
@@ -499,9 +690,16 @@
                          <% @mylink = "/categories1/" + e.id.to_s %>
                        <% end %>
                           <% if e.avatar1.url != "/images/" %>
-                            <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                              <%= image_tag(e.avatar1.url, :class => "img-responsive") %>
-                            </a>
+                            <div class="container-agr">
+                              <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                                <%= image_tag(e.avatar1.url, :class => " image") %>
+                              </a>
+                          <div class="middle">
+                            <div class="text">
+                              <%= e.title %><br/>
+                              <%= e.start_date.strftime("%d-%m-%Y")%>
+                            </div>
+                          </div>
                           <% else %>
                             <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
                               <%= image_tag("sin_imagen.jpg", :class => "img-responsive") %>
@@ -530,10 +728,24 @@
                        <% else %>
                          <% @mylink = "/categories1/" + e.id.to_s %>
                        <% end %>
-                      <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                        <%= image_tag(e.avatar1.url, :class => "img-responsive") %>
-                      </a>
-                  </div>
+                      <!-- aaaaaaaaaaaaaaaaaaaaa -->
+                          <% if e.avatar1.url != "/images/" %>
+                            <div class="container-agr">
+                              <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                              <%= image_tag(e.avatar1.url, :class => " image") %>
+                              </a>
+                            <div class="middle">
+                              <div class="text">
+                                <%= e.title %><br/>
+                                <%= e.start_date.strftime("%d-%m-%Y")%>
+                              </div>
+                            </div>
+                          <% else %>
+                            <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                              <%= image_tag("sin_imagen.jpg", :class => "img-responsive") %>
+                            </a>
+                          <% end %>
+                       <!-- aaaaaaaaaaaaaaaaaaaaa -->
                 <% end %> 
 
                    

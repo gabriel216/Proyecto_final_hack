@@ -30,14 +30,14 @@
 <div class="container ">
 	<div class="row">
 		<h2 class="text-center">Edita tu publicacion</h2>
-			<%= form_for  :category, :url => {:action => :update} do |f| %>
+			<%= form_for  :category, :url => category_path, method: :patch do |f| %>
 		<div class="form-group text-center">
 				<%= f.select :category_type, ['Evento', 'Foro', 'Curso', 'Taller', 'Documental', 'Otro']%>
 				<label for="" style = "text-indent:20px">Titulo:&nbsp;&nbsp;</label> <%= text_field(:category, :title, maxlength: 85, size:30, style: 'text-indent:20px')%>
 				<label for="" style = "text-indent:20px">Lugar:&nbsp;&nbsp;</label><%= text_field(:category, :location, :maxlength => 80, :size => 40, style: 'text-indent') %>
 		</div>		
 		<div class="form-group text-center">
-				<label for="">Descripcion:</label><br/><%= text_area(:category, :description, size: "24x12", maxlength: 300, class: "form-control") %>
+				<label for="">Descripcion:</label><br/><%= text_area(:category, :description, size: "24x12", maxlength: 4000, class: "form-control") %>
 		</div>
 		<div class="form-group text-center">
 			
@@ -47,7 +47,7 @@
 				<label for="" style = "text-indent:20px">Hora de finalizacion:&nbsp;&nbsp;</label><%= time_field(:category, :end_hour) %>
 		</div>
 		<div class="form-group text-center">
-				<label for="" style = "text-indent:20px">Teléfono:&nbsp;&nbsp;</label><%= number_field(:category, :phone, max:9999999999, :size => 20) %>
+				<label for="" style = "text-indent:20px">Teléfono:&nbsp;&nbsp;</label><%= phone_field(:category, :phone, size:16) %>
 				<label for="" style = "text-indent:20px">Precio de la entrada:&nbsp;&nbsp;</label><%= number_field(:category, :cost) %>
 		</div>
 
@@ -73,7 +73,7 @@
 				<label for="" style = "text-indent:20px">
 				<%= f.file_field :avatar3, class: "pretty-input" %>
 				</label>
-
+			
 				<%= f.submit 'Guardar', class: "btn btn-primary" %>
 			<% end %>
 		</div>

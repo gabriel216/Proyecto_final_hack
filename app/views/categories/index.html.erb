@@ -21,15 +21,16 @@
             <%= link_to 'Registrarse', new_user_registration_path, class: 'btn btn-info ' %>
             <%= link_to 'Publicar', new_user_registration_path, class: 'btn btn-info ' %>
           <% else %>
-            <% if current_user.email == 'opcionvenezuelaorg@gmail.com'   %>
-              <%= link_to 'Inicio', welcome_index_path, class: 'btn btn-info ' %>
-              <%= link_to 'Publicar', new_category_path, class: 'btn btn-success ' %>
-              <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete', class: 'btn btn-danger ' %>
 
-            <% else %>
-              <a href=/categories class="btn btn-info">Hi, <%= current_user.name %></a>
-              <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete', class: 'btn btn-danger col-xs-offset-5 col-xs-7 col-sm-6 col-sm-offset-6 col-md-offset-6 col-md-6 col-lg-offset-7 col-lg-5' %>
-              <%= link_to 'Publicar', new_category_path, class: 'btn btn-success col-xs-offset-5 col-xs-7 col-sm-6 col-sm-offset-6 col-md-offset-6 col-md-6 col-lg-offset-7 col-lg-5' %>
+              <% if current_user.email == 'opcionvenezuelaorg@gmail.com'   %>
+                <%= link_to 'Inicio', welcome_index_path, class: 'btn btn-info ' %>
+                <%= link_to 'Publicar', new_category_path, class: 'btn btn-success ' %>
+                <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete', class: 'btn btn-danger ' %>
+
+              <% else %>
+                <%= link_to 'Inicio', welcome_index_path, class: 'btn btn-info ' %>
+                <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete', class: 'btn btn-danger' %>
+                <%= link_to 'Publicar', new_category_path, class: 'btn btn-success' %>
             <% end %>  
           <% end %>  
       <!-- fin del if  -->
@@ -126,20 +127,6 @@
 
 <% else %>
 
-<header class="container-fluid">
-    
-  <div class="row">
-        <span class="img-opcion">
-          <%= image_tag "opcionv.jpg", size:"120x120" %> 
-        </span>
-      
-      <%= link_to 'Inicio', welcome_index_path, class: 'btn btn-info' %>
-      <%= link_to 'Publicar', new_category_path, class: 'btn btn-success' %>
-      <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete', class: 'btn btn-success' %>  
-
-  </div>
-  </header>
-
   <div class="col-xs-12">
     <table class="table">
       <thead>
@@ -172,9 +159,9 @@
               <%= category.duration %>          
             </td>
           <td class="text-center">
-            <%= link_to 'Show', category_path(category), class: 'btn btn-info' %>
-            <%= link_to 'Edit', edit_category_path(category), class: 'btn btn-warning' %>
-            <%= link_to 'Destroy', category_path(category), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
+            <%= link_to '', category_path(category), class: 'btn btn-info glyphicon glyphicon-eye-open' %>
+            <%= link_to '', edit_category_path(category), class: 'btn btn-warning glyphicon glyphicon-pencil' %>
+            <%= link_to '', category_path(category), method: :delete, data: {confirm: '¿Está seguro?'}, class: 'btn btn-danger glyphicon glyphicon-remove' %>
           </td>
         </tr>
       <% end %>
