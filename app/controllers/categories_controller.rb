@@ -54,6 +54,9 @@ class CategoriesController < ApplicationController
     @category.user_id = User.find_by(id: current_user.id).id
     respond_to do |format|
       if @category.save
+        # user1 = User.find_by(name: 'opcion')
+        # puts " Hola soy user 1#{user1.inspect}"
+        # CategoryMailer.publication(user1).deliver
         format.html { redirect_to categories_path, notice: 'Category was successfully created.' }
         format.json { render :show, status: :created, location: @category }
       else

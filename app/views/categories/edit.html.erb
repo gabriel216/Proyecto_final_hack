@@ -64,6 +64,33 @@
 				</div>	
 		<% end %>
 
+		<div class="form-group text-center">
+			
+			<label for="">
+				<% if @category.avatar1.url != "/images/" %>
+					<%= image_tag(@category.avatar1.url, size: "315x270", class: "img-edit") %>
+				<% else %>
+					<%= image_tag("sin_imagen.jpg", size: "315x270", class: "img-edit") %>				
+				<% end %>	
+			</label>
+			<label for="">
+				<% if @category.avatar2.url != "/images/" %>
+					<%= image_tag(@category.avatar2.url, size: "315x270", class: "img-edit") %>
+				<% else %>
+					<%= image_tag("sin_imagen.jpg", size: "315x270", class: "img-edit") %>				
+				<% end %>	
+			</label>
+			<label for="">
+				<% if @category.avatar3.url != "/images/" %>
+					<%= image_tag(@category.avatar3.url, size: "315x270", class: "img-edit") %>
+				<% else %>
+					<%= image_tag("sin_imagen.jpg", size: "315x270", class: "img-edit") %>				
+				<% end %>	
+			</label>
+
+		</div>
+		<div class="form-group text-center">
+			
 				<label for="" style = "text-indent:20px">
 					<%= f.file_field :avatar1, class: "pretty-input" %>
 				</label>
@@ -73,6 +100,7 @@
 				<label for="" style = "text-indent:20px">
 				<%= f.file_field :avatar3, class: "pretty-input" %>
 				</label>
+		</div>
 			
 				<%= f.submit 'Guardar', class: "btn btn-primary" %>
 			<% end %>

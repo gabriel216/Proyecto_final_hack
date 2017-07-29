@@ -19,6 +19,11 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 
+.img-edit {
+  border:5px solid orange ;
+  margin: 25px;
+  border-radius:5px;
+}
 .button-admin {
 	width:8%;
 }
@@ -50,19 +55,20 @@ tr:nth-child(even) {
     .pretty-input::before {
        content: 'Sube una imagen';
        color: #fff;
-       width: 150px;
-       height: 45px;
+       width: auto;
+       height: auto;
        line-height: 45px;
        text-align: center;
        text-transform: uppercase;
        display: inline-block;
-       border-radius: 3px;
+       border-radius: none;
        background: green;
        padding: 5px 8px;
        outline: none;
        -webkit-user-select: none;
        cursor: pointer;
      }
+
 .carousel-inner2 .item img {
   height:300px;
   width:50%;
