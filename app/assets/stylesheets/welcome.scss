@@ -3,22 +3,21 @@ body{
 	background-color:orange;
 }
 
-// nav .navbar {
-//   background-color:blue;
-// }
-// .nav-tam {
-//   height: 100px;
-// }
-// .img-fondo {
-//   background-image: url(https://empresariados.com/wp-content/2016/08/emprendimiento.jpg);
-// }
-// .img-opcion {
-//      text-align: center;
-//      margin-left: 20px;
-// }
-// .left-button {
-// 	margin-left:60%;
-// }
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
 
 .button-admin {
 	width:8%;
@@ -42,7 +41,7 @@ body{
 	// opacity:0.7;
 	height:300px;
 	margin: auto;
-	width:100%;
+	width:50%;
 }
 
 .pretty-input::-webkit-file-upload-button {

@@ -1,15 +1,12 @@
-<%= form_for @category do |f| %>
-    <% if @category.errors.any? %>
-      <div id="error_explanation">
-        <h2>
-          <%= pluralize(@category.errors.count, "error") %> prohibited
-          this category from being saved:
-        </h2>
-        <ul>
-          <% @category.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-<% end %>
-<% end %>
+<div class="dropdown">
+  
+  <%= form_for(@category) do |f| %>
+
+    <%= f.label :category_type %><br>
+        <span class="caret"></span>
+    
+    <%= f.select :category_type, [ 'Evento','Foro','Curso','Taller', 'Documental', 'Otros' ], :prompt => 'Tipo', class: "btn btn-default dropdown-menu dropdown-toggle" %>
+
+  <% end %>
+</div>
+

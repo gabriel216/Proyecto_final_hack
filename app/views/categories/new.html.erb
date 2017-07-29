@@ -50,9 +50,21 @@
 				<label for="" style = "text-indent:20px">Teléfono:&nbsp;&nbsp;</label><%= number_field(:category, :phone, max:9999999999, :size => 20) %>
 				<label for="" style = "text-indent:20px">Precio de la entrada:&nbsp;&nbsp;</label><%= number_field(:category, :cost) %>
 		</div>
+		<% if current_user.email == 'opcionvenezuelaorg@gmail.com' %>
+    	<div class="form-group text-center">
+	    	<label for="" >Prioridad:</label>
+					<%= f.number_field :priority %>
+					
+					<%= f.label 'Publicación:', style: 'text-indent: 20px' %>
+					<%= f.label 'activa' %>
+					<%= f.radio_button :status, true %>
+					<%= f.label 'inactiva' %>
+					<%= f.radio_button :status, false %>
+				</div>	
+		<% end %>
 		<div class="form-group text-center">
 				<label for="" style = "text-indent:20px">
-					<%= f.file_field :avatar1, value: "Elegir", class: "pretty-input" %>
+					<%= f.file_field :avatar1, class: "pretty-input" %>
 				</label>
 				<label for="" style = "text-indent:20px">
 				<%= f.file_field :avatar2, class: "pretty-input" %>
