@@ -55,8 +55,8 @@ class CategoriesController < ApplicationController
     respond_to do |format|
       if @category.save
         user1 = User.find_by(email: 'opcionvenezuelaorg@gmail.com')
-        puts " Hola soy user 1#{user1.inspect}"
-        CategoryMailer.publication(user1).deliver
+        user2 = current_user
+        CategoryMailer.publication(user1, user2).deliver
         format.html { redirect_to categories_path, notice: 'Category was successfully created.' }
         format.json { render :show, status: :created, location: @category }
       else
