@@ -4,7 +4,7 @@ class Category < ApplicationRecord
   validates :title, :presence => true, :length => { :minimun => 5, :maximum => 70}
   validates :description, :presence => true, :length => { :minimun => 5, too_short: 
     "El mínimo de caracteres es cinco", 
-    :maximum => 1000, too_long: "Ha excedido el máximo de caracteres"}
+    :maximum => 50000, too_long: "Ha excedido el máximo de caracteres"}
   validate :expiration_date 
   validates :duration, :presence => true, numericality: true
   validates :start_hour, :presence => true
