@@ -41,26 +41,29 @@ class CategoriesController < ApplicationController
 
 
   def new
+    puts "Pase por new"
     @category = Category.new
   end
 
   def edit
-
+    puts "Pase por edit"
   end
 
 
   def create
     @category = Category.new(category_params)
     @category.user_id = User.find_by(id: current_user.id).id
+    
     respond_to do |format|
       if @category.save
         user1 = User.find_by(email: 'opcionvenezuelaorg@gmail.com')
         user2 = current_user
-        CategoryMailer.publication(user1, user2).deliver
+        titulo = @category.title
+        CategoryMailer.publication(user1, user2, titulo).deliver
         format.html { redirect_to categories_path, notice: 'Category was successfully created.' }
         format.json { render :show, status: :created, location: @category }
       else
-        format.html { render json: @category.errors }
+        format.html { render :new }
         format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
@@ -68,14 +71,27 @@ class CategoriesController < ApplicationController
 
 
   def update
-    @category.status = false
-    @category.priority = 0
+    puts 'Pase por update'
+    if current_user.email != 'opcionvenezuelaorg@gmail.com'
+      @category.status = false
+      @category.priority = 0
+    end  
+    # else
+    #     if :status == true && :priority != 0
+    #       user1 = User.find_by(email: 'opcionvenezuelaorg@gmail.com')
+    #       user2 = current_user
+    #       titulo = @category.title
+    #       CategoryMailer.aproved_publication(user1, user2, titulo).deliver
+    #     end  
+    # end  
+    respond_to do |format|
       if @category.update(category_params)
-        redirect_to categories_path
-        
+        format.html {redirect_to categories_path}
       else
-        render 'edit'
+        format.html { render :edit }
+        format.json { render json: @category.errors, status: :unprocessable_entity }
       end
+    end  
   end
 
   def destroy

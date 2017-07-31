@@ -1,0 +1,84 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Eventos de emprendimiento</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="assets/stylesheets/welcome.scss">
+  <link rel="stylesheet" href="assets/stylesheets/application.scss">
+</head>
+<body>
+		<%= render 'form', category: @category %>
+  <header class="container-fluid">
+			<nav class="navbar navbar-custom navbar-fixed-top ">
+			  <div class="container-fluid ">
+			    <div class="row">
+			      <div>
+			        <%= image_tag "opcionv.jpg", size:"50x50", class: "img-opcion col-xs-1" %>
+			      		<%= link_to 'Inicio', welcome_index_path, class: 'btn btn-info' %>
+			          <%= link_to 'Nueva publicacion', new_category_path, class: 'btn btn-success' %>
+			      		<%= link_to 'Publicaciones', categories_path, {:style => 'text-decoration: none', class: 'btn btn-primary'} %>
+			      		<%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete', class: 'btn btn-danger' %>
+			      </div>
+			    </div>
+			  </div>
+			</nav>
+  </header>
+<br/>
+<br/>
+<div class="container ">
+	<div class="row">
+		<h2 class="text-center">Agrega tu publicacion</h2>
+			<%= form_for  :category, :url => {:action => :create} do |f| %>
+		<div class="form-group text-center">
+				<%= f.select :category_type, ['Evento', 'Foro', 'Curso', 'Taller', 'Documental', 'Otro']%>
+				<label for="" style = "text-indent:20px">Titulo:&nbsp;&nbsp;</label> <%= text_field(:category, :title, maxlength: 85, size:30, style: 'text-indent:20px')%>
+				<label for="" style = "text-indent:20px">Lugar:&nbsp;&nbsp;</label><%= text_field(:category, :location, :maxlength => 80, :size => 40, style: 'text-indent') %>
+		</div>		
+		<div class="form-group text-center">
+				<label for="">Descripcion:</label><br/><%= text_area(:category, :description, size: "24x20", maxlength: 50000, class: "form-control") %>
+		</div>
+		<div class="form-group text-center">
+			
+				<label for="" style = "text-indent:20px">Fecha de inicio:&nbsp;&nbsp;</label><%= date_field(:category, :start_date) %>
+				<label for="" style = "text-indent:20px">Dias que dura el evento:&nbsp;&nbsp;</label><%= number_field(:category, :duration) %>
+				<label for="" style = "text-indent:20px">Hora de inicio:&nbsp;&nbsp;</label><%= time_field(:category, :start_hour) %>
+				<label for="" style = "text-indent:20px">Hora de finalizacion:&nbsp;&nbsp;</label><%= time_field(:category, :end_hour) %>
+		</div>
+		<div class="form-group text-center">
+			<label for="">Sitio web:&nbsp;&nbsp;</label><%= url_field(:category, :web_site)%>
+
+			<label for="" style = "text-indent:20px">Teléfono:&nbsp;&nbsp;</label><%= number_field(:category, :phone, maxlength:16, size:16) %>
+			<label for="" style = "text-indent:20px">Precio de la entrada:&nbsp;&nbsp;</label><%= number_field(:category, :cost) %>
+		</div>
+		<% if current_user.email == 'opcionvenezuelaorg@gmail.com' %>
+    	<div class="form-group text-center">
+	    	<label for="" >Prioridad:</label>
+					<%= f.number_field :priority %>
+					
+					<%= f.label 'Publicación:', style: 'text-indent: 20px' %>
+					<%= f.label 'activa' %>
+					<%= f.radio_button :status, true %>
+					<%= f.label 'inactiva' %>
+					<%= f.radio_button :status, false %>
+				</div>	
+		<% end %>
+		<div class="form-group text-center">
+				<label for="" style = "text-indent:20px">
+					<%= f.file_field :avatar1, class: "pretty-input" %>
+				</label>
+				<label for="" style = "text-indent:20px">
+				<%= f.file_field :avatar2, class: "pretty-input" %>
+				</label>
+				<label for="" style = "text-indent:20px">
+				<%= f.file_field :avatar3, class: "pretty-input" %>
+				</label>
+		</div>
+
+				<%= f.submit 'Guardar', class: "btn btn-primary" %>
+			<% end %>
+	</div>
+</div>
+</body>
+</html>

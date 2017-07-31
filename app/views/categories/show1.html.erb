@@ -9,30 +9,31 @@
   <link rel="stylesheet" href="assets/stylesheets/application.scss">
 </head>
 <body>
-  <header class="container-fluid">
-    
+  <header>
   
-<nav class="navbar navbar-custom navbar-fixed-top ">
-  <div class="container-fluid ">
-    <div class="row">
-      <div>
-        <%= image_tag "opcionv.jpg", size:"50x50", class: "img-opcion col-xs-1" %>
-          <% if !user_signed_in?  %>
-            <%= link_to 'Inicio', welcome_index_path, class: 'btn btn-info '  %>
-            <%= link_to 'Iniciar sesion', new_user_session_path, class: 'btn btn-info '  %>
-            <%= link_to 'Registrarse', new_user_registration_path, class: 'btn btn-info ' %>
-            <%= link_to 'Publicar', new_user_registration_path, class: 'btn btn-success ' %>
-          <% end %>  
-      <!-- fin del if  -->
-      </div>
-    </div>
+<div class="container-fluid ">
+      <div class="col-xs-12">
+      <nav class="navbar navbar-custom navbar-fixed-top ">
+        <div>
+          <div class="col-xs-2">
+            <%= image_tag "op.png", class: "img-logo" %>
+          </div>
+            <div class="col-xs-offset-5 col-xs-3 col-sm-offset-5 col-sm-5 col-md-offset-6 col-md-4">
+              <%= link_to 'Inicio', welcome_index_path, class: 'btn btn-info ' %>
+              <%= link_to 'Publicar', new_category_path, class: 'btn btn-success ' %>
+              <%= link_to 'Publicaciones', categories_path,  class: 'btn btn-primary' %>
+              <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete', class: 'btn btn-danger ' %>
+            </div>
+        <!-- fin del if  -->
+        </div>
+  </nav>
   </div>
-</nav>
+</div>
+</header>
 <br/>
 <br/>
 <br/>
-
-  </header>
+<br/>
     
      <table>
        <thead>
@@ -56,23 +57,20 @@
          <tr>
          <th class="col-xs-12 text-center">
              <div class="col-xs-3">
-              <label for="">Fecha de inicio:&nbsp;&nbsp;</label><%= @category.start_date.strftime("%d-%m-%Y") %>
+              <label for="">Fecha de inicio:&nbsp;&nbsp;</label>
+                <%= @category.start_date.strftime("%d-%m-%Y") %>
              </div>
              <div class="col-xs-3">
                 <label for="">Duracion:&nbsp;&nbsp;</label><%= @category.duration %>
              </div>
              <div class="col-xs-3">
+             <time time="20:00">
                 <label for="">Hora de inicio:&nbsp;&nbsp;</label><%= @category.start_hour.strftime("%r") %>
+             </time>
              </div>
              <div class="col-xs-3">
-                <label for="">Hora de finalizacion:&nbsp;&nbsp;</label><%= @category.end_hour.strftime(" %r") %>
+                <label for="">Hora de finalizacion:&nbsp;&nbsp;</label><%= @category.end_hour.strftime("%r") %>
              </div>
-           </th>
-         </tr>
-         <tr>
-           <th class="col-xs-12">
-              <label >Descripcion:</label>
-              <textarea rows="20" style="width:100%" readonly><%= @category.description %></textarea>
            </th>
          </tr>
          <tr>
@@ -89,9 +87,12 @@
           </div>
           </th>
          </tr>
+         <tr>
+           <th class="col-xs-6">
+              <textarea rows="10" style="width:100%" " readonly><%= @category.description %></textarea>
+           </th>
+         </tr>
          
-      
-                  
 <!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
 
        </thead>

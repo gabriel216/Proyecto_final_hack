@@ -9,27 +9,31 @@
   <link rel="stylesheet" href="assets/stylesheets/application.scss">
 </head>
 <body>
-	<header class="container-fluid">
-    
+	<header>
   
-<nav class="navbar navbar-custom navbar-fixed-top ">
-  <div class="container-fluid ">
-    <div class="row">
-      <div>
-        <%= image_tag "opcionv.jpg", size:"50x50", class: "img-opcion col-xs-1" %>
-            <%= link_to 'Inicio', welcome_index_path, class: 'btn btn-info ' %>
+<div class="container-fluid ">
+      <div class="col-xs-12">
+      <nav class="navbar navbar-custom navbar-fixed-top ">
+        <div>
+          <div class="col-xs-2">
+            <%= image_tag "op.png", class: "img-logo" %>
+          </div>
+            <div class="col-xs-offset-5 col-xs-3 col-sm-offset-5 col-sm-5 col-md-offset-6 col-md-4">
+              <%= link_to 'Inicio', welcome_index_path, class: 'btn btn-info ' %>
               <%= link_to 'Publicar', new_category_path, class: 'btn btn-success ' %>
-			      	<%= link_to 'Publicaciones', categories_path,  class: 'btn btn-primary' %>
+              <%= link_to 'Publicaciones', categories_path,  class: 'btn btn-primary' %>
               <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete', class: 'btn btn-danger ' %>
-      </div>
-    </div>
+            </div>
+        <!-- fin del if  -->
+        </div>
+  </nav>
   </div>
-</nav>
+</div>
+</header>
 <br/>
 <br/>
 <br/>
-
-  </header>
+<br/>
     
      <table>
        <thead>
@@ -70,11 +74,6 @@
            </th>
          </tr>
          <tr>
-           <th class="col-xs-12">
-              <textarea rows="20" style="width:100%" " readonly><%= @category.description %></textarea>
-           </th>
-         </tr>
-         <tr>
           <th class="col-xs-12 text-center">
           <div class="col-xs-4">
             <label for="">Precio de la entrada:&nbsp;&nbsp;</label><%= @category.cost %>
@@ -88,9 +87,12 @@
           </div>
           </th>
          </tr>
+         <tr>
+           <th class="col-xs-6">
+              <textarea rows="10" style="width:100%" " readonly><%= @category.description %></textarea>
+           </th>
+         </tr>
          
-      
-                  
 <!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
 
        </thead>

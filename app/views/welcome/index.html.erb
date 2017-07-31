@@ -19,35 +19,43 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-<nav class="navbar navbar-custom navbar-fixed-top ">
-  <div class="container-fluid ">
-    <div class="row">
-      <div>
-        <%= image_tag "opcionv.jpg", size:"50x50", class: "img-opcion col-xs-1" %>
-          <% if !user_signed_in?  %>
-            <%= link_to 'Iniciar sesion', new_user_session_path, class: 'btn btn-info '  %>
-            <%= link_to 'Registrarse', new_user_registration_path, class: 'btn btn-info ' %>
-            <%= link_to 'Publicar', new_user_registration_path, class: 'btn btn-info ' %>
-          <% else %>
-            <% if current_user.email == 'opcionvenezuelaorg@gmail.com'   %>
-              <a href=/categories class="btn btn-primary">Hola administrador</a>
-              <%= link_to 'Publicar', new_category_path, class: 'btn btn-success ' %>
-              <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete', class: 'btn btn-danger ' %>
+<header>
+  
+<div class="container-fluid ">
+      <div class="col-xs-12">
+      <nav class="navbar navbar-custom navbar-fixed-top ">
+        <div>
+          <div class="col-xs-2">
+            <%= image_tag "op.png", class: "img-logo" %>
+          </div>
+            <div class="col-xs-offset-4 col-xs-3 col-sm-offset-5 col-sm-5 col-md-offset-6 col-md-4">
+            <% if !user_signed_in?  %>
+              
+              <%= link_to 'Iniciar sesion', new_user_session_path, class: 'btn btn-success '  %>
+              <%= link_to 'Registrarse', new_user_registration_path, class: 'btn btn-success ' %>
+              <%= link_to 'Publicar', new_user_registration_path, class: 'btn btn-success ' %>
             <% else %>
-              <a href=/categories class="btn btn-info">Hi, <%= current_user.name %></a>
-              <%= link_to 'Publicar', new_category_path, class: 'btn btn-success' %>
-              <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete', class: 'btn btn-danger ' %>
+              <% if current_user.email == 'opcionvenezuelaorg@gmail.com'   %>
+                <a href=/categories class="btn btn-primary">Hola administrador</a>
+                <%= link_to 'Publicar', new_category_path, class: 'btn btn-success ' %>
+                <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete', class: 'btn btn-danger ' %>
+              <% else %>
+                <a href=/categories class="btn btn-info">Hi, <%= current_user.name %></a>
+                <%= link_to 'Publicar', new_category_path, class: 'btn btn-success' %>
+                <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete', class: 'btn btn-danger ' %>
+              <% end %>  
             <% end %>  
-          <% end %>  
-      <!-- fin del if  -->
-      </div>
-    </div>
+            </div>
+        <!-- fin del if  -->
+        </div>
+  </nav>
   </div>
-</nav>
-
-
-<hr />
+</div>
+</header>
+<br/>
+<br/>
+<br/>
+<br/>
 <div class="container">
   <div class="row">
       <h1 class="text-center"><em>Bienvenido a esta gran comunidad de emprendedores!</em></h1>
@@ -225,19 +233,23 @@
                      <% @mylink = "/categories1/" + e.id.to_s %>
                   <% end %>
                     <div class="container-agr">
+                    <% if e.avatar1.url != "/images/" %>
                       <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
                       <%= image_tag(e.avatar1.url, :class => " image") %>
-                      </a>
+                      </a>  
                       <div class="middle" >
                         <div class="text text-center">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                            <h2><%= e.title %></h2><br/>
-                            <h4><%= e.start_date.strftime("%d-%m-%Y")%><h4>
-                          </a>
-                        </div>
-                      </div>
+                            <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
+                              <h2><%= e.title %></h2><br/>
+                              <h4><%= e.start_date.strftime("%d-%m-%Y")%><h4>
+                            </a>
+                          </div><!-- fin del text -->
+                        </div><!-- fin del middle -->
+                    <% else %>
+                      <%= image_tag("sin_imagen.jpg") %> 
+                    <% end %>    
+                      </div><!-- fin de container-agr -->
                     </div>
-                </div>
               <% end %>  
             </div><!-- cierre de item-active -->
             <% for i in 3..@categories_evento.length-1 do %>
@@ -258,6 +270,7 @@
                           <% end %>
 
                               <div class="container-agr">
+                              <% if e.avatar1.url != "/images/" %>
                                   <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
                                   <%= image_tag(e.avatar1.url, :class => " image") %>
                                   </a>
@@ -267,8 +280,11 @@
                                         <h2><%= e.title %></h2><br/>
                                         <h4><%= e.start_date.strftime("%d-%m-%Y")%></h4>
                                       </a>
-                                  </div>
-                                </div>
+                                  </div><!-- fin del text -->
+                                </div><!-- fin del middle -->
+                              <% else %>
+                                <%= image_tag("sin_imagen.jpg") %> 
+                              <% end %>
                               </div>
 
                     <% end %> 
@@ -302,6 +318,7 @@
                      <% @mylink = "/categories1/" + e.id.to_s %>
                   <% end %>
                     <div class="container-agr">
+                    <% if e.avatar1.url != "/images/" %>
                       <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
                       <%= image_tag(e.avatar1.url, :class => " image") %>
                       </a>
@@ -313,6 +330,9 @@
                           </a>
                         </div>
                       </div>
+                    <% else %>
+                      <%= image_tag("sin_imagen.jpg") %> 
+                    <% end %>  
                     </div>
                 </div>
               <% end %>  
@@ -335,6 +355,7 @@
                           <% end %>
 
                               <div class="container-agr">
+                              <% if e.avatar1.url != "/images/" %>
                                   <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
                                   <%= image_tag(e.avatar1.url, :class => " image") %>
                                   </a>
@@ -346,6 +367,9 @@
                                       </a>
                                   </div>
                                 </div>
+                              <% else %>
+                                  <%= image_tag("sin_imagen.jpg") %> 
+                              <% end %>  
                               </div>
 
                     <% end %> 
@@ -380,6 +404,7 @@
                      <% @mylink = "/categories1/" + e.id.to_s %>
                   <% end %>
                     <div class="container-agr">
+                    <% if e.avatar1.url != "/images/" %>
                       <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
                       <%= image_tag(e.avatar1.url, :class => " image") %>
                       </a>
@@ -391,6 +416,9 @@
                           </a>
                         </div>
                       </div>
+                      <% else %>
+                        <%= image_tag("sin_imagen.jpg") %> 
+                      <% end %>
                     </div>
                 </div>
               <% end %>  
@@ -413,6 +441,7 @@
                           <% end %>
 
                               <div class="container-agr">
+                              <% if e.avatar1.url != "/images/" %>
                                   <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
                                   <%= image_tag(e.avatar1.url, :class => " image") %>
                                   </a>
@@ -424,6 +453,9 @@
                                       </a>
                                   </div>
                                 </div>
+                                <% else %>
+                                  <%= image_tag("sin_imagen.jpg") %> 
+                              <% end %>
                               </div>
 
                     <% end %> 
@@ -457,6 +489,7 @@
                      <% @mylink = "/categories1/" + e.id.to_s %>
                   <% end %>
                     <div class="container-agr">
+                    <% if e.avatar1.url != "/images/" %>
                       <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
                       <%= image_tag(e.avatar1.url, :class => " image") %>
                       </a>
@@ -468,6 +501,9 @@
                           </a>
                         </div>
                       </div>
+                      <% else %>
+                                  <%= image_tag("sin_imagen.jpg") %> 
+                              <% end %>
                     </div>
                 </div>
               <% end %>  
@@ -490,6 +526,7 @@
                           <% end %>
 
                               <div class="container-agr">
+                              <% if e.avatar1.url != "/images/" %>
                                   <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
                                   <%= image_tag(e.avatar1.url, :class => " image") %>
                                   </a>
@@ -501,6 +538,9 @@
                                       </a>
                                   </div>
                                 </div>
+                                <% else %>
+                                  <%= image_tag("sin_imagen.jpg") %> 
+                              <% end %>
                               </div>
 
                     <% end %> 
@@ -534,6 +574,7 @@
                      <% @mylink = "/categories1/" + e.id.to_s %>
                   <% end %>
                     <div class="container-agr">
+                    <% if e.avatar1.url != "/images/" %>
                       <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
                       <%= image_tag(e.avatar1.url, :class => " image") %>
                       </a>
@@ -545,6 +586,9 @@
                           </a>
                         </div>
                       </div>
+                      <% else %>
+                                  <%= image_tag("sin_imagen.jpg") %> 
+                              <% end %>
                     </div>
                 </div>
               <% end %>  
@@ -567,6 +611,7 @@
                           <% end %>
 
                               <div class="container-agr">
+                              <% if e.avatar1.url != "/images/" %>
                                   <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
                                   <%= image_tag(e.avatar1.url, :class => " image") %>
                                   </a>
@@ -578,6 +623,9 @@
                                       </a>
                                   </div>
                                 </div>
+                                <% else %>
+                                  <%= image_tag("sin_imagen.jpg") %> 
+                              <% end %>
                               </div>
 
                     <% end %> 
@@ -611,6 +659,7 @@
                      <% @mylink = "/categories1/" + e.id.to_s %>
                   <% end %>
                     <div class="container-agr">
+                    <% if e.avatar1.url != "/images/" %>
                       <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
                       <%= image_tag(e.avatar1.url, :class => " image") %>
                       </a>
@@ -622,6 +671,9 @@
                           </a>
                         </div>
                       </div>
+                      <% else %>
+                                  <%= image_tag("sin_imagen.jpg") %> 
+                              <% end %>
                     </div>
                 </div>
               <% end %>  
@@ -644,6 +696,7 @@
                           <% end %>
 
                               <div class="container-agr">
+                              <% if e.avatar1.url != "/images/" %>
                                   <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
                                   <%= image_tag(e.avatar1.url, :class => " image") %>
                                   </a>
@@ -655,6 +708,9 @@
                                       </a>
                                   </div>
                                 </div>
+                                <% else %>
+                                  <%= image_tag("sin_imagen.jpg") %> 
+                              <% end %>
                               </div>
 
                     <% end %> 
