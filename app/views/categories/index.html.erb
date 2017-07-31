@@ -12,7 +12,7 @@
 <body>
 
 <header>
-  
+
 <div class="container-fluid ">
       <div class="col-xs-12">
       <nav class="navbar navbar-custom navbar-fixed-top ">
@@ -30,7 +30,7 @@
                 <%= link_to 'Inicio', welcome_index_path, class: 'btn btn-info ' %>
                 <%= link_to 'Publicar', new_category_path, class: 'btn btn-success' %>
                 <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete', class: 'btn btn-danger' %>
-            <% end %>  
+            <% end %>
             </div>
         <!-- fin del if  -->
         </div>
@@ -63,7 +63,7 @@
                 <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
               </a>
             </th>
-            
+
             <th style="text-align: center">
               <a href=/categories?key=Tipo-Up>
                 <span class="glyphicon glyphicon-arrow-up"  aria-hidden="true"></span>
@@ -104,14 +104,14 @@
             </td>
              <td class="text-center">
               <%= category.user.name %>
-            </td>         
+            </td>
             <td class="text-center">
             <% if category.avatar1.url != "/images/" %>
               <%= image_tag(category.avatar1(:thumb)) %>
             <% else %>
-              <%= image_tag("sin_imagen.jpg", size:"100x100") %>
-    
-            <% end %>  
+              <%= image_tag("sin_foto.jpg") %>
+
+            <% end %>
             </td>
             <td class="text-center">
               <%= category.priority %>
@@ -126,8 +126,8 @@
               <% if category.status == true %>
                 <p>Activa</p>
               <% else %>
-                <p>Inactiva</p>  
-              <% end %>  
+                <p>Inactiva</p>
+              <% end %>
             </td>
 
             <td class="text-right">
@@ -146,13 +146,13 @@
           <tr>
             <th class="text-center">Titulo</th>
             <th class="text-center">Categoría</th>
-            <th class="text-center">Localidad</th>          
+            <th class="text-center">Localidad</th>
             <th class="text-center">Fecha de inicio</th>
             <th class="text-center">Dias que dura el evento</th>
             <th class="text-center">Elige</th>
           </tr>
         </thead>
-        
+
         <% @categories.each do |category| %>
           <tr>
             <td class="text-center">
@@ -168,7 +168,7 @@
               <%= category.start_date %>
             </td>
             <td class="text-center">
-                <%= category.duration %>          
+                <%= category.duration %>
               </td>
             <td class="text-center">
               <%= link_to '', category_path(category), class: 'btn btn-info glyphicon glyphicon-eye-open' %>
@@ -177,7 +177,7 @@
             </td>
           </tr>
         <% end %>
-      </table>        
+      </table>
   <% end %>
 
   </div>
@@ -186,4 +186,3 @@
 </body>
 
 </html>
-
