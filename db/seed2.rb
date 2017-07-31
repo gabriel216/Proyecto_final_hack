@@ -1,11 +1,6 @@
 user_list = [
-	["antonio.franceskin@gmail.com"],
-	["gabrielgomez353@gmail.com"],
-	["rcr2012@gmail.com"],
-	["empresaspolar@gmail.com"],
-	["andrea@gmail.com"],
-	["pepe@gmail.com"],
-	["carlos@gmail.com"]
+	["Antonio", "Franceskin", "V-5258263-7", "04242057071", "7", "1","antonio.franceskin@gmail.com"],
+	["Gabriel", "Gomez", "V-26530267-6", "04242057072", "5", "2", "gabrielgomez353@gmail.com"]
 ]
 
 user_list.each do |email1|
