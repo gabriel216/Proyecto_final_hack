@@ -109,7 +109,7 @@
             <% if category.avatar1.url != "/images/" %>
               <%= image_tag(category.avatar1(:thumb)) %>
             <% else %>
-              <%= image_tag("sin_foto.jpg") %>
+              <%= image_tag("sin_foto.jpg", size:"90x90") %>
 
             <% end %>
             </td>
