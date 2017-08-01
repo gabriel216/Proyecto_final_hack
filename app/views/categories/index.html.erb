@@ -22,12 +22,12 @@
           </div>
             <div class="col-xs-offset-5 col-xs-3 col-sm-offset-5 col-sm-5 col-md-offset-6 col-md-4">
             <% if current_user.email == 'opcionvenezuelaorg@gmail.com'   %>
-                <%= link_to 'Inicio', welcome_index_path, class: 'btn btn-info ' %>
+                <%= link_to 'Inicio', welcome_index_path, class: 'btn btn-primary ' %>
                 <%= link_to 'Publicar', new_category_path, class: 'btn btn-success ' %>
                 <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete', class: 'btn btn-danger ' %>
 
               <% else %>
-                <%= link_to 'Inicio', welcome_index_path, class: 'btn btn-info ' %>
+                <%= link_to 'Inicio', welcome_index_path, class: 'btn btn-primary ' %>
                 <%= link_to 'Publicar', new_category_path, class: 'btn btn-success' %>
                 <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete', class: 'btn btn-danger' %>
             <% end %>

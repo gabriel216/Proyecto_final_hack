@@ -40,7 +40,7 @@
                 <%= link_to 'Publicar', new_category_path, class: 'btn btn-success ' %>
                 <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete', class: 'btn btn-danger ' %>
               <% else %>
-                <a href=/categories class="btn btn-info">Hi, <%= current_user.name %></a>
+                <a href=/categories class="btn btn-primary">Hi, <%= current_user.name %></a>
                 <%= link_to 'Publicar', new_category_path, class: 'btn btn-success' %>
                 <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete', class: 'btn btn-danger ' %>
               <% end %>
