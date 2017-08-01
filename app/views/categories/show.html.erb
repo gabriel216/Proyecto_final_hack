@@ -22,7 +22,7 @@
               <%= link_to 'Inicio', welcome_index_path, class: 'btn btn-primary ' %>
               <%= link_to 'Publicar', new_category_path, class: 'btn btn-success ' %>
               <%= link_to 'Publicaciones', categories_path,  class: 'btn btn-warning' %>
-              <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete', class: 'btn btn-danger ' %>
+              <%= link_to 'Cerrar Sesión', destroy_user_session_path, method: 'delete', class: 'btn btn-danger ' %>
             </div>
         <!-- fin del if  -->
         </div>
@@ -61,7 +61,7 @@
                 <%= @category.start_date.strftime("%d-%m-%Y") %>
              </div>
              <div class="col-xs-3">
-                <label for="">Duracion:&nbsp;&nbsp;</label><%= @category.duration %>
+                <label for="">Días:&nbsp;&nbsp;</label><%= @category.duration %>
              </div>
              <div class="col-xs-3">
              <time time="20:00">
@@ -69,7 +69,7 @@
              </time>
              </div>
              <div class="col-xs-3">
-                <label for="">Hora de finalizacion:&nbsp;&nbsp;</label><%= @category.end_hour.strftime("%r") %>
+                <label for="">Hora de finalización:&nbsp;&nbsp;</label><%= @category.end_hour.strftime("%r") %>
              </div>
            </th>
          </tr>

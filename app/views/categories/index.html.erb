@@ -24,12 +24,12 @@
             <% if current_user.email == 'opcionvenezuelaorg@gmail.com'   %>
                 <%= link_to 'Inicio', welcome_index_path, class: 'btn btn-primary ' %>
                 <%= link_to 'Publicar', new_category_path, class: 'btn btn-success ' %>
-                <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete', class: 'btn btn-danger ' %>
+                <%= link_to 'Cerrar Sesión', destroy_user_session_path, method: 'delete', class: 'btn btn-danger ' %>
 
               <% else %>
                 <%= link_to 'Inicio', welcome_index_path, class: 'btn btn-primary ' %>
                 <%= link_to 'Publicar', new_category_path, class: 'btn btn-success' %>
-                <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: 'delete', class: 'btn btn-danger' %>
+                <%= link_to 'Cerrar Sesión', destroy_user_session_path, method: 'delete', class: 'btn btn-danger' %>
             <% end %>
             </div>
         <!-- fin del if  -->
@@ -51,9 +51,9 @@
       <table class="table">
         <thead>
           <tr>
-            <th style="text-align: center"><h4 style="color:blue">Titulo</h4> </th>
+            <th style="text-align: center"><h4 style="color:blue">Título</h4> </th>
             <th style="text-align: center"> <h4 style="color:blue">Usuario</h4> </th>
-            <th style="text-align: center"><h4 style="color:blue">1er Imagen</h4> </th>
+            <th style="text-align: center"><h4 style="color:blue">1era imagen</h4> </th>
             <th style="text-align: center">
               <a href=/categories?key=Prioridad-Up>
                 <span class="glyphicon glyphicon-arrow-up"  aria-hidden="true"></span>
@@ -144,11 +144,11 @@
       <table class="table">
         <thead>
           <tr>
-            <th class="text-center">Titulo</th>
+            <th class="text-center">Título</th>
             <th class="text-center">Categoría</th>
             <th class="text-center">Localidad</th>
             <th class="text-center">Fecha de inicio</th>
-            <th class="text-center">Dias que dura el evento</th>
+            <th class="text-center">Días que dura el evento</th>
             <th class="text-center">Elige</th>
           </tr>
         </thead>
