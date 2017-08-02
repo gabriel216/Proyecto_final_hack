@@ -5,21 +5,21 @@ class CategoriesController < ApplicationController
     if current_user.email == 'opcionvenezuelaorg@gmail.com'
         case params[:key]
           when "Prioridad-Up" then
-            @categories = Category.all.order(:priority).reverse
+           @categories = Category.all.order("priority DESC, start_date ASC").reverse
           when "Prioridad-Down" then
-            @categories = Category.all.order(:priority) 
+           @categories = Category.all.order("priority DESC, start_date ASC")
           when "Tipo-Up" then
-            @categories = Category.all.order(:category_type).reverse
+            @categories = Category.all.order("category_type DESC, priority DESC, start_date ASC").reverse
           when "Tipo-Down" then
-            @categories = Category.all.order(:category_type)   
+            @categories = Category.all.order("category_type DESC, priority DESC, start_date ASC")
           when "Status-Up" then
-            @categories = Category.all.order(:status).reverse
+            @categories = Category.all.order("status, start_date ASC").reverse
           when "Status-Down" then
-            @categories = Category.all.order(:status) 
+            @categories = Category.all.order("status, start_date ASC")
           when "FechadeInicio-Up" then
-            @categories = Category.all.order(:start_date)
+            @categories = Category.all.order("start_date,priority DESC")
           when "FechadeInicio-Down" then          
-            @categories = Category.all.order(:start_date).reverse  
+            @categories = Category.all.order("start_date, priority DESC").reverse  
           else
             @categories = Category.all
       end
