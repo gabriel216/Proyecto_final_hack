@@ -91,21 +91,21 @@ class WelcomeController < ApplicationController
             puts "Pase por else"
             @categories_carousel = Category.where("status= ? AND priority= ? 
               AND avatar1_file_name <> ? AND avatar2_file_name <> ? 
-              AND avatar3_file_name <> ?", 
-              true, 10, '', '', '')
+              AND avatar3_file_name <> ? AND start_date >= ?", 
+              true, 10, '', '', '',hoy).order("priority DESC, start_date ASC")
             @categories_evento = Category.where("status= ?  
-              AND category_type = ?", true, 'Evento').order(:priority).reverse
+              AND category_type = ? AND start_date >= ?", true, 'Evento', hoy).order("priority DESC, start_date ASC")
             @categories_foro = Category.where("status= ?  
-              AND category_type = ?", true, 'Foro').order(:priority).reverse
+              AND category_type = ? AND start_date >= ?", true, 'Foro', hoy).order("priority DESC, start_date ASC")
             @categories_curso = Category.where("status= ?  
-              AND category_type = ?", true, 'Curso').order(:priority).reverse
+              AND category_type = ? AND start_date >= ?", true, 'Curso', hoy).order("priority DESC, start_date ASC")
             @categories_taller = Category.where("status= ?  
-              AND category_type = ?", true, 'Taller').order(:priority).reverse
+              AND category_type = ? AND start_date >= ?", true, 'Taller', hoy).order("priority DESC, start_date ASC")
             @categories_documental = Category.where("status= ?  
-              AND category_type = ?", true, 'Documental').order(:priority).reverse
+              AND category_type = ? AND start_date >= ?", true, 'Documental', hoy).order("priority DESC, start_date ASC")
             @categories_otros = Category.where("status= ?  
-              AND category_type = ?", true, 'Otro').order(:priority).reverse
-            @categories = Category.where(status: true).order(:priority).reverse
+              AND category_type = ? AND start_date >= ?", true, 'Otro', hoy).order("priority DESC, start_date ASC")
+            @categories = Category.where(status: true).order("priority DESC, start_date ASC")
       end
       @categories_total =  [['Eventos',@categories_evento],
                             ['Foros',@categories_foro],

@@ -224,6 +224,7 @@
 
 <% @cont = 0 %>
 <% @categories_total.each do |categoria| %>
+<% if categoria[1].present? %>
 <hr />
 <!-- si HAY imagenes cargadas en las publicaciones de abajo -->
   <div class="container-fluid ">
@@ -244,9 +245,6 @@
       <% when 5 then  %>
         <div class="carousel carousel-showmanymoveone slide" id="carousel-tilenav5" data-interval="false">   
       <% end %>  
-
-
-
       <div class="carousel-inner">
         <div class="item active">
           <% categoria[1].first(3).each do |e|%>
@@ -285,7 +283,7 @@
           <% end %>
         </div><!-- cierre de item-active -->
 
-        <% for i in (3..categoria[1].length+4).step(3) do %>
+        <% for i in (3..categoria[1].length+2).step(3) do %>
             <% if i <= categoria[1].length-1 %>
             <div class="item text-center">
               <div class="col-sm-4">
@@ -359,7 +357,6 @@
                         </div><!-- container-agr-->
                 </div><!-- col -->
             <% end %>
-
             <% j += 1 %>
             <% if j <= categoria[1].length-1 %>
                 <div class="col-sm-4">
@@ -424,6 +421,7 @@
     </div><!-- cierre de row -->
   </div><!-- cierre de container -->
     <% @cont += 1 %>  
+<% end %><!-- if principal -->    
 <% end %><!-- each principal -->
 
 </body>
