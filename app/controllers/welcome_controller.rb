@@ -30,7 +30,6 @@ class WelcomeController < ApplicationController
               @categories_otros = Category.where("status= ?  
                 AND category_type = ? AND start_date = ?", true, 'Otro', hoy).order(:priority).reverse
               @categories = Category.where("status = true AND start_date = ?", hoy).order(:priority).reverse
-              render welcome_index_path
         when "manana" then
               puts "Pase por manana"
               @categories_carousel = Category.where("status= ? AND priority= ? 
@@ -50,7 +49,6 @@ class WelcomeController < ApplicationController
               @categories_otros = Category.where("status= ?  
                 AND category_type = ? AND start_date = ?", true, 'Otro', manana).order(:priority).reverse
               @categories = Category.where("status = true AND start_date = ?", manana).order(:priority).reverse
-              render welcome_index_path
         when "semana" then
               puts "Pase por semana"
               @categories_carousel = Category.where("status= ? AND priority= ? 
@@ -70,7 +68,6 @@ class WelcomeController < ApplicationController
               @categories_otros = Category.where("status= ?  
                 AND category_type = ? AND start_date BETWEEN ? AND ?", true, 'Otro',hoy, semana).order(:priority).reverse
               @categories = Category.where("status = ? AND start_date BETWEEN ? AND ?" ,true,  hoy, semana).order(:priority).reverse
-              render welcome_index_path
         when "mes" then
               puts "Pase por mes"
               @categories_carousel = Category.where("status= ? AND priority= ? 
@@ -90,7 +87,6 @@ class WelcomeController < ApplicationController
               @categories_otros = Category.where("status= ?  
                 AND category_type = ? AND start_date BETWEEN ? AND ?", true, 'Otro',hoy, mes).order(:priority).reverse
               @categories = Category.where("status = ? AND start_date BETWEEN ? AND ?" ,true,  hoy, mes).order(:priority).reverse
-              render welcome_index_path
         else
             puts "Pase por else"
             @categories_carousel = Category.where("status= ? AND priority= ? 
@@ -110,8 +106,14 @@ class WelcomeController < ApplicationController
             @categories_otros = Category.where("status= ?  
               AND category_type = ?", true, 'Otro').order(:priority).reverse
             @categories = Category.where(status: true).order(:priority).reverse
-            render welcome_index_path
       end
+      @categories_total =  [['Eventos',@categories_evento],
+                            ['Foros',@categories_foro],
+                            ['Cursos',@categories_curso],
+                            ['Talleres',@categories_taller],
+                            ['Documentales',@categories_documental],
+                            ['Otros',@categories_otros]]
+      render welcome_index_path 
   end
 
   def new

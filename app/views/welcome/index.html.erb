@@ -111,19 +111,11 @@
               <% else %>
                 <% @mylink = "/categories1/" + @categories_carousel.first.id.to_s %>
               <% end %>
-              <!-- aaaaaaaaaaaaaaa -->
               <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
                 <%= image_tag(@categories_carousel.first.avatar1.url) %><br/>
                     <%= @categories_carousel.first.title %><br/>
                     <%= @categories_carousel.first.start_date.strftime("%d-%m-%Y")%>
-
               </a>
-              <!-- aaaaaaaaaaaaaaaaaaaa -->
-
-
-
-
-
             </div>
             </div>
             <div class="item">
@@ -229,621 +221,210 @@
   </div>
 <% end %>
 
-<% if @categories_evento.first != nil %>
+
+<% @cont = 0 %>
+<% @categories_total.each do |categoria| %>
 <hr />
 <!-- si HAY imagenes cargadas en las publicaciones de abajo -->
   <div class="container-fluid ">
-  <h1 style="color: gray">Eventos</h1>
+  <h1 style="color: gray"><%= "#{categoria[0]}" %></h1>
     <div class="row">
       <div class="col-md-12">
+      <% case @cont %>
+      <% when 0 then  %>
         <div class="carousel carousel-showmanymoveone slide" id="carousel-tilenav" data-interval="false">
-          <div class="carousel-inner">
-            <div class="item active">
-              <% @categories_evento.first(3).each do |e|%>
-                <div class="col-sm-4">
-                  <% if user_signed_in? %>
-                     <% @mylink = "/categories/" + e.id.to_s %>
-                  <% else %>
-                     <% @mylink = "/categories1/" + e.id.to_s %>
-                  <% end %>
-                    <div class="container-agr">
-                    <% if e.avatar1.url != "/images/" %>
-                      <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                      <%= image_tag(e.avatar1.url, :class => " image") %>
-                      </a>
-                      <div class="middle" >
-                        <div class="text text-center">
-                            <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                              <h2><%= e.title %></h2><br/>
-                              <h4><%= e.start_date.strftime("%d-%m-%Y")%><h4>
-                            </a>
-                          </div><!-- fin del text -->
-                        </div><!-- fin del middle -->
-                    <% else %>
-                      <%= image_tag("sin_foto.jpg") %>
-                      <div class="middle">
-                        <div class="text text-center">
-                              <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                              <h2><%= e.title %></h2><br/>
-                              <h4><%= e.start_date.strftime("%d-%m-%Y")%></h4>
-                            </a>
-                        </div><!-- fin del text -->
-                      </div><!-- fin del middle -->
-                    <% end %>
-                      </div><!-- fin de container-agr -->
-                    </div>
+      <% when 1 then  %>
+        <div class="carousel carousel-showmanymoveone slide" id="carousel-tilenav1" data-interval="false">
+      <% when 2 then %>
+        <div class="carousel carousel-showmanymoveone slide" id="carousel-tilenav2" data-interval="false">
+      <% when 3 then  %>
+        <div class="carousel carousel-showmanymoveone slide" id="carousel-tilenav3" data-interval="false">
+      <% when 4 then %>
+        <div class="carousel carousel-showmanymoveone slide" id="carousel-tilenav4" data-interval="false">   
+      <% when 5 then  %>
+        <div class="carousel carousel-showmanymoveone slide" id="carousel-tilenav5" data-interval="false">   
+      <% end %>  
+
+
+
+      <div class="carousel-inner">
+        <div class="item active">
+          <% categoria[1].first(3).each do |e|%>
+            <div class="col-sm-4">
+              <% if user_signed_in? %>
+                 <% @mylink = "/categories/" + e.id.to_s %>
+              <% else %>
+                 <% @mylink = "/categories1/" + e.id.to_s %>
               <% end %>
-            </div><!-- cierre de item-active -->
-            <% for i in 3..@categories_evento.length-1 do %>
-              <% if i % 3 == 0  %>
-                <div class="item text-center">
-              <% end %>
-
-                    <% @aux = i %>
-                    <% @aux2 = @aux + 2 %>
-                    <% if @aux2 > @categories_evento.length-1 %>
-                      <% @aux2 = @categories_evento.length %>
-                    <% end %>
-                    <% @categories_evento[@aux..@aux2].each do |e|%>
-                      <div class="col-sm-4">
-
-                          <% if user_signed_in? %>
-                             <% @mylink = "/categories/" + e.id.to_s %>
-                          <% else %>
-                             <% @mylink = "/categories1/" + e.id.to_s %>
-                          <% end %>
-
-                              <div class="container-agr">
-                              <% if e.avatar1.url != "/images/" %>
-                                  <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                                  <%= image_tag(e.avatar1.url, :class => " image") %>
-                                  </a>
-                                <div class="middle">
-                                  <div class="text text-center">
-                                        <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                                        <h2><%= e.title %></h2><br/>
-                                        <h4><%= e.start_date.strftime("%d-%m-%Y")%></h4>
-                                      </a>
-                                  </div><!-- fin del text -->
-                                </div><!-- fin del middle -->
-                              <% else %>
-                                <%= image_tag("sin_foto.jpg") %>
-                                <div class="middle">
-                                  <div class="text text-center">
-                                        <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                                        <h2><%= e.title %></h2><br/>
-                                        <h4><%= e.start_date.strftime("%d-%m-%Y")%></h4>
-                                      </a>
-                                  </div><!-- fin del text -->
-                                </div><!-- fin del middle -->
-                              <% end %>
-                              </div>
-
-
-                </div>
-              <% end %>
-            <% end %>
-          </div><!-- cierre de carousel-inner -->
-        <a rel="nofollow" rel="noreferrer" class="left carousel-control" href="#carousel-tilenav" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-        <a rel="nofollow" rel="noreferrer" class="right carousel-control" href="#carousel-tilenav" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
-        </div><!-- cierre de carousel -->
-      </div><!-- cierre de col -->
-    </div><!-- cierre de row -->
-  </div><!-- cierre de container -->
-<% end %>
-
-<% if @categories_foro.first != nil %>
-<hr />
-<!-- si HAY imagenes cargadas en las publicaciones de abajo -->
-  <div class="container-fluid ">
-  <h1 style="color: gray">Foros</h1>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="carousel carousel-showmanymoveone slide" id="carousel-tilenav22" data-interval="false">
-          <div class="carousel-inner">
-            <div class="item active">
-              <% @categories_foro.first(3).each do |e|%>
-                <div class="col-sm-4">
-                  <% if user_signed_in? %>
-                     <% @mylink = "/categories/" + e.id.to_s %>
-                  <% else %>
-                     <% @mylink = "/categories1/" + e.id.to_s %>
-                  <% end %>
-                    <div class="container-agr">
-                    <% if e.avatar1.url != "/images/" %>
-                      <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                      <%= image_tag(e.avatar1.url, :class => " image") %>
-                      </a>
-                      <div class="middle" >
-                        <div class="text text-center">
+                <div class="container-agr">
+                <% if e.avatar1.url != "/images/" %>
+                  <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                  <%= image_tag(e.avatar1.url, :class => " image") %>
+                  </a>
+                  <div class="middle" >
+                    <div class="text text-center">
+                        <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
+                          <h2><%= e.title %></h2><br/>
+                          <h4><%= e.start_date.strftime("%d-%m-%Y")%><h4>
+                        </a>
+                      </div><!-- fin del text -->
+                    </div><!-- fin del middle -->
+                <% else %>
+                  <%= image_tag("sin_foto.jpg") %>
+                  <div class="middle">
+                    <div class="text text-center">
                           <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                            <h2><%= e.title %></h2><br/>
-                            <h4><%= e.start_date.strftime("%d-%m-%Y")%><h4>
-                          </a>
-                        </div>
-                      </div>
-                    <% else %>
-                      <%= image_tag("sin_foto.jpg") %>
-                      <div class="middle">
-                        <div class="text text-center">
-                              <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                              <h2><%= e.title %></h2><br/>
-                              <h4><%= e.start_date.strftime("%d-%m-%Y")%></h4>
-                            </a>
-                        </div><!-- fin del text -->
-                      </div><!-- fin del middle -->
-                    <% end %>
-                    </div>
-                </div>
-              <% end %>
-            </div><!-- cierre de item-active -->
-            <% for i in 3..@categories_foro.length-1 do %>
-              <% if i % 3 == 0  %>
-                <div class="item text-center">
+                          <h2><%= e.title %></h2><br/>
+                          <h4><%= e.start_date.strftime("%d-%m-%Y")%></h4>
+                        </a>
+                    </div><!-- fin del text -->
+                  </div><!-- fin del middle -->
                 <% end %>
-                    <% @aux = i %>
-                    <% @aux2 = @aux + 2 %>
-                    <% if @aux2 > @categories_foro.length-1 %>
-                      <% @aux2 = @categories_foro.length %>
-                    <% end %>
-                    <% @categories_foro[@aux..@aux2].each do |e|%>
-                      <div class="col-sm-4">
-
-                          <% if user_signed_in? %>
-                             <% @mylink = "/categories/" + e.id.to_s %>
-                          <% else %>
-                             <% @mylink = "/categories1/" + e.id.to_s %>
-                          <% end %>
-
-                              <div class="container-agr">
-                              <% if e.avatar1.url != "/images/" %>
-                                  <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                                  <%= image_tag(e.avatar1.url, :class => " image") %>
-                                  </a>
-                                <div class="middle">
-                                  <div class="text text-center">
-                                        <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                                        <h2><%= e.title %></h2><br/>
-                                        <h4><%= e.start_date.strftime("%d-%m-%Y")%></h4>
-                                      </a>
-                                  </div>
-                                </div>
-                              <% else %>
-                                  <%= image_tag("sin_foto.jpg") %>
-                                  <div class="middle">
-                                    <div class="text text-center">
-                                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                                          <h2><%= e.title %></h2><br/>
-                                          <h4><%= e.start_date.strftime("%d-%m-%Y")%></h4>
-                                        </a>
-                                    </div><!-- fin del text -->
-                                  </div><!-- fin del middle -->
-                              <% end %>
-                              </div>
-
-
+                  </div><!-- fin de container-agr -->
                 </div>
-              <% end %>
-            <% end %>
-          </div><!-- cierre de carousel-inner -->
-        <a rel="nofollow" rel="noreferrer"class="left carousel-control" href="#carousel-tilenav22" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-        <a rel="nofollow" rel="noreferrer"class="right carousel-control" href="#carousel-tilenav22" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
-        </div><!-- cierre de carousel -->
-      </div><!-- cierre de col -->
-    </div><!-- cierre de row -->
-  </div><!-- cierre de container -->
-<% end %>
+          <% end %>
+        </div><!-- cierre de item-active -->
 
+        <% for i in (3..categoria[1].length+4).step(3) do %>
+            <% if i <= categoria[1].length-1 %>
+            <div class="item text-center">
+              <div class="col-sm-4">
+                <% if user_signed_in? %>
+                   <% @mylink = "/categories/" + categoria[1][i].id.to_s %>
+                <% else %>
+                   <% @mylink = "/categories1/" + categoria[1][i].id.to_s %>
+                <% end %>
 
-<% if @categories_curso.first != nil %>
-<hr />
-<!-- si HAY imagenes cargadas en las publicaciones de abajo -->
-  <div class="container-fluid ">
-  <h1 style="color: gray">Cursos</h1>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="carousel carousel-showmanymoveone slide" id="carousel-tilenav23" data-interval="false">
-          <div class="carousel-inner">
-            <div class="item active">
-              <% @categories_curso.first(3).each do |e|%>
-                <div class="col-sm-4">
-                  <% if user_signed_in? %>
-                     <% @mylink = "/categories/" + e.id.to_s %>
-                  <% else %>
-                     <% @mylink = "/categories1/" + e.id.to_s %>
-                  <% end %>
                     <div class="container-agr">
-                    <% if e.avatar1.url != "/images/" %>
-                      <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                      <%= image_tag(e.avatar1.url, :class => " image") %>
-                      </a>
-                      <div class="middle" >
+                    <% if categoria[1][i].avatar1.url != "/images/" %>
+                        <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                        <%= image_tag(categoria[1][i].avatar1.url, :class => " image") %>
+                        </a>
+                      <div class="middle">
                         <div class="text text-center">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                            <h2><%= e.title %></h2><br/>
-                            <h4><%= e.start_date.strftime("%d-%m-%Y")%><h4>
-                          </a>
-                        </div>
-                      </div>
-                      <% else %>
-                        <%= image_tag("sin_foto.jpg") %>
-                        <div class="middle">
-                          <div class="text text-center">
-                                <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                                <h2><%= e.title %></h2><br/>
-                                <h4><%= e.start_date.strftime("%d-%m-%Y")%></h4>
-                              </a>
-                          </div><!-- fin del text -->
-                        </div><!-- fin del middle -->
-                      <% end %>
-                    </div>
-                </div>
-              <% end %>
-            </div><!-- cierre de item-active -->
-            <% for i in 3..@categories_curso.length-1 do %>
-              <% if i % 3 == 0  %>
-                <div class="item text-center">
-              <% end %>
-
-                    <% @aux = i %>
-                    <% @aux2 = @aux + 2 %>
-                    <% if @aux2 > @categories_curso.length-1 %>
-                      <% @aux2 = @categories_curso.length %>
+                              <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
+                              <h2><%= categoria[1][i].title %></h2><br/>
+                              <h4><%= categoria[1][i].start_date.strftime("%d-%m-%Y")%></h4>
+                            </a>
+                        </div><!-- fin del text -->
+                      </div><!-- fin del middle -->
+                    <% else %>
+                      <%= image_tag("sin_foto.jpg") %>
+                      <div class="middle">
+                        <div class="text text-center">
+                              <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
+                              <h2><%= categoria[1][i].title %></h2><br/>
+                              <h4><%= categoria[1][i].start_date.strftime("%d-%m-%Y")%></h4>
+                            </a>
+                        </div><!-- fin del text -->
+                      </div><!-- fin del middle -->
                     <% end %>
-                    <% @categories_curso[@aux..@aux2].each do |e|%>
-                      <div class="col-sm-4">
-
-                          <% if user_signed_in? %>
-                             <% @mylink = "/categories/" + e.id.to_s %>
-                          <% else %>
-                             <% @mylink = "/categories1/" + e.id.to_s %>
-                          <% end %>
-
-                              <div class="container-agr">
-                              <% if e.avatar1.url != "/images/" %>
-                                  <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                                  <%= image_tag(e.avatar1.url, :class => " image") %>
-                                  </a>
-                                <div class="middle">
-                                  <div class="text text-center">
-                                        <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                                        <h2><%= e.title %></h2><br/>
-                                        <h4><%= e.start_date.strftime("%d-%m-%Y")%></h4>
-                                      </a>
-                                  </div>
-                                </div>
-                                <% else %>
-                                  <%= image_tag("sin_foto.jpg") %>
-                                  <div class="middle">
-                                    <div class="text text-center">
-                                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                                          <h2><%= e.title %></h2><br/>
-                                          <h4><%= e.start_date.strftime("%d-%m-%Y")%></h4>
-                                        </a>
-                                    </div><!-- fin del text -->
-                                  </div><!-- fin del middle -->
-                              <% end %>
-                              </div>
-
-                </div>
-              <% end %>
+                  </div><!-- container-agr-->
+               </div><!-- col -->
             <% end %>
-          </div><!-- cierre de carousel-inner -->
-        <a rel="nofollow" rel="noreferrer"class="left carousel-control" href="#carousel-tilenav23" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-        <a rel="nofollow" rel="noreferrer"class="right carousel-control" href="#carousel-tilenav23" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
-        </div><!-- cierre de carousel -->
-      </div><!-- cierre de col -->
-    </div><!-- cierre de row -->
-  </div><!-- cierre de container -->
-<% end %>
 
-<% if @categories_taller.first != nil %>
-<hr />
-<!-- si HAY imagenes cargadas en las publicaciones de abajo -->
-  <div class="container-fluid ">
-  <h1 style="color: gray">Talleres</h1>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="carousel carousel-showmanymoveone slide" id="carousel-tilenav24" data-interval="false">
-          <div class="carousel-inner">
-            <div class="item active">
-              <% @categories_taller.first(3).each do |e|%>
+            <% j = i + 1 %>
+            <% if j <= categoria[1].length-1 %>
                 <div class="col-sm-4">
-                  <% if user_signed_in? %>
-                     <% @mylink = "/categories/" + e.id.to_s %>
-                  <% else %>
-                     <% @mylink = "/categories1/" + e.id.to_s %>
-                  <% end %>
-                    <div class="container-agr">
-                    <% if e.avatar1.url != "/images/" %>
-                      <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                      <%= image_tag(e.avatar1.url, :class => " image") %>
-                      </a>
-                      <div class="middle" >
-                        <div class="text text-center">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                            <h2><%= e.title %></h2><br/>
-                            <h4><%= e.start_date.strftime("%d-%m-%Y")%><h4>
-                          </a>
-                        </div>
-                      </div>
-                      <% else %>
-                                  <%= image_tag("sin_foto.jpg") %>
-                                  <div class="middle">
-                                    <div class="text text-center">
-                                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                                          <h2><%= e.title %></h2><br/>
-                                          <h4><%= e.start_date.strftime("%d-%m-%Y")%></h4>
-                                        </a>
-                                    </div><!-- fin del text -->
-                                  </div><!-- fin del middle -->
-                              <% end %>
-                    </div>
-                </div>
-              <% end %>
-            </div><!-- cierre de item-active -->
-            <% for i in 3..@categories_taller.length-1 do %>
-              <% if i % 3 == 0  %>
-                <div class="item text-center">
-              <% end %>
-
-                    <% @aux = i %>
-                    <% @aux2 = @aux + 2 %>
-                    <% if @aux2 > @categories_taller.length-1 %>
-                      <% @aux2 = @categories_taller.length %>
+                    <% if user_signed_in? %>
+                       <% @mylink = "/categories/" + categoria[1][j].id.to_s %>
+                    <% else %>
+                       <% @mylink = "/categories1/" + categoria[1][j].id.to_s %>
                     <% end %>
-                    <% @categories_taller[@aux..@aux2].each do |e|%>
-                      <div class="col-sm-4">
 
-                          <% if user_signed_in? %>
-                             <% @mylink = "/categories/" + e.id.to_s %>
-                          <% else %>
-                             <% @mylink = "/categories1/" + e.id.to_s %>
-                          <% end %>
-
-                              <div class="container-agr">
-                              <% if e.avatar1.url != "/images/" %>
-                                  <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                                  <%= image_tag(e.avatar1.url, :class => " image") %>
-                                  </a>
-                                <div class="middle">
-                                  <div class="text text-center">
-                                        <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                                        <h2><%= e.title %></h2><br/>
-                                        <h4><%= e.start_date.strftime("%d-%m-%Y")%></h4>
-                                      </a>
-                                  </div>
-                                </div>
-                                <% else %>
-                                  <%= image_tag("sin_foto.jpg") %>
-                                  <div class="middle">
-                                    <div class="text text-center">
-                                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                                          <h2><%= e.title %></h2><br/>
-                                          <h4><%= e.start_date.strftime("%d-%m-%Y")%></h4>
-                                        </a>
-                                    </div><!-- fin del text -->
-                                  </div><!-- fin del middle -->
-                              <% end %>
-                              </div>
-
-
-                </div>
-              <% end %>
+                        <div class="container-agr">
+                        <% if categoria[1][j].avatar1.url != "/images/" %>
+                            <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                            <%= image_tag(categoria[1][j].avatar1.url, :class => " image") %>
+                            </a>
+                          <div class="middle">
+                            <div class="text text-center">
+                                  <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
+                                  <h2><%= categoria[1][j].title %></h2><br/>
+                                  <h4><%= categoria[1][j].start_date.strftime("%d-%m-%Y")%></h4>
+                                </a>
+                            </div><!-- fin del text -->
+                          </div><!-- fin del middle -->
+                        <% else %>
+                          <%= image_tag("sin_foto.jpg") %>
+                          <div class="middle">
+                            <div class="text text-center">
+                                  <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
+                                  <h2><%= categoria[1][j].title %></h2><br/>
+                                  <h4><%= categoria[1][j].start_date.strftime("%d-%m-%Y")%></h4>
+                                </a>
+                            </div><!-- fin del text -->
+                          </div><!-- fin del middle -->
+                        <% end %>
+                        </div><!-- container-agr-->
+                </div><!-- col -->
             <% end %>
-          </div><!-- cierre de carousel-inner -->
-        <a rel="nofollow" rel="noreferrer"class="left carousel-control" href="#carousel-tilenav24" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-        <a rel="nofollow" rel="noreferrer"class="right carousel-control" href="#carousel-tilenav24" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
-        </div><!-- cierre de carousel -->
-      </div><!-- cierre de col -->
-    </div><!-- cierre de row -->
-  </div><!-- cierre de container -->
-<% end %>
 
-<% if @categories_documental.first != nil %>
-<hr />
-<!-- si HAY imagenes cargadas en las publicaciones de abajo -->
-  <div class="container-fluid ">
-  <h1 style="color: gray">Documentales</h1>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="carousel carousel-showmanymoveone slide" id="carousel-tilenav25" data-interval="false">
-          <div class="carousel-inner">
-            <div class="item active">
-              <% @categories_documental.first(3).each do |e|%>
+            <% j += 1 %>
+            <% if j <= categoria[1].length-1 %>
                 <div class="col-sm-4">
-                  <% if user_signed_in? %>
-                     <% @mylink = "/categories/" + e.id.to_s %>
-                  <% else %>
-                     <% @mylink = "/categories1/" + e.id.to_s %>
-                  <% end %>
-                    <div class="container-agr">
-                    <% if e.avatar1.url != "/images/" %>
-                      <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                      <%= image_tag(e.avatar1.url, :class => " image") %>
-                      </a>
-                      <div class="middle" >
-                        <div class="text text-center">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                            <h2><%= e.title %></h2><br/>
-                            <h4><%= e.start_date.strftime("%d-%m-%Y")%><h4>
-                          </a>
-                        </div>
-                      </div>
-                      <% else %>
-                                  <%= image_tag("sin_foto.jpg") %>
-                                  <div class="middle">
-                                    <div class="text text-center">
-                                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                                          <h2><%= e.title %></h2><br/>
-                                          <h4><%= e.start_date.strftime("%d-%m-%Y")%></h4>
-                                        </a>
-                                    </div><!-- fin del text -->
-                                  </div><!-- fin del middle -->
-                              <% end %>
-                    </div>
-                </div>
-              <% end %>
-            </div><!-- cierre de item-active -->
-            <% for i in 3..@categories_documental.length-1 do %>
-              <% if i % 3 == 0  %>
-                <div class="item text-center">
-              <% end %>
-
-                    <% @aux = i %>
-                    <% @aux2 = @aux + 2 %>
-                    <% if @aux2 > @categories_documental.length-1 %>
-                      <% @aux2 = @categories_documental.length %>
+                    <% if user_signed_in? %>
+                       <% @mylink = "/categories/" + categoria[1][j].id.to_s %>
+                    <% else %>
+                       <% @mylink = "/categories1/" + categoria[1][j].id.to_s %>
                     <% end %>
-                    <% @categories_documental[@aux..@aux2].each do |e|%>
-                      <div class="col-sm-4">
 
-                          <% if user_signed_in? %>
-                             <% @mylink = "/categories/" + e.id.to_s %>
-                          <% else %>
-                             <% @mylink = "/categories1/" + e.id.to_s %>
-                          <% end %>
-
-                              <div class="container-agr">
-                              <% if e.avatar1.url != "/images/" %>
-                                  <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                                  <%= image_tag(e.avatar1.url, :class => " image") %>
-                                  </a>
-                                <div class="middle">
-                                  <div class="text text-center">
-                                        <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                                        <h2><%= e.title %></h2><br/>
-                                        <h4><%= e.start_date.strftime("%d-%m-%Y")%></h4>
-                                      </a>
-                                  </div>
-                                </div>
-                                <% else %>
-                                  <%= image_tag("sin_foto.jpg") %>
-                                  <div class="middle">
-                                    <div class="text text-center">
-                                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                                          <h2><%= e.title %></h2><br/>
-                                          <h4><%= e.start_date.strftime("%d-%m-%Y")%></h4>
-                                        </a>
-                                    </div><!-- fin del text -->
-                                  </div><!-- fin del middle -->
-                              <% end %>
-                              </div>
-
-                </div>
-              <% end %>
+                        <div class="container-agr">
+                        <% if categoria[1][j].avatar1.url != "/images/" %>
+                            <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                            <%= image_tag(categoria[1][j].avatar1.url, :class => " image") %>
+                            </a>
+                          <div class="middle">
+                            <div class="text text-center">
+                                  <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
+                                  <h2><%= categoria[1][j].title %></h2><br/>
+                                  <h4><%= categoria[1][j].start_date.strftime("%d-%m-%Y")%></h4>
+                                </a>
+                            </div><!-- fin del text -->
+                          </div><!-- fin del middle -->
+                        <% else %>
+                          <%= image_tag("sin_foto.jpg") %>
+                          <div class="middle">
+                            <div class="text text-center">
+                                  <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
+                                  <h2><%= categoria[1][j].title %></h2><br/>
+                                  <h4><%= categoria[1][j].start_date.strftime("%d-%m-%Y")%></h4>
+                                </a>
+                            </div><!-- fin del text -->
+                          </div><!-- fin del middle -->
+                        <% end %>
+                        </div><!-- container-agr-->
+                </div><!-- col -->
             <% end %>
-          </div><!-- cierre de carousel-inner -->
-        <a rel="nofollow" rel="noreferrer"class="left carousel-control" href="#carousel-tilenav25" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-        <a rel="nofollow" rel="noreferrer"class="right carousel-control" href="#carousel-tilenav25" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+           </div> <!-- cierre de carousel-inner -->
+
+        <% case @cont %>
+        <% when 0 then  %>
+          <a rel="nofollow" rel="noreferrer" class="left carousel-control" href="#carousel-tilenav" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+          <a rel="nofollow" rel="noreferrer" class="right carousel-control" href="#carousel-tilenav" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+        <% when 1 then  %>
+          <a rel="nofollow" rel="noreferrer" class="left carousel-control" href="#carousel-tilenav1" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+          <a rel="nofollow" rel="noreferrer" class="right carousel-control" href="#carousel-tilenav1" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+        <% when 2 then %>
+          <a rel="nofollow" rel="noreferrer" class="left carousel-control" href="#carousel-tilenav2" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+          <a rel="nofollow" rel="noreferrer" class="right carousel-control" href="#carousel-tilenav2" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+        <% when 3 then %>
+          <a rel="nofollow" rel="noreferrer" class="left carousel-control" href="#carousel-tilenav3" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+          <a rel="nofollow" rel="noreferrer" class="right carousel-control" href="#carousel-tilenav3" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+        <% when 4 then %>
+          <a rel="nofollow" rel="noreferrer" class="left carousel-control" href="#carousel-tilenav4" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+          <a rel="nofollow" rel="noreferrer" class="right carousel-control" href="#carousel-tilenav4" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+        <% when 5 then  %>
+          <a rel="nofollow" rel="noreferrer" class="left carousel-control" href="#carousel-tilenav5" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+          <a rel="nofollow" rel="noreferrer" class="right carousel-control" href="#carousel-tilenav5" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+        <% end %>
+        <% end %><!-- for -->
         </div><!-- cierre de carousel -->
       </div><!-- cierre de col -->
     </div><!-- cierre de row -->
   </div><!-- cierre de container -->
-<% end %>
-
-<% if @categories_otros.first != nil %>
-<hr />
-<!-- si HAY imagenes cargadas en las publicaciones de abajo -->
-  <div class="container-fluid ">
-  <h1 style="color: gray">Otros</h1>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="carousel carousel-showmanymoveone slide" id="carousel-tilenav26" data-interval="false">
-          <div class="carousel-inner">
-            <div class="item active">
-              <% @categories_otros.first(3).each do |e|%>
-                <div class="col-sm-4">
-                  <% if user_signed_in? %>
-                     <% @mylink = "/categories/" + e.id.to_s %>
-                  <% else %>
-                     <% @mylink = "/categories1/" + e.id.to_s %>
-                  <% end %>
-                    <div class="container-agr">
-                    <% if e.avatar1.url != "/images/" %>
-                      <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                      <%= image_tag(e.avatar1.url, :class => " image") %>
-                      </a>
-                      <div class="middle" >
-                        <div class="text text-center">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                            <h2><%= e.title %></h2><br/>
-                            <h4><%= e.start_date.strftime("%d-%m-%Y")%><h4>
-                          </a>
-                        </div>
-                      </div>
-                      <% else %>
-                                  <%= image_tag("sin_foto.jpg") %>
-                                  <div class="middle">
-                                    <div class="text text-center">
-                                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                                          <h2><%= e.title %></h2><br/>
-                                          <h4><%= e.start_date.strftime("%d-%m-%Y")%></h4>
-                                        </a>
-                                    </div><!-- fin del text -->
-                                  </div><!-- fin del middle -->
-                              <% end %>
-                    </div>
-                </div>
-              <% end %>
-            </div><!-- cierre de item-active -->
-            <% for i in 3..@categories_otros.length-1 do %>
-              <% if i % 3 == 0  %>
-                <div class="item text-center">
-              <% end %>
-                    <% @aux = i %>
-                    <% @aux2 = @aux + 2 %>
-                    <% if @aux2 > @categories_otros.length-1 %>
-                      <% @aux2 = @categories_otros.length %>
-                    <% end %>
-                    <% @categories_otros[@aux..@aux2].each do |e|%>
-                      <div class="col-sm-4">
-
-                          <% if user_signed_in? %>
-                             <% @mylink = "/categories/" + e.id.to_s %>
-                          <% else %>
-                             <% @mylink = "/categories1/" + e.id.to_s %>
-                          <% end %>
-
-                              <div class="container-agr">
-                              <% if e.avatar1.url != "/images/" %>
-                                  <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                                  <%= image_tag(e.avatar1.url, :class => " image") %>
-                                  </a>
-                                <div class="middle">
-                                  <div class="text text-center">
-                                        <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                                        <h2><%= e.title %></h2><br/>
-                                        <h4><%= e.start_date.strftime("%d-%m-%Y")%></h4>
-                                      </a>
-                                  </div>
-                                </div>
-                                <% else %>
-                                  <%= image_tag("sin_foto.jpg") %>
-                                  <div class="middle">
-                                    <div class="text text-center">
-                                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                                          <h2><%= e.title %></h2><br/>
-                                          <h4><%= e.start_date.strftime("%d-%m-%Y")%></h4>
-                                        </a>
-                                    </div><!-- fin del text -->
-                                  </div><!-- fin del middle -->
-                              <% end %>
-                              </div>
-
-
-                </div>
-              <% end %>
-            <% end %>
-          </div><!-- cierre de carousel-inner -->
-        <a rel="nofollow" rel="noreferrer"class="left carousel-control" href="#carousel-tilenav26" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-        <a rel="nofollow" rel="noreferrer"class="right carousel-control" href="#carousel-tilenav26" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
-        </div><!-- cierre de carousel -->
-      </div><!-- cierre de col -->
-    </div><!-- cierre de row -->
-  </div><!-- cierre de container -->
-<% end %>
-
+    <% @cont += 1 %>  
+<% end %><!-- each principal -->
 
 </body>
 </html>
