@@ -92,13 +92,16 @@ tr:nth-child(even) {
 .container-agr {
     position: relative;
     height: 280px;
+    text-align: center;
+
 }
 .image {
   opacity: 1;
   display: block;
   border:2px solid gray;
-  height:300px;
-  width:100%;
+  height:200px;
+  width: 69%;
+  margin-left: 18%;
   transition: .5s ease;
   backface-visibility: hidden;
 }
@@ -106,7 +109,7 @@ tr:nth-child(even) {
   transition: .5s ease;
   opacity: 0;
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);

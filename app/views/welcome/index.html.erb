@@ -113,8 +113,10 @@
               <% end %>
               <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
                 <%= image_tag(@categories_carousel.first.avatar1.url) %><br/>
+                <h4>
                     <%= @categories_carousel.first.title %><br/>
                     <%= @categories_carousel.first.start_date.strftime("%d-%m-%Y")%>
+                </h4>
               </a>
             </div>
             </div>
@@ -127,8 +129,10 @@
               <% end %>
               <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
                 <%= image_tag(@categories_carousel.first.avatar2.url) %><br/>
+                <h4> 
                 <%= @categories_carousel.first.title %><br/>
                 <%= @categories_carousel.first.start_date.strftime("%d-%m-%Y")%>
+                </h4>
               </a>
             </div>
             </div>
@@ -141,8 +145,10 @@
               <% end %>
               <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
                 <%= image_tag(@categories_carousel.first.avatar3.url) %><br/>
+                <h4>
                 <%= @categories_carousel.first.title %><br/>
                 <%= @categories_carousel.first.start_date.strftime("%d-%m-%Y")%>
+                </h4>
               </a>
           </div>
           </div>
@@ -254,29 +260,30 @@
               <% else %>
                  <% @mylink = "/categories1/" + e.id.to_s %>
               <% end %>
-                <div class="container-agr">
+                <div class="container-agr ">
                 <% if e.avatar1.url != "/images/" %>
-                  <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                  <%= image_tag(e.avatar1.url, :class => " image") %>
+                <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                  <%= image_tag(e.avatar1.url, :class => " image") %><br/>
+                  <h4>
+                  <%= e.title %><br/>
+                  <%= e.start_date.strftime("%d-%m-%Y")%>
+                  </h4>
                   </a>
                   <div class="middle" >
                     <div class="text text-center">
                         <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                          <h2><%= e.title %></h2><br/>
-                          <h4><%= e.start_date.strftime("%d-%m-%Y")%><h4>
+                              <h4>Haz Click para ver Detalle</h4>
                         </a>
                       </div><!-- fin del text -->
                     </div><!-- fin del middle -->
                 <% else %>
-                  <%= image_tag("sin_foto.jpg") %>
-                  <div class="middle">
-                    <div class="text text-center">
-                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                          <h2><%= e.title %></h2><br/>
-                          <h4><%= e.start_date.strftime("%d-%m-%Y")%></h4>
-                        </a>
-                    </div><!-- fin del text -->
-                  </div><!-- fin del middle -->
+                  <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                  <%= image_tag("sin_foto.jpg", :class => " image") %><br/>
+                  <h4>
+                  <%= e.title %><br/>
+                  <%= e.start_date.strftime("%d-%m-%Y")%>
+                  </h4>
+                  </a>      
                 <% end %>
                   </div><!-- fin de container-agr -->
                 </div>
@@ -296,26 +303,27 @@
                     <div class="container-agr">
                     <% if categoria[1][i].avatar1.url != "/images/" %>
                         <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                        <%= image_tag(categoria[1][i].avatar1.url, :class => " image") %>
+                        <%= image_tag(categoria[1][i].avatar1.url, :class => " image") %><br/>
+                        <h4>
+                        <%= categoria[1][i].title %><br/>
+                        <%= categoria[1][i].start_date.strftime("%d-%m-%Y")%>
+                        </h4>
                         </a>
                       <div class="middle">
                         <div class="text text-center">
                               <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                              <h2><%= categoria[1][i].title %></h2><br/>
-                              <h4><%= categoria[1][i].start_date.strftime("%d-%m-%Y")%></h4>
+                              <h4>Haz Click para ver Detalle</h4>
                             </a>
                         </div><!-- fin del text -->
                       </div><!-- fin del middle -->
                     <% else %>
-                      <%= image_tag("sin_foto.jpg") %>
-                      <div class="middle">
-                        <div class="text text-center">
-                              <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                              <h2><%= categoria[1][i].title %></h2><br/>
-                              <h4><%= categoria[1][i].start_date.strftime("%d-%m-%Y")%></h4>
-                            </a>
-                        </div><!-- fin del text -->
-                      </div><!-- fin del middle -->
+                        <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                        <%= image_tag("sin_foto.jpg", :class => " image") %><br/>
+                        <h4>
+                        <%= categoria[1][i].title %><br/>
+                        <%= categoria[1][i].start_date.strftime("%d-%m-%Y")%>
+                        </h4>
+                        </a>                    
                     <% end %>
                   </div><!-- container-agr-->
                </div><!-- col -->
@@ -333,26 +341,27 @@
                         <div class="container-agr">
                         <% if categoria[1][j].avatar1.url != "/images/" %>
                             <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                            <%= image_tag(categoria[1][j].avatar1.url, :class => " image") %>
+                            <%= image_tag(categoria[1][j].avatar1.url, :class => " image") %><br/>
+                            <h4>
+                            <%= categoria[1][j].title %><br/>
+                            <%= categoria[1][j].start_date.strftime("%d-%m-%Y")%>
+                            </h4>                            
                             </a>
                           <div class="middle">
                             <div class="text text-center">
                                   <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                                  <h2><%= categoria[1][j].title %></h2><br/>
-                                  <h4><%= categoria[1][j].start_date.strftime("%d-%m-%Y")%></h4>
+                                  <h4>Haz Click para ver Detalle</h4>
                                 </a>
                             </div><!-- fin del text -->
                           </div><!-- fin del middle -->
                         <% else %>
-                          <%= image_tag("sin_foto.jpg") %>
-                          <div class="middle">
-                            <div class="text text-center">
-                                  <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                                  <h2><%= categoria[1][j].title %></h2><br/>
-                                  <h4><%= categoria[1][j].start_date.strftime("%d-%m-%Y")%></h4>
-                                </a>
-                            </div><!-- fin del text -->
-                          </div><!-- fin del middle -->
+                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                          <%= image_tag("sin_foto.jpg", :class => " image") %><br/>
+                          <h4>
+                          <%= categoria[1][j].title %><br/>
+                          <%= categoria[1][j].start_date.strftime("%d-%m-%Y")%>
+                          </h4>
+                          </a> 
                         <% end %>
                         </div><!-- container-agr-->
                 </div><!-- col -->
@@ -369,26 +378,27 @@
                         <div class="container-agr">
                         <% if categoria[1][j].avatar1.url != "/images/" %>
                             <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
-                            <%= image_tag(categoria[1][j].avatar1.url, :class => " image") %>
+                            <%= image_tag(categoria[1][j].avatar1.url, :class => " image") %><br/>
+                            <h4>
+                            <%= categoria[1][j].title %><br/>
+                            <%= categoria[1][j].start_date.strftime("%d-%m-%Y")%>
+                            </h4>                             
                             </a>
                           <div class="middle">
                             <div class="text text-center">
                                   <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                                  <h2><%= categoria[1][j].title %></h2><br/>
-                                  <h4><%= categoria[1][j].start_date.strftime("%d-%m-%Y")%></h4>
+                                  <h4>Haz Click para ver Detalle</h4>
                                 </a>
                             </div><!-- fin del text -->
                           </div><!-- fin del middle -->
                         <% else %>
-                          <%= image_tag("sin_foto.jpg") %>
-                          <div class="middle">
-                            <div class="text text-center">
-                                  <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" style="text-decoration: none" >
-                                  <h2><%= categoria[1][j].title %></h2><br/>
-                                  <h4><%= categoria[1][j].start_date.strftime("%d-%m-%Y")%></h4>
-                                </a>
-                            </div><!-- fin del text -->
-                          </div><!-- fin del middle -->
+                          <a rel="nofollow" rel="noreferrer" href="<%= @mylink%>" >
+                          <%= image_tag("sin_foto.jpg", :class => " image") %><br/>
+                          <h4>
+                          <%= categoria[1][j].title %><br/>
+                          <%= categoria[1][j].start_date.strftime("%d-%m-%Y")%>
+                          </h4>
+                          </a> 
                         <% end %>
                         </div><!-- container-agr-->
                 </div><!-- col -->
