@@ -2,19 +2,58 @@ class Category < ApplicationRecord
   require 'date'
   belongs_to :user
 
-  validates :title, :presence => true, :length => { :minimun => 5, :maximum => 70}
   before_create :normalize_name
-  validates :description, :presence => true, :length => { :minimun => 5, too_short: 
-    "El mínimo de caracteres es cinco", 
-    :maximum => 50000, too_long: "Ha excedido el máximo de caracteres"}
+
+  validates :title, 
+            :presence => {:message => "El Titulo debe estar presente"},
+            :length => {:minimun => 5,  :message => "El Titulo debe contener mas de 5 caracteres"},   
+            :length => {:maximum => 120, :message => "El Titulo debe contener menos de 120 caracteres"}
+
+  # validates :title, :presence => true, :length => { :minimun => 5, :maximum => 70}
+
+  validates :description, :presence => {:message => "La Descripcion debe estar presente"},
+            :length => {:minimun => 5,  :message => "La Descripcion debe contener mas de 5 caracteres"},
+            :length => {:maximum => 50000, :message => "La Descripcion debe contener menos de 50000 caracteres"}
+
+
+
+  # validates :description, :presence => true, :length => { :minimun => 5, too_short: 
+  #   "El mínimo de caracteres es cinco", 
+  #   :maximum => 50000, too_long: "Ha excedido el máximo de caracteres"}
+
+
+
+
   validate :expiration_date 
-  validates :duration, :presence => true, numericality: true
-  validates :start_hour, :presence => true
-  validates :location, :presence => true, :length => { :minimun => 5, :maximum => 100}
-  validates :cost, :presence => true, numericality: true
-  validates :phone, numericality: true, :length => { :minimun => 7, :maximum => 16}
+
+  validates :duration, :presence => {:message => "La Duracion debe estar presente"}
+ 
+  validates :start_hour, :presence => {:message => "La hora de comienzo debe estar presente"}
 
 
+  # validates :duration, :presence => true, numericality: true
+  # validates :start_hour, :presence => true
+
+  validates :location, 
+            :presence => {:message => "La Localidad debe estar presente" },
+            :length => {:minimun => 5,  :message => "La Localidad debe contener mas de 5 caracteres"},
+            :length => {:maximum => 120, :message => "La Localidad debe contener menos de 120 caracteres"}
+
+  # validates :location, :presence => true, :length => { :minimun => 5, :maximum => 100}
+
+ validates :cost, :presence => {:message => "El costo debe estar presente"},
+            :numericality => {:message => "El costo debe ser numerico"}
+
+  # validates :cost, :presence => true, numericality: true
+
+  validates :phone, :presence => {:message => "El Telefono debe estar presente"},
+            :length => {:minimun => 7,  :message => "El Telefono debe contener mas de 7 digits"},
+            :length => {:maximum => 16, :message => "El Telefono debe contener menos de 16 digitos"}
+
+
+  # validates :phone, numericality: true, :length => { :minimun => 7, :maximum => 16}
+  
+  validates_inclusion_of :priority, :in => 0..10, :message => "La Prioridad debe estar entre 0 y 10"
 
   has_attached_file :avatar1, :styles => { :medium => "700x700", :thumb => "80x80#" }, 
   :default_url => "/images/"
@@ -44,3 +83,79 @@ def normalize_name
 end
 
 end
+
+
+
+
+
+
+# class Category < ApplicationRecord
+#   require 'date'
+#   belongs_to :user
+#   before_create :normalize_name
+  
+#   has_attached_file :avatar1, :styles => { :medium => "700x700", :thumb => "80x80#" }, 
+#   :default_url => "/images/"
+#   validates_attachment_content_type :avatar1, :content_type => /\Aimage\/.*\Z/
+#   validates_attachment_file_name :avatar1, matches: [/png\Z/, /jpe?g\Z/]
+
+#   has_attached_file :avatar2, :styles => { :medium => "700x700", :thumb => "80x80#" }, 
+#   :default_url => "/images/"
+#   validates_attachment_content_type :avatar2, :content_type => /\Aimage\/.*\Z/
+#   validates_attachment_file_name :avatar2, matches: [/png\Z/, /jpe?g\Z/]
+
+#   has_attached_file :avatar3, :styles => { :medium => "700x700", :thumb => "80x80#" }, 
+#   :default_url => "/images/"
+#   validates_attachment_content_type :avatar3, :content_type => /\Aimage\/.*\Z/
+#   validates_attachment_file_name :avatar3, matches: [/png\Z/, /jpe?g\Z/]
+
+
+#   validates :title, 
+#             :presence => {:message => "El Titulo debe estar presente"},
+#             :length => {:minimun => 5,  :message => "El Titulo debe contener mas de 5 caracteres"},   
+#             :length => {:maximum => 120, :message => "El Titulo debe contener menos de 120 caracteres"}
+ 
+
+ 
+#   validates :description, :presence => {:message => "La Descripcion debe estar presente"},
+#             :length => {:minimun => 5,  :message => "La Descripcion debe contener mas de 5 caracteres"},
+#             :length => {:maximum => 50000, :message => "La Descripcion debe contener menos de 50000 caracteres"}
+ 
+#   validate :expiration_date
+ 
+#   validates :duration, :presence => {:message => "La Duracion debe estar presente"}
+ 
+#   validates :start_hour, :presence => {:message => "La hora de comienzo debe estar presente"
+
+  # validates :location, 
+  #           :presence => {:message => "La Localidad debe estar presente" },
+  #           :length => {:minimun => 5,  :message => "La Localidad debe contener mas de 5 caracteres"},
+  #           :length => {:maximum => 120, :message => "La Localidad debe contener menos de 120 caracteres"}
+
+
+  # validates :cost, :presence => {:message => "El costo debe estar presente"},
+  #           :numericality => {:message => "El costo debe ser numerico"}
+
+
+  # validates :phone, :presence => {:message => "El Telefono debe estar presente"},
+  #           :length => {:minimun => 7,  :message => "El Telefono debe contener mas de 7 digits"},
+  #           :length => {:maximum => 16, :message => "El Telefono debe contener menos de 16 digitos"}
+
+
+  # validates :priority, :inclusion => 0..10, :message => "La Prioridad debe estar entre 0 y 10"
+
+
+
+# private
+
+# def expiration_date
+#   if start_date? && start_date < Date.today 
+#     errors.add(:start_date, "La fecha de comienzo  no puede ser en el pasado")
+#   end
+# end
+
+# def normalize_name
+#   self.title.capitalize!
+# end
+
+# end
