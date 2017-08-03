@@ -1,6 +1,8 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy, :show1]
-  
+  require 'date'
+
+
   def index
     if current_user.email == 'opcionvenezuelaorg@gmail.com'
         case params[:key]
@@ -38,6 +40,36 @@ class CategoriesController < ApplicationController
   def show1
 
   end
+
+
+  def search
+    hoy = Date.today
+    @categories_carousel = Category.where("status= ? AND priority= ? 
+    AND avatar1_file_name <> ? AND avatar2_file_name <> ? 
+    AND avatar3_file_name <> ? AND start_date >= ?", 
+    true, 10, '', '', '',hoy).order("priority DESC, start_date ASC").reverse
+    @categories_evento = Category.where("status= ?  
+      AND category_type = ? AND start_date = ?", true, 'Evento', params[:search]).order("priority DESC, start_date ASC")
+    @categories_foro = Category.where("status= ?  
+      AND category_type = ? AND start_date = ?", true, 'Foro', params[:search]).order("priority DESC, start_date ASC")
+    @categories_curso = Category.where("status= ?  
+      AND category_type = ? AND start_date = ?", true, 'Curso', params[:search]).order("priority DESC, start_date ASC")
+    @categories_taller = Category.where("status= ?  
+      AND category_type = ? AND start_date = ?", true, 'Taller', params[:search]).order("priority DESC, start_date ASC")
+    @categories_documental = Category.where("status= ?  
+      AND category_type = ? AND start_date = ?", true, 'Documental', params[:search]).order("priority DESC, start_date ASC")
+    @categories_otros = Category.where("status= ?  
+      AND category_type = ? AND start_date = ?", true, 'Otro', params[:search]).order("priority DESC, start_date ASC")
+    @categories = Category.where(status: true).order("priority DESC, start_date ASC")
+    @categories_total =  [['Eventos',@categories_evento],
+                            ['Foros',@categories_foro],
+                            ['Cursos',@categories_curso],
+                            ['Talleres',@categories_taller],
+                            ['Documentales',@categories_documental],
+                            ['Otros',@categories_otros]]    
+    render welcome_index_path 
+  end
+
 
 
   def new

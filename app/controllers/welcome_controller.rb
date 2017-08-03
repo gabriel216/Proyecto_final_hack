@@ -3,14 +3,11 @@ class WelcomeController < ApplicationController
   require 'date'
 
   def index
-
-
-     puts "buscar   = #{params[:buscar]}"
     hoy = Date.today
     manana = Date.today + 1
     semana = Date.today + 7
     mes = hoy.next_month 
-      @categories_carousel = Category.where("status= ? AND priority= ? 
+    @categories_carousel = Category.where("status= ? AND priority= ? 
     AND avatar1_file_name <> ? AND avatar2_file_name <> ? 
     AND avatar3_file_name <> ? AND start_date >= ?", 
     true, 10, '', '', '',hoy).order("priority DESC, start_date ASC").reverse
@@ -84,14 +81,14 @@ class WelcomeController < ApplicationController
               AND category_type = ? AND start_date >= ?", true, 'Documental', hoy).order("priority DESC, start_date ASC")
             @categories_otros = Category.where("status= ?  
               AND category_type = ? AND start_date >= ?", true, 'Otro', hoy).order("priority DESC, start_date ASC")
-            @categories = Category.where(status: true).order("priority DESC, start_date ASC")
-      end
+            @categories = Category.where("status = ? AND start_date >= ?" ,true,  hoy).order("priority DESC, start_date ASC")
+        end
       @categories_total =  [['Eventos',@categories_evento],
                             ['Foros',@categories_foro],
                             ['Cursos',@categories_curso],
                             ['Talleres',@categories_taller],
                             ['Documentales',@categories_documental],
-                            ['Otros',@categories_otros]]
+                            ['Otros',@categories_otros]]                  
       render welcome_index_path 
   end
 

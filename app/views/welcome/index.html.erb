@@ -56,9 +56,19 @@
 <br/>
 <br/>
 <br/>
+
 <div class="container">
   <div class="row">
       <h1 class="text-center"><em>Bienvenido a esta gran comunidad de emprendedores!</em></h1>
+    <%= form_tag categories_search_path, :method => 'get' do %>
+    <p>
+    <%= date_field_tag :search, params[:search], id: 'datepicker' %>
+    <%= submit_tag "Busqueda por Fecha" %>
+    </p>
+    <% end %> 
+  
+    
+
     <div class="col-lg-offset-10 col-lg-2">
     <div class="dropdown">
       <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Buscar
@@ -89,7 +99,7 @@
           <a href=/welcome/index?buscar=todos>
             <span>Todos</span>
           </a>
-        </li>
+        </li>    
       </ul>
       </div>
     </div>
