@@ -65,13 +65,12 @@
     <%= form_tag categories_search_path, :method => 'get' do %>
     <p>
 <!--     <%= date_field_tag :search, params[:search]%> -->
-        <p class="col-xs-2"> Fecha Desde: </p>
-        <p class="col-xs-3"> <%= date_select(params[:search] ,"key", order: [:day, :month, :year], :use_month_numbers => true) %> </p>
-        <p class="col-xs-2"> Fecha Hasta: </p>
-        <p class="col-xs-3"><%= date_select(params[:search] ,"key1", order: [:day, :month, :year], :use_month_numbers => true) %> </p>
+        <p class="col-xs-1"> Fecha Desde: </p>
+        <p class="col-xs-1"> <%= date_select(params[:search] ,"key", order: [:day, :month, :year], :use_month_numbers => true) %> </p>
+        <p class="col-xs-1"> Fecha Hasta: </p>
+        <p class="col-xs-1"><%= date_select(params[:search] ,"key1", order: [:day, :month, :year], :use_month_numbers => true) %> </p>
         <%= submit_tag "Busqueda por Fecha", class: 'btn btn-success ' %>
-
-        <div class="dropdown">
+        <div class="dropdown  col-xs-offset-4">
           <button class='btn btn-primary'>Buscar por Periodo</button>
           <div class="dropdown-content">
             <a href=/welcome/index?buscar=hoy>Hoy</a>
@@ -79,7 +78,6 @@
             <a href=/welcome/index?buscar=semana>Semana</a>
             <a href=/welcome/index?buscar=mes>Mes</a>
             <a href=/welcome/index?buscar=todos>Todos</a>
-
           </div>
         </div>
     </p>
