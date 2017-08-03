@@ -9,6 +9,37 @@
   <link rel="stylesheet" href="assets/stylesheets/application.scss">
 	<%= csrf_meta_tags %>
 </head>
+
+
+
+<script type="text/javascript">
+function validateFiles(inputFile) {
+  var maxExceededMessage = "Este archivo excede de  (50 KB)";
+  var extErrorMessage = "Solo acepta imagenes con extensiones: .jpg, .jpeg, .gif or .png is allowed";
+  var allowedExtension = ["jpg", "jpeg", "gif", "png"];
+
+  var extName;
+  var maxFileSize = $(inputFile).data('max-file-size');
+  var sizeExceeded = false;
+  var extError = false;
+
+  $.each(inputFile.files, function() {
+    if (this.size && maxFileSize && this.size > parseInt(maxFileSize)) {sizeExceeded=true;};
+    extName = this.name.split('.').pop();
+    if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
+  });
+  if (sizeExceeded) {
+    window.alert(maxExceededMessage);
+    $(inputFile).val('');
+  };
+
+  if (extError) {
+    window.alert(extErrorMessage);
+    $(inputFile).val('');
+  };
+}
+</script>
+
 <body>
 		<div class="container-fluid ">
       <div class="col-xs-12">
@@ -121,13 +152,13 @@
 		      </div>		
 					<div class="row text-center">
 				      <label style = "text-indent:20px">
-				        <%= f.file_field :avatar1, class: "pretty-input" %>
+				        <%= f.file_field :avatar1, class: "pretty-input", onchange: "validateFiles(this);", data: { max_file_size: 50.kilobytes } %>
 				      </label>
 				      <label style = "text-indent:20px">
-				      <%= f.file_field :avatar2, class: "pretty-input" %>
+				      <%= f.file_field :avatar2, class: "pretty-input", onchange: "validateFiles(this);", data: { max_file_size: 50.kilobytes }  %>
 				      </label>
 				      <label style = "text-indent:20px">
-				      <%= f.file_field :avatar3, class: "pretty-input" %>
+				      <%= f.file_field :avatar3, class: "pretty-input", onchange: "validateFiles(this);", data: { max_file_size: 50.kilobytes }  %>
 				      </label>
 					</div>	
 				<div class="col-xs-12">
