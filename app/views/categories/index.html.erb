@@ -24,12 +24,12 @@
             <% if current_user.email == 'opcionvenezuelaorg@gmail.com'   %>
                 <%= link_to 'Inicio', welcome_index_path, class: 'bttn-jelly bttn-md bttn-primary' %>
                 <%= link_to 'Publicar', new_category_path, class: 'bttn-jelly bttn-md bttn-royal' %>
-                <%= link_to 'Cerrar Sesión', destroy_user_session_path, method: 'delete', class: 'bttn-pill bttn-md bttn-warning' %>
+                <%= link_to 'Cerrar Sesión', destroy_user_session_path, method: 'delete', class: 'bttn-pill bttn-md bttn-danger' %>
 
               <% else %>
                 <%= link_to 'Inicio', welcome_index_path, class: 'bttn-jelly bttn-md bttn-primary' %>
                 <%= link_to 'Publicar', new_category_path, class: 'bttn-jelly bttn-md bttn-royal' %>
-                <%= link_to 'Cerrar Sesión', destroy_user_session_path, method: 'delete', class: 'bttn-pill bttn-md bttn-warning' %>
+                <%= link_to 'Cerrar Sesión', destroy_user_session_path, method: 'delete', class: 'bttn-pill bttn-md bttn-danger' %>
             <% end %>
             </div>
         <!-- fin del if  -->
