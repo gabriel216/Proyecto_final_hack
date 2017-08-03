@@ -88,8 +88,12 @@ class WelcomeController < ApplicationController
                             ['Cursos',@categories_curso],
                             ['Talleres',@categories_taller],
                             ['Documentales',@categories_documental],
-                            ['Otros',@categories_otros]]                  
-      render welcome_index_path 
+                            ['Otros',@categories_otros]]     
+        respond_to do |format|
+                format.html { render welcome_index_path , notice: 'Mostrar exitosamente el Index.' }
+        end
+
+
   end
 
   def new
