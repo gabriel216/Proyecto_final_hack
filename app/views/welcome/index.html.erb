@@ -21,6 +21,7 @@
 </head>
 <body>
 
+
 <header>
 
 <div class="container-fluid ">
@@ -32,19 +33,18 @@
           </div>
             <div class="col-xs-offset-4 col-xs-3 col-sm-offset-5 col-sm-5 col-md-offset-6 col-md-4">
             <% if !user_signed_in?  %>
-
-              <%= link_to 'Iniciar sesión', new_user_session_path, class: 'btn btn-success '  %>
-              <%= link_to 'Registrarse', new_user_registration_path, class: 'btn btn-success ' %>
-              <%= link_to 'Publicar', new_user_registration_path, class: 'btn btn-success ' %>
+              <%= link_to 'Iniciar sesión', new_user_session_path, class: 'bttn-jelly bttn-md bttn-primary'  %>
+              <%= link_to 'Registrarse', new_user_registration_path, class: 'bttn-pill bttn-md bttn-royal' %>
+              <%= link_to 'Publicar', new_user_registration_path, class: 'bttn-jelly bttn-md bttn-royal' %>
             <% else %>
               <% if current_user.email == 'opcionvenezuelaorg@gmail.com'   %>
-                <a href=/categories class="btn btn-primary">Hola administrador</a>
-                <%= link_to 'Publicar', new_category_path, class: 'btn btn-success ' %>
-                <%= link_to 'Cerrar Sesión', destroy_user_session_path, method: 'delete', class: 'btn btn-danger ' %>
+                <a href=/categories class="bttn-gradient bttn-md bttn-primary">Hola administrador</a>
+                <%= link_to 'Publicar', new_category_path, class: 'bttn-jelly bttn-md bttn-royal' %>
+                <%= link_to 'Cerrar Sesión', destroy_user_session_path, method: 'delete', class: 'bttn-pill bttn-md bttn-danger' %>
               <% else %>
-                <a href=/categories class="btn btn-primary">Hola <%= current_user.name %></a>
-                <%= link_to 'Publicar', new_category_path, class: 'btn btn-success' %>
-                <%= link_to 'Cerrar Sesión', destroy_user_session_path, method: 'delete', class: 'btn btn-danger ' %>
+                <a href=/categories class="bttn-gradient bttn-md bttn-success">Hola <%= current_user.name %></a>
+                <%= link_to 'Publicar', new_category_path, class: 'bttn-jelly bttn-md bttn-royal' %>
+                <%= link_to 'Cerrar Sesión', destroy_user_session_path, method: 'delete', class: 'bttn-pill bttn-md bttn-warning' %>
               <% end %>
             <% end %>
             </div>
@@ -62,16 +62,16 @@
 <div class="container">
   <div class="row">
       <h1 class="text-center"><em>Bienvenido a esta gran comunidad de emprendedores!</em></h1>
-    <%= form_tag categories_search_path, :method => 'get' do %>
-    <p>
+     <%= form_tag categories_search_path, :method => 'get' do %>
+     <p>
 <!--     <%= date_field_tag :search, params[:search]%> -->
         <p class="col-xs-1"> Fecha Desde: </p>
         <p class="col-xs-1"> <%= date_select(params[:search] ,"key", order: [:day, :month, :year], :use_month_numbers => true) %> </p>
         <p class="col-xs-1"> Fecha Hasta: </p>
         <p class="col-xs-1"><%= date_select(params[:search] ,"key1", order: [:day, :month, :year], :use_month_numbers => true) %> </p>
-        <%= submit_tag "Busqueda por Fecha", class: 'btn btn-success ' %>
-        <div class="dropdown  col-xs-offset-4">
-          <button class='btn btn-primary'>Buscar por Periodo</button>
+        <%= submit_tag "Busqueda por Fecha", class: 'bttn-gradient bttn-md bttn-warning' %>
+        <div class="dropdown  col-xs-offset-3">
+          <a href=/welcome/index?buscar=todos class='bttn-gradient bttn-md bttn-warning'>Buscar por Periodo</a>
           <div class="dropdown-content">
             <a href=/welcome/index?buscar=hoy>Hoy</a>
             <a href=/welcome/index?buscar=manana>Mañana</a>
@@ -80,9 +80,8 @@
             <a href=/welcome/index?buscar=todos>Todos</a>
           </div>
         </div>
-    </p>
-    <% end %> 
-
+    <% end %>
+     </p>
 </div>  
 </div>   
 

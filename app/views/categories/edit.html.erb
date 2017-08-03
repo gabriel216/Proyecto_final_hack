@@ -18,9 +18,9 @@
             <%= image_tag "op.png", class: "img-logo" %>
           </div>
             <div class="col-xs-offset-5 col-xs-3 col-sm-offset-5 col-sm-5 col-md-offset-6 col-md-4">
-             <%= link_to 'Inicio', welcome_index_path, class: 'btn btn-primary' %>
-			      		<%= link_to 'Publicaciones', categories_path, class: 'btn btn-warning' %>
-			      		<%= link_to 'Cerrar Sesóon', destroy_user_session_path, method: 'delete', class: 'btn btn-danger' %>
+             <%= link_to 'Inicio', welcome_index_path, class: 'bttn-jelly bttn-md bttn-primary' %>
+			 <%= link_to 'Publicaciones', categories_path, class: 'bttn-jelly bttn-md bttn-royal' %>
+			 <%= link_to 'Cerrar Sesóon', destroy_user_session_path, method: 'delete', class: 'bttn-pill bttn-md bttn-danger' %>
             </div>
         <!-- fin del if  -->
         </div>
@@ -168,7 +168,7 @@
 					</div>
 
 				<div class="col-xs-12">
-					<%= f.submit 'Guardar', class: "btn btn-primary" %>
+					<%= f.submit 'Guardar', class: "bttn-fill bttn-md bttn-success" %>
 				</div>
 				<% end %>
 
