@@ -44,22 +44,36 @@ class CategoriesController < ApplicationController
 
   def search
     hoy = Date.today
+    fecha_desde =  (params.values[1] + "/" + params.values[2] + "/" + params.values[3]).to_date
+    fecha_hasta =  (params.values[4] + "/" + params.values[5] + "/" + params.values[6]).to_date
     @categories_carousel = Category.where("status= ? AND priority= ? 
     AND avatar1_file_name <> ? AND avatar2_file_name <> ? 
     AND avatar3_file_name <> ? AND start_date >= ?", 
     true, 10, '', '', '',hoy).order("priority DESC, start_date ASC").reverse
+    # @categories_evento = Category.where("status= ?  
+    #   AND category_type = ? AND start_date = ?", true, 'Evento', params[:search]).order("priority DESC, start_date ASC")
+    # @categories_foro = Category.where("status= ?  
+    #   AND category_type = ? AND start_date = ?", true, 'Foro', params[:search]).order("priority DESC, start_date ASC")
+    # @categories_curso = Category.where("status= ?  
+    #   AND category_type = ? AND start_date = ?", true, 'Curso', params[:search]).order("priority DESC, start_date ASC")
+    # @categories_taller = Category.where("status= ?  
+    #   AND category_type = ? AND start_date = ?", true, 'Taller', params[:search]).order("priority DESC, start_date ASC")
+    # @categories_documental = Category.where("status= ?  
+    #   AND category_type = ? AND start_date = ?", true, 'Documental', params[:search]).order("priority DESC, start_date ASC")
+    # @categories_otros = Category.where("status= ?  
+    #   AND category_type = ? AND start_date = ?", true, 'Otro', params[:search]).order("priority DESC, start_date ASC")
     @categories_evento = Category.where("status= ?  
-      AND category_type = ? AND start_date = ?", true, 'Evento', params[:search]).order("priority DESC, start_date ASC")
+      AND category_type = ? AND start_date >= ? AND start_date <= ?", true, 'Evento', fecha_desde, fecha_hasta).order("priority DESC, start_date ASC")
     @categories_foro = Category.where("status= ?  
-      AND category_type = ? AND start_date = ?", true, 'Foro', params[:search]).order("priority DESC, start_date ASC")
+      AND category_type = ? AND start_date >= ? AND start_date <= ?", true, 'Foro', fecha_desde, fecha_hasta).order("priority DESC, start_date ASC")
     @categories_curso = Category.where("status= ?  
-      AND category_type = ? AND start_date = ?", true, 'Curso', params[:search]).order("priority DESC, start_date ASC")
+      AND category_type = ? AND start_date >= ? AND start_date <= ?", true, 'Curso', fecha_desde, fecha_hasta).order("priority DESC, start_date ASC")
     @categories_taller = Category.where("status= ?  
-      AND category_type = ? AND start_date = ?", true, 'Taller', params[:search]).order("priority DESC, start_date ASC")
+      AND category_type = ? AND start_date >= ? AND start_date <= ?", true, 'Taller', fecha_desde, fecha_hasta).order("priority DESC, start_date ASC")
     @categories_documental = Category.where("status= ?  
-      AND category_type = ? AND start_date = ?", true, 'Documental', params[:search]).order("priority DESC, start_date ASC")
+      AND category_type = ? AND start_date >= ? AND start_date <= ?", true, 'Documental', fecha_desde, fecha_hasta).order("priority DESC, start_date ASC")
     @categories_otros = Category.where("status= ?  
-      AND category_type = ? AND start_date = ?", true, 'Otro', params[:search]).order("priority DESC, start_date ASC")
+      AND category_type = ? AND start_date >= ? AND start_date <= ?", true, 'Otro', fecha_desde, fecha_hasta).order("priority DESC, start_date ASC")
     @categories = Category.where(status: true).order("priority DESC, start_date ASC")
     @categories_total =  [['Eventos',@categories_evento],
                             ['Foros',@categories_foro],

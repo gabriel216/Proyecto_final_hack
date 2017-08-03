@@ -19,6 +19,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+
+
 <header>
 
 <div class="container-fluid ">
@@ -62,49 +65,49 @@
       <h1 class="text-center"><em>Bienvenido a esta gran comunidad de emprendedores!</em></h1>
     <%= form_tag categories_search_path, :method => 'get' do %>
     <p>
-    <%= date_field_tag :search, params[:search], id: 'datepicker' %>
-    <%= submit_tag "Busqueda por Fecha" %>
+<!--     <%= date_field_tag :search, params[:search]%> -->
+        <p class="col-xs-2"> Fecha Desde: </p>
+        <p class="col-xs-3"> <%= date_select(params[:search] ,"key", order: [:day, :month, :year], :use_month_numbers => true) %> </p>
+        <p class="col-xs-2"> Fecha Hasta: </p>
+        <p class="col-xs-3"><%= date_select(params[:search] ,"key1", order: [:day, :month, :year], :use_month_numbers => true) %> </p>
+        <%= submit_tag "Busqueda por Fecha", class: 'btn btn-success ' %>
+        <div class="dropdown col-xs-10">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Buscar
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <a href=/welcome/index?buscar=dia>
+                  <span>Hoy</span>
+                </a>
+              </li>
+              <li>
+                <a href=/welcome/index?buscar=manana>
+                  <span>Mañana</span>
+                </a>
+              </li>
+              <li>
+                <a href=/welcome/index?buscar=semana>
+                  <span>Semana</span>
+                </a>
+              </li>
+              <li>
+                <a href=/welcome/index?buscar=mes>
+                  <span>Mes</span>
+                </a>
+              </li>
+              <li>
+                <a href=/welcome/index?buscar=todos>
+                  <span>Todos</span>
+                </a>
+              </li>    
+            </ul>
+        </div>
     </p>
     <% end %> 
-  
-    
+</div>  
+</div>    
 
-    <div class="col-lg-offset-10 col-lg-2">
-    <div class="dropdown">
-      <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Buscar
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu">
-        <li>
-          <a href=/welcome/index?buscar=dia>
-            <span>Hoy</span>
-          </a>
-        </li>
-        <li>
-          <a href=/welcome/index?buscar=manana>
-            <span>Mañana</span>
-          </a>
-        </li>
-        <li>
-          <a href=/welcome/index?buscar=semana>
-            <span>Semana</span>
-          </a>
-        </li>
-        <li>
-          <a href=/welcome/index?buscar=mes>
-            <span>Mes</span>
-          </a>
-        </li>
-        <li>
-          <a href=/welcome/index?buscar=todos>
-            <span>Todos</span>
-          </a>
-        </li>    
-      </ul>
-      </div>
-    </div>
-  </div>
-</div>
 
 <hr />
 
