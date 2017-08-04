@@ -52,17 +52,23 @@ class CategoriesController < ApplicationController
     if params.keys[1]  == 'key2' then
 
     @categories_evento = Category.where("status= ?  
-    AND category_type = ? AND start_date >= ? AND title LIKE ?", true, 'Evento', hoy, "%#{params.values[1]}%").order("priority DESC, start_date ASC")
+    AND category_type = ? AND start_date >= ? AND (title LIKE ? OR description LIKE ?)", 
+    true, 'Evento', hoy, "%#{params.values[1]}%", "%#{params.values[1]}%").order("priority DESC, start_date ASC")
     @categories_foro = Category.where("status= ?  
-    AND category_type = ? AND start_date >= ? AND title LIKE ?", true, 'Foro', hoy, "%#{params.values[1]}%").order("priority DESC, start_date ASC")
+    AND category_type = ? AND start_date >= ? AND (title LIKE ? OR description LIKE ?)", 
+    true, 'Foro', hoy, "%#{params.values[1]}%", "%#{params.values[1]}%").order("priority DESC, start_date ASC")
     @categories_curso = Category.where("status= ?  
-    AND category_type = ? AND start_date >= ? AND title LIKE ?", true, 'Curso', hoy, "%#{params.values[1]}%").order("priority DESC, start_date ASC")
+    AND category_type = ? AND start_date >= ? AND (title LIKE ? OR description LIKE ?)", 
+    true, 'Curso', hoy, "%#{params.values[1]}%", "%#{params.values[1]}%").order("priority DESC, start_date ASC")
     @categories_taller = Category.where("status= ?  
-    AND category_type = ? AND start_date >= ? AND title LIKE ?", true, 'Taller', hoy, "%#{params.values[1]}%").order("priority DESC, start_date ASC")
+    AND category_type = ? AND start_date >= ? AND (title LIKE ? OR description LIKE ?)", 
+    true, 'Taller', hoy, "%#{params.values[1]}%", "%#{params.values[1]}%").order("priority DESC, start_date ASC")
     @categories_documental = Category.where("status= ?  
-    AND category_type = ? AND start_date >= ? AND title LIKE ?", true, 'Documental', hoy, "%#{params.values[1]}%").order("priority DESC, start_date ASC")
+    AND category_type = ? AND start_date >= ? AND (title LIKE ? OR description LIKE ?)", 
+    true, 'Documental', hoy, "%#{params.values[1]}%", "%#{params.values[1]}%").order("priority DESC, start_date ASC")
     @categories_otros = Category.where("status= ?  
-    AND category_type = ? AND start_date >= ? AND title LIKE ?", true, 'Otro', hoy, "%#{params.values[1]}%").order("priority DESC, start_date ASC")
+    AND category_type = ? AND start_date >= ? AND (title LIKE ? OR description LIKE ?)", 
+    true, 'Otro', hoy, "%#{params.values[1]}%", "%#{params.values[1]}%").order("priority DESC, start_date ASC")
     else       
     fecha_desde =  (params[params.keys[1].to_s] + "/" + params[params.keys[2].to_s] + "/" + params[params.keys[3].to_s]).to_date
     fecha_hasta =  (params[params.keys[4].to_s] + "/" + params[params.keys[5].to_s] + "/" + params[params.keys[6].to_s]).to_date
