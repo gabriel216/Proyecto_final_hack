@@ -6,23 +6,19 @@ class Category < ApplicationRecord
 
   validates :title, 
             :presence => {:message => "El Titulo debe estar presente"},
-            :length => {:minimun => 5,  :message => "El Titulo debe contener mas de 5 caracteres"},   
-            :length => {:maximum => 120, :message => "El Titulo debe contener menos de 120 caracteres"}
+            :length => { :minimum => 5, :maximum => 120, :message => 'El Titulo debe contener entre 5 y 120 caracteres' }
   validates :description, :presence => {:message => "La Descripcion debe estar presente"},
-            :length => {:minimun => 5,  :message => "La Descripcion debe contener mas de 5 caracteres"},
-            :length => {:maximum => 50000, :message => "La Descripcion debe contener menos de 50000 caracteres"}
+            :length => { :minimum => 5, :maximum => 10000, :message => 'La Descripcion debe contener entre 5 y 10000 caracteres' }
   validate :expiration_date 
   validates :duration, :presence => {:message => "La Duracion debe estar presente"}
   validates :start_hour, :presence => {:message => "La hora de comienzo debe estar presente"}
   validates :location, 
             :presence => {:message => "La Localidad debe estar presente" },
-            :length => {:minimun => 5,  :message => "La Localidad debe contener mas de 5 caracteres"},
-            :length => {:maximum => 120, :message => "La Localidad debe contener menos de 120 caracteres"}
+            :length => { :minimum => 5, :maximum => 10000, :message => 'La Localidad debe contener entre 5 y 120 caracteres' }
  validates :cost, :presence => {:message => "El costo debe estar presente"},
             :numericality => {:message => "El costo debe ser numerico"}
   validates :phone, :presence => {:message => "El Telefono debe estar presente"},
-            :length => {:minimun => 7,  :message => "El Telefono debe contener mas de 7 digits"},
-            :length => {:maximum => 16, :message => "El Telefono debe contener menos de 16 digitos"}
+            :length => { :minimum => 7, :maximum => 16, :message => 'El Telefono debe contener entre 7 y 16 caracteres' }
   validates_inclusion_of :priority, :in => 0..10, :message => "La Prioridad debe estar entre 0 y 10"
   
   has_attached_file :avatar1, :styles => { :medium => "700x700", :thumb => "80x80#" }, 

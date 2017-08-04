@@ -58,11 +58,11 @@
 <br/>
 <br/>
 <br/>
-
 <div class="container">
   <div class="row">
       <h1 class="text-center"><em>Bienvenido a esta gran comunidad de emprendedores!</em></h1>
-     <%= form_tag categories_search_path, :method => 'get' do %>
+    
+    <%= form_tag categories_search_path, :method => 'get' do %>
      <p>
 <!--     <%= date_field_tag :search, params[:search]%> -->
         <p class="col-xs-1"> Fecha Desde: </p>
@@ -81,7 +81,11 @@
           </div>
         </div>
     <% end %>
-     </p>
+    <br/><br/><br/>
+    <%= form_tag categories_search_path, :method => 'get' do %>
+        <%= text_field(params[:search] ,"key2", class: 'form-control', placeholder: "Buscar:")%>
+    <% end %>
+    </p>
 </div>  
 </div>   
 
