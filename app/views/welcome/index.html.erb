@@ -72,9 +72,12 @@
         <p class="col-xs-1"> <%= date_select(params[:search] ,"key", order: [:day, :month, :year], :use_month_numbers => true) %> </p>
         <p class="col-xs-1"> Fecha Hasta: </p>
         <p class="col-xs-1"><%= date_select(params[:search] ,"key1", order: [:day, :month, :year], :use_month_numbers => true) %> </p>
-        <%= submit_tag "Busqueda por Fecha", class: 'bttn-gradient bttn-md bttn-warning' %>
-        <div class="dropdown  col-xs-offset-3">
-          <a href=/welcome/index?buscar=todos class='bttn-gradient bttn-md bttn-warning'>Buscar por Periodo</a>
+        <%= button_tag(type: "submit", class: "bttn-gradient bttn-md bttn-primary  col-xs-2") do %>
+            Fecha <i class="glyphicon glyphicon-search"></i>
+        <% end %>
+        <div class="dropdown col-xs-offset-4 col-xs-2">
+          <a href=/welcome/index?buscar=todos class='bttn-unite bttn-lg bttn-primary'>Periodo
+          <i class="glyphicon glyphicon-search"></i></a>
           <div class="dropdown-content">
             <a href=/welcome/index?buscar=hoy>Hoy</a>
             <a href=/welcome/index?buscar=manana>Mañana</a>
