@@ -1,188 +1,177 @@
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Lista de eventos</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="assets/stylesheets/application.scss">
-  <link rel="stylesheet" href="assets/stylesheets/welcome.scss">
-</head>
+  <html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Lista de eventos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="assets/stylesheets/application.scss">
+    <link rel="stylesheet" href="assets/stylesheets/welcome.scss">
+  </head>
 
-<body>
+  <body>
 
-<header>
+  <header>
 
-<div class="container-fluid ">
-      <div class="col-xs-12">
-      <nav class="navbar navbar-custom navbar-fixed-top ">
-        <div>
-          <div class="col-xs-2">
-            <%= image_tag "op.png", class: "img-logo" %>
-          </div>
-            <div class="col-xs-offset-5 col-xs-3 col-sm-offset-5 col-sm-5 col-md-offset-6 col-md-4">
-            <% if current_user.email == 'opcionvenezuelaorg@gmail.com'   %>
-                <%= link_to 'Inicio', welcome_index_path, class: 'bttn-jelly bttn-md bttn-primary' %>
-                <%= link_to 'Publicar', new_category_path, class: 'bttn-jelly bttn-md bttn-royal' %>
-                <%= link_to 'Cerrar Sesión', destroy_user_session_path, method: 'delete', class: 'bttn-pill bttn-md bttn-danger' %>
-
-              <% else %>
-                <%= link_to 'Inicio', welcome_index_path, class: 'bttn-jelly bttn-md bttn-primary' %>
-                <%= link_to 'Publicar', new_category_path, class: 'bttn-jelly bttn-md bttn-royal' %>
-                <%= link_to 'Cerrar Sesión', destroy_user_session_path, method: 'delete', class: 'bttn-pill bttn-md bttn-danger' %>
-            <% end %>
+  <div class="container-fluid ">
+        <div class="col-xs-12">
+        <nav class="navbar navbar-custom navbar-fixed-top ">
+          <div>
+            <div class="col-xs-2">
+              <%= image_tag "op.png", class: "img-logo" %>
             </div>
-        <!-- fin del if  -->
-        </div>
-  </nav>
-  </div>
-</div>
-</header>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
+              <div class="col-xs-offset-5 col-xs-3 col-sm-offset-5 col-sm-5 col-md-offset-6 col-md-4">
+              <% if current_user.email == 'opcionvenezuelaorg@gmail.com'   %>
+                  <%= link_to 'Inicio', welcome_index_path, class: 'bttn-jelly bttn-md bttn-primary' %>
+                  <%= link_to 'Publicar', new_category_path, class: 'bttn-jelly bttn-md bttn-royal' %>
+                  <%= link_to 'Cerrar Sesión', destroy_user_session_path, method: 'delete', class: 'bttn-pill bttn-md bttn-danger' %>
 
-<div class="container-fluid">
-  <div class="col-xs-12">
-    <% if current_user.email == 'opcionvenezuelaorg@gmail.com' %>
-      <table class="table">
-        <thead>
-          <tr>
-            <th style="text-align: center"><h4 style="color:blue">Título</h4> </th>
-            <th style="text-align: center"> <h4 style="color:blue">Usuario</h4> </th>
-            <th style="text-align: center"><h4 style="color:blue">1era imagen</h4> </th>
-            <th style="text-align: center">
-              <a href=/categories?key=Prioridad-Up>
-                <span class="glyphicon glyphicon-arrow-up"  aria-hidden="true"></span>
-              </a>
-              <h4 style="color:blue">Prioridad</h4>
-              <a href=/categories?key=Prioridad-Down>
-                <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
-              </a>
-            </th>
-
-            <th style="text-align: center">
-              <a href=/categories?key=Tipo-Up>
-                <span class="glyphicon glyphicon-arrow-up"  aria-hidden="true"></span>
-              </a>
-              <h4 style="color:blue">Tipo de evento</h4>
-              <a href=/categories?key=Tipo-Down>
-                <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
-              </a>
-            </th>
-
-            <th style="text-align: center">
-              <a href=/categories?key=FechadeInicio-Up>
-                <span class="glyphicon glyphicon-arrow-up"  aria-hidden="true"></span>
-              </a>
-              <h4 style="color:blue">Fecha de inicio</h4>
-              <a href=/categories?key=FechadeInicio-Down>
-                <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
-              </a>
-            </th>
-            <th style="text-align: center">
-              <a href=/categories?key=Status-Up>
-                <span class="glyphicon glyphicon-arrow-up"  aria-hidden="true"></span>
-              </a>
-              <h4 style="color:blue">Status</h4>
-              <a href=/categories?key=Status-Down>
-                <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
-              </a>
-            </th>
-          </tr>
-        </thead>
-
-        <tbody>
-        <% @categories.each do |category| %>
-          <tr>
-
-            <td class="text-center">
-              <%= category.title %>
-            </td>
-             <td class="text-center">
-              <%= category.user.name %>
-            </td>
-            <td class="text-center">
-            <% if category.avatar1.url != "/images/" %>
-              <%= image_tag(category.avatar1(:thumb)) %>
-            <% else %>
-              <%= image_tag("sin_foto.jpg", size:"90x90") %>
-
-            <% end %>
-            </td>
-            <td class="text-center">
-              <%= category.priority %>
-            </td>
-            <td class="text-center">
-              <%= category.category_type %>
-            </td>
-            <td class="text-center">
-              <%= category.start_date %>
-            </td>
-            <td class="text-center">
-              <% if category.status == true %>
-                <p>Activa</p>
-              <% else %>
-                <p>Inactiva</p>
+                <% else %>
+                  <%= link_to 'Inicio', welcome_index_path, class: 'bttn-jelly bttn-md bttn-primary' %>
+                  <%= link_to 'Publicar', new_category_path, class: 'bttn-jelly bttn-md bttn-royal' %>
+                  <%= link_to 'Cerrar Sesión', destroy_user_session_path, method: 'delete', class: 'bttn-pill bttn-md bttn-danger' %>
               <% end %>
-            </td>
-
-            <td class="text-right">
-              <%= link_to '', category_path(category), class: 'btn btn-info glyphicon glyphicon-eye-open' %>
-              <%= link_to '', edit_category_path(category), class: 'btn btn-warning glyphicon glyphicon-pencil' %>
-              <%= link_to '', category_path(category), method: :delete, data: {confirm: '¿Está seguro?'}, class: 'btn btn-danger glyphicon glyphicon-remove' %>
-            </td>
-          </tr>
-        <% end %>
-
-
-  <% else %>
-
-      <table class="table">
-        <thead>
-          <tr>
-            <th class="text-center">Título</th>
-            <th class="text-center">Categoría</th>
-            <th class="text-center">Localidad</th>
-            <th class="text-center">Fecha de inicio</th>
-            <th class="text-center">Días que dura el evento</th>
-            <th class="text-center">Elige</th>
-          </tr>
-        </thead>
-
-        <% @categories.each do |category| %>
-          <tr>
-            <td class="text-center">
-              <%= category.title %>
-            </td>
-            <td class="text-center">
-              <%= category.category_type %>
-            </td>
-            <td class="text-center">
-              <%= category.location %>
-            </td>
-            <td class="text-center">
-              <%= category.start_date %>
-            </td>
-            <td class="text-center">
-                <%= category.duration %>
-              </td>
-            <td class="text-center">
-              <%= link_to '', category_path(category), class: 'btn btn-info glyphicon glyphicon-eye-open' %>
-              <%= link_to '', edit_category_path(category), class: 'btn btn-warning glyphicon glyphicon-pencil' %>
-              <%= link_to '', category_path(category), method: :delete, data: {confirm: '¿Está seguro?'}, class: 'btn btn-danger glyphicon glyphicon-remove' %>
-            </td>
-          </tr>
-        <% end %>
-      </table>
-  <% end %>
-
+              </div>
+          <!-- fin del if  -->
+          </div>
+    </nav>
+    </div>
   </div>
-</div>
+  </header>
+  <br/><br/><br/><br/><br/><br/>
 
-</body>
+  <div class="container-fluid">
+    <div class="col-xs-12">
+      <% if current_user.email == 'opcionvenezuelaorg@gmail.com' %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th style="text-align: center"><h4 style="color:blue">Título</h4> </th>
+              <th style="text-align: center"> <h4 style="color:blue">Usuario</h4> </th>
+              <th style="text-align: center"><h4 style="color:blue">1era imagen</h4> </th>
+              <th style="text-align: center">
+                <a href=/categories?key=Prioridad-Up>
+                  <span class="glyphicon glyphicon-arrow-up"  aria-hidden="true"></span>
+                </a>
+                <h4 style="color:blue">Prioridad</h4>
+                <a href=/categories?key=Prioridad-Down>
+                  <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                </a>
+              </th>
 
-</html>
+              <th style="text-align: center">
+                <a href=/categories?key=Tipo-Up>
+                  <span class="glyphicon glyphicon-arrow-up"  aria-hidden="true"></span>
+                </a>
+                <h4 style="color:blue">Tipo de evento</h4>
+                <a href=/categories?key=Tipo-Down>
+                  <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                </a>
+              </th>
+
+              <th style="text-align: center">
+                <a href=/categories?key=FechadeInicio-Up>
+                  <span class="glyphicon glyphicon-arrow-up"  aria-hidden="true"></span>
+                </a>
+                <h4 style="color:blue">Fecha de inicio</h4>
+                <a href=/categories?key=FechadeInicio-Down>
+                  <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                </a>
+              </th>
+              <th style="text-align: center">
+                <a href=/categories?key=Status-Up>
+                  <span class="glyphicon glyphicon-arrow-up"  aria-hidden="true"></span>
+                </a>
+                <h4 style="color:blue">Status</h4>
+                <a href=/categories?key=Status-Down>
+                  <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                </a>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+          <% @categories.each do |category| %>
+            <tr>
+
+              <td class="text-center">
+                <%= category.title %>
+              </td>
+               <td class="text-center">
+                <%= category.user.name %>
+              </td>
+              <td class="text-center">
+              <% if category.avatar1.url != "/images/" %>
+                <%= image_tag(category.avatar1(:thumb)) %>
+              <% else %>
+                <%= image_tag("sin_foto.jpg", size:"90x90") %>
+
+              <% end %>
+              </td>
+              <td class="text-center">
+                <%= category.priority %>
+              </td>
+              <td class="text-center">
+                <%= category.category_type %>
+              </td>
+              <td class="text-center">
+                <%= category.start_date %>
+              </td>
+              <td class="text-center">
+                <% if category.status == true %>
+                  <p>Activa</p>
+                <% else %>
+                  <p>Inactiva</p>
+                <% end %>
+              </td>
+
+              <td class="text-right">
+                <%= link_to '', category_path(category), class: 'btn btn-info glyphicon glyphicon-eye-open' %>
+                <%= link_to '', edit_category_path(category), class: 'btn btn-warning glyphicon glyphicon-pencil' %>
+                <%= link_to '', category_path(category), method: :delete, data: {confirm: '¿Está seguro?'}, class: 'btn btn-danger glyphicon glyphicon-remove' %>
+              </td>
+            </tr>
+          <% end %>
+    <% else %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="text-center">Título</th>
+              <th class="text-center">Categoría</th>
+              <th class="text-center">Localidad</th>
+              <th class="text-center">Fecha de inicio</th>
+              <th class="text-center">Días que dura el evento</th>
+              <th class="text-center">Elige</th>
+            </tr>
+          </thead>
+
+          <% @categories.each do |category| %>
+            <tr>
+              <td class="text-center">
+                <%= category.title %>
+              </td>
+              <td class="text-center">
+                <%= category.category_type %>
+              </td>
+              <td class="text-center">
+                <%= category.location %>
+              </td>
+              <td class="text-center">
+                <%= category.start_date %>
+              </td>
+              <td class="text-center">
+                  <%= category.duration %>
+                </td>
+              <td class="text-center">
+                <%= link_to '', category_path(category), class: 'btn btn-info glyphicon glyphicon-eye-open' %>
+                <%= link_to '', edit_category_path(category), class: 'btn btn-warning glyphicon glyphicon-pencil' %>
+                <%= link_to '', category_path(category), method: :delete, data: {confirm: '¿Está seguro?'}, class: 'btn btn-danger glyphicon glyphicon-remove' %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+    <% end %>
+    </div>
+  </div>
+  </body>
+  </html>
