@@ -1,0 +1,131 @@
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "UTF-8"}/
+    %title Eventos de emprendimiento
+    %link{:href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", :rel => "stylesheet"}/
+    %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"}
+    %script{:src => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"}
+    %link{:href => "assets/stylesheets/welcome.scss", :rel => "stylesheet"}/
+    %link{:href => "assets/stylesheets/application.scss", :rel => "stylesheet"}/
+    = csrf_meta_tags
+  :javascript
+    function validateFiles(inputFile) {
+      var maxExceededMessage = "Este archivo excede de  (50 KB)";
+      var extErrorMessage = "Solo acepta imagenes con extensiones: .jpg, .jpeg, .gif or .png is allowed";
+      var allowedExtension = ["jpg", "jpeg", "gif", "png"];
+    
+      var extName;
+      var maxFileSize = $(inputFile).data('max-file-size');
+      var sizeExceeded = false;
+      var extError = false;
+    
+      $.each(inputFile.files, function() {
+        if (this.size && maxFileSize && this.size > parseInt(maxFileSize)) {sizeExceeded=true;};
+        extName = this.name.split('.').pop();
+        if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
+      });
+      if (sizeExceeded) {
+        window.alert(maxExceededMessage);
+        $(inputFile).val('');
+      };
+    
+      if (extError) {
+        window.alert(extErrorMessage);
+        $(inputFile).val('');
+      };
+    }
+  %body
+    .container-fluid
+      .col-xs-12
+        %nav.navbar.navbar-custom.navbar-fixed-top
+          %div
+            .col-xs-2
+              = image_tag "op.png", class: "img-logo"
+            .col-xs-offset-5.col-xs-3.col-sm-offset-5.col-sm-5.col-md-offset-6.col-md-4
+              = link_to 'Inicio', welcome_index_path, class: 'bttn-jelly bttn-md bttn-primary'
+              = link_to 'Publicaciones', categories_path, class: 'bttn-jelly bttn-md bttn-royal'
+              = link_to 'Cerrar Sesóon', destroy_user_session_path, method: 'delete', class: 'bttn-pill bttn-md bttn-danger'
+            / fin del if
+    %br/
+    %br/
+    %br/
+    %br/
+    .container
+      .row
+        .col-xs-12
+          - if @category.errors.any?
+            %div
+              %h2
+                = pluralize(@category.errors.count, "Errores")
+                Se necesitan completar todos los campos de la publicacion
+              %ul
+                - @category.errors.full_messages.each do |msg|
+                  %li= msg
+    .container
+      .row
+        .col-xs-12
+          %h2.text-center Agrega tu publicación
+          %br/
+        = form_for  :category, :url => {:action => :create} do |f|
+          .row.text-center
+            .col-xs-1.col-xs-offset-1
+              = f.select :category_type, ['Evento', 'Foro', 'Curso', 'Taller', 'Documental', 'Otro']
+            .col-xs-4.col-xs-offset-1
+              %label Título:  
+              = text_field(:category, :title, size:28)
+            .col-xs-4.col-xs-offset-1
+              %label Lugar:  
+              = text_field(:category, :location, size:28)
+          %br/
+          .row.text-center
+            .col-xs-3
+              %label Fecha de inicio:  
+              = date_field(:category, :start_date)
+            .col-xs-3
+              %label Días:  
+              = number_field(:category, :duration, min:0, max:999)
+            .col-xs-3
+              %label H. inicio:  
+              = time_field(:category, :start_hour)
+            .col-xs-3
+              %label H. fin:  
+              = time_field(:category, :end_hour)
+          %br/
+          .row.text-center
+            .col-xs-4
+              %label Sitio web:  
+              = url_field(:category, :web_site)
+            .col-xs-4
+              %label{:style => "text-indent:20px"} Teléfono:  
+              = number_field(:category, :phone, maxlength:16, size:16)
+            .col-xs-4
+              %label{:style => "text-indent:20px"} Precio de la entrada:  
+              = number_field(:category, :cost)
+          %br/
+          .row.text-center
+            - if current_user.email == 'opcionvenezuelaorg@gmail.com'
+              .col-xs-offset-3.col-xs-3
+                %label Prioridad:
+                = f.number_field :priority
+              .col-xs-3
+                = f.label 'Publicación:', style: 'text-indent: 20px'
+                = f.label 'activa'
+                = f.radio_button :status, true
+                = f.label 'inactiva'
+                = f.radio_button :status, false
+          %br/
+          .col-xs-12
+            %label Descripción:
+            %br/
+            = text_area(:category, :description, size: "24x7", maxlength: 50000, class: "form-control")
+            %br/
+          .row.text-center
+            %label{:style => "text-indent:20px"}
+              = f.file_field :avatar1, class: "pretty-input", onchange: "validateFiles(this);", data: { max_file_size: 50.kilobytes }
+            %label{:style => "text-indent:20px"}
+              = f.file_field :avatar2, class: "pretty-input", onchange: "validateFiles(this);", data: { max_file_size: 50.kilobytes }
+            %label{:style => "text-indent:20px"}
+              = f.file_field :avatar3, class: "pretty-input", onchange: "validateFiles(this);", data: { max_file_size: 50.kilobytes }
+          .col-xs-12
+            = f.submit 'Guardar', class: "bttn-fill bttn-md bttn-success"

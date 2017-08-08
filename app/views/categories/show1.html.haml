@@ -1,0 +1,117 @@
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "UTF-8"}/
+    %title Eventos de emprendimiento
+    %link{:href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", :rel => "stylesheet"}/
+    %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"}
+    %script{:src => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"}
+    %link{:href => "assets/stylesheets/welcome.scss", :rel => "stylesheet"}/
+    %link{:href => "assets/stylesheets/application.scss", :rel => "stylesheet"}/
+  %body
+    %header
+      .container-fluid
+        .col-xs-12
+          %nav.navbar.navbar-custom.navbar-fixed-top
+            %div
+              .col-xs-2
+                = image_tag "op.png", class: "img-logo"
+              .col-xs-offset-5.col-xs-4.col-sm-offset-5.col-sm-6.col-md-offset-5.col-md-5
+                - if user_signed_in?
+                  = link_to 'Inicio', welcome_index_path, class: 'bttn-jelly bttn-md bttn-primary'
+                  = link_to 'Publicar', new_category_path, class: 'bttn-jelly bttn-md bttn-royal'
+                  = link_to 'Publicaciones', categories_path,  class: 'bttn-gradient bttn-md bttn-success'
+                  = link_to 'Cerrar Sesión', destroy_user_session_path, method: 'delete', class: 'bttn-pill bttn-md bttn-danger'
+                - else
+                  = link_to 'Inicio', welcome_index_path, class: 'bttn-jelly bttn-md bttn-primary'
+                  = link_to 'Iniciar sesión', new_user_session_path, class: 'bttn-jelly bttn-md bttn-success'
+                  = link_to 'Registrarse', new_user_registration_path, class: 'bttn-jelly bttn-md bttn-warning'
+                  = link_to 'Publicar', new_user_registration_path, class: 'bttn-jelly bttn-md bttn-royal'
+              / fin del if
+    %br/
+    %br/
+    %br/
+    %br/
+    %table
+      %thead
+        %tr
+          %th
+            %h1.text-center
+              = @category.title
+        %tr
+          %th.col-xs-12.text-center
+            .col-xs-6
+              %label.text-right Tipo:  
+              = @category.category_type
+            .col-xs-6
+              %label.text-left Lugar:  
+              = @category.location
+        %tr
+          %th.col-xs-12.text-center
+            .col-xs-3
+              %label{:for => ""} Fecha de inicio:  
+              = @category.start_date.strftime("%d-%m-%Y")
+            .col-xs-3
+              %label{:for => ""} Días:  
+              = @category.duration
+            .col-xs-3
+              %time{:time => "20:00"}
+                %label{:for => ""} Hora de inicio:  
+                = @category.start_hour.strftime("%r")
+            .col-xs-3
+              %label{:for => ""} Hora de finalización:  
+              = @category.end_hour.strftime("%r")
+        %tr
+          %th.col-xs-12.text-center
+            .col-xs-4
+              %label{:for => ""} Precio de la entrada:  
+              = @category.cost
+            .col-xs-4
+              %label{:for => ""} Teléfono:  
+              = @category.phone
+            .col-xs-4
+              %a{:href => "#{@category.web_site}"} Visítanos en nuestro sitio web
+        %tr
+          %th.col-xs-6
+            %textarea{:readonly => "readonly", :rows => "10", :style => "width:100%"}= @category.description
+    .container-fluid
+      .row
+        #carousel-example-generic.carousel.slide.carousel-custom{"data-ride" => "carousel"}
+          / Indicators
+          %ol.carousel-indicators
+            %li.active{"data-slide-to" => "0", "data-target" => "#carousel-example-generic"}
+            %li{"data-slide-to" => "1", "data-target" => "#carousel-example-generic"}
+            %li{"data-slide-to" => "2", "data-target" => "#carousel-example-generic"}
+          / Wrapper for slides
+          .carousel-inner{:role => "listbox"}
+            .item.active
+              .col-xs-12
+                - if @category.avatar1.url != "/images/"
+                  = image_tag(@category.avatar1.url, :class => "img-responsive ")
+                - else
+                  = image_tag("sin_imagen.jpg", :class => "img-responsive ")
+            .item
+              .col-xs-12
+                - if @category.avatar2.url != "/images/"
+                  = image_tag(@category.avatar2.url, :class => "img-responsive ")
+                - else
+                  = image_tag("sin_imagen.jpg", :class => "img-responsive ")
+            .item
+              .col-xs-12
+                - if @category.avatar3.url != "/images/"
+                  = image_tag(@category.avatar3.url, :class => "img-responsive ")
+                - else
+                  = image_tag("sin_imagen.jpg", :class => "img-responsive ")
+          / Controls
+          %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic", :role => "button"}
+            %span.glyphicon.glyphicon-chevron-left{"aria-hidden" => "true"}
+            %span.sr-only Previous
+          %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic", :role => "button"}
+            %span.glyphicon.glyphicon-chevron-right{"aria-hidden" => "true"}
+            %span.sr-only Next
+        / jQuery (necessary for Bootstrap's JavaScript plugins)
+        %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"}
+        / Include all compiled plugins (below), or include individual files as needed
+        %script{:src => "js/bootstrap.min.js"}
+  %html
+    %script{:src => "js/bootstrap.min.js"}
