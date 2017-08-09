@@ -47,7 +47,6 @@
                       Hola #{current_user.name}
                     = link_to 'Publicar', new_category_path, class: 'bttn-jelly bttn-md bttn-royal'
                     = link_to 'Cerrar Sesión', destroy_user_session_path, method: 'delete', class: 'bttn-pill bttn-md bttn-danger'
-              / fin del if
     %br/
     %br/
     %br/
@@ -58,7 +57,6 @@
           %em Bienvenido a esta gran comunidad de emprendedores!
         = form_tag categories_search_path, :method => 'get' do
           %p
-            / <haml_loud> date_field_tag :search, params[:search]</haml_loud>
           %p.col-xs-1 Fecha Desde:
           %p.col-xs-1
             = date_select(params[:search] ,"key", order: [:day, :month, :year], :use_month_numbers => true)
@@ -88,7 +86,6 @@
       .container-fluid
         .row
           #carousel-example-generic.carousel.slide.carousel-custom{"data-ride" => "carousel"}
-            / Wrapper for slides
             .carousel-inner{:role => "listbox"}
               .item.active
                 .col-xs-12.text-center
@@ -129,7 +126,6 @@
                       = @categories_carousel.first.title
                       %br/
                       = @categories_carousel.first.start_date.strftime("%d-%m-%Y")
-            / Controls
             %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic", :role => "button"}
               %span.glyphicon.glyphicon-chevron-left{"aria-hidden" => "true"}
               %span.sr-only Previous
@@ -140,20 +136,16 @@
               %li.active{"data-slide-to" => "0", "data-target" => "#carousel-example-generic"}
               %li{"data-slide-to" => "1", "data-target" => "#carousel-example-generic"}
               %li{"data-slide-to" => "2", "data-target" => "#carousel-example-generic"}
-          / jQuery (necessary for Bootstrap's JavaScript plugins)
           %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"}
-          / Include all compiled plugins (below), or include individual files as needed
           %script{:src => "js/bootstrap.min.js"}
     - else
       .container-fluid
         .row
           #carousel-example-generic2.carousel.slide.carousel-custom{"data-ride" => "carousel"}
-            / Indicators
             %ol.carousel-indicators
               %li.active{"data-slide-to" => "0", "data-target" => "#carousel-example-generic2"}
               %li{"data-slide-to" => "1", "data-target" => "#carousel-example-generic2"}
               %li{"data-slide-to" => "2", "data-target" => "#carousel-example-generic2"}
-            / Wrapper for slides
             .carousel-inner{:role => "listbox"}
               .item.active
                 .col-xs-12.text-center
@@ -164,22 +156,18 @@
               .item
                 .col-xs-12.text-center
                   = image_tag("bill.jpg")
-            / Controls
             %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic2", :role => "button"}
               %span.glyphicon.glyphicon-chevron-left{"aria-hidden" => "true"}
               %span.sr-only Previous
             %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic2", :role => "button"}
               %span.glyphicon.glyphicon-chevron-right{"aria-hidden" => "true"}
               %span.sr-only Next
-          / jQuery (necessary for Bootstrap's JavaScript plugins)
           %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"}
-          / Include all compiled plugins (below), or include individual files as needed
           %script{:src => "js/bootstrap.min.js"}
     - @cont = 0
     - @categories_total.each do |categoria|
       - if categoria[1].present?
         %hr/
-        / si HAY imagenes cargadas en las publicaciones de abajo
         .container-fluid
           %h1{:style => "color: gray"}= "#{categoria[0]}"
           .row
@@ -207,8 +195,6 @@
                               .text.text-center
                                 %a{:href => "#{@mylink}", :rel => "nofollow", :style => "text-decoration: none"}
                                   %h4 Haz Click para ver Detalle
-                              / fin del text
-                            / fin del middle
                           - else
                             %a{:href => "#{@mylink}", :rel => "nofollow"}
                               = image_tag("sin_foto.jpg", :class => " image")
@@ -221,10 +207,6 @@
                               .text.text-center
                                 %a{:href => "#{@mylink}", :rel => "nofollow", :style => "text-decoration: none"}
                                   %h4 Haz Click para ver Detalle
-                              / fin del text
-                            / fin del middle
-                        / fin de container-agr
-                  / cierre de item-active
                   - for i in (3..categoria[1].length+2).step(3) do
                     - if i <= categoria[1].length-1
                       .item.text-center
@@ -246,8 +228,6 @@
                                 .text.text-center
                                   %a{:href => "#{@mylink}", :rel => "nofollow", :style => "text-decoration: none"}
                                     %h4 Haz Click para ver Detalle
-                                / fin del text
-                              / fin del middle
                             - else
                               %a{:href => "#{@mylink}", :rel => "nofollow"}
                                 = image_tag("sin_foto.jpg", :class => " image")
@@ -260,10 +240,6 @@
                                 .text.text-center
                                   %a{:href => "#{@mylink}", :rel => "nofollow", :style => "text-decoration: none"}
                                     %h4 Haz Click para ver Detalle
-                                / fin del text
-                              / fin del middle
-                          / container-agr
-                        / col
                         - for j in (i+1..i+2) do
                           - if j <= categoria[1].length-1
                             .col-sm-4
@@ -284,8 +260,6 @@
                                     .text.text-center
                                       %a{:href => "#{@mylink}", :rel => "nofollow", :style => "text-decoration: none"}
                                         %h4 Haz Click para ver Detalle
-                                    / fin del text
-                                  / fin del middle
                                 - else
                                   %a{:href => "#{@mylink}", :rel => "nofollow"}
                                     = image_tag("sin_foto.jpg", :class => " image")
@@ -298,21 +272,9 @@
                                     .text.text-center
                                       %a{:href => "#{@mylink}", :rel => "nofollow", :style => "text-decoration: none"}
                                         %h4 Haz Click para ver Detalle
-                                    / fin del text
-                                  / fin del middle
-                              / container-agr
-                            / col
-                      / cierre de carousel-inner
                       - @mylinkcarousel = "#carousel-tilenav" + @cont.to_s
                       %a.left.carousel-control{"data-slide" => "prev", :href => "#{@mylinkcarousel}", :rel => "nofollow"}
                         %i.glyphicon.glyphicon-chevron-left
                       %a.right.carousel-control{"data-slide" => "next", :href => "#{@mylinkcarousel}", :rel => "nofollow"}
                         %i.glyphicon.glyphicon-chevron-right
-                    / for
-                / cierre de carousel
-              / cierre de col
-            / cierre de row
-          / cierre de container
           - @cont += 1
-          / if principal
-          / each principal
